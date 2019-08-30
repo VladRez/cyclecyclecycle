@@ -9,12 +9,13 @@ const expressGraphQL = require("express-graphql")
 
 
 const app = express();
-
 // app.use(cors());
+
+// app.
 
 
 if (!db) {
-    throw new Error("Not Connected to DB")
+    throw new Error("No Database Connection URI")
 }
 
 mongoose
