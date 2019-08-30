@@ -8,22 +8,23 @@ const validateRegisterInput = require("../validations/register");
 
 const register = async data => {
   try {
+    
     const { message, isValid } = validateRegisterInput(data);
-
+    
     if (!isValid) {
       throw new Error(message);
     }
 
     const { fname, lname, email, password } = data;
-
+    
     const existingUser = await User.findOne({ email });
-
+    
     if (existingUser) {
       throw new Error("This user already exists");
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-
+    
     const user = new User(
       {
         fname,
