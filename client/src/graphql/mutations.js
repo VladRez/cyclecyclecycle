@@ -8,7 +8,7 @@ export default {
       $email: String!
       $password: String!
     ) {
-      register(name: $name, email: $email, password: $password) {
+      register(fname: $fname, lname: $lname, email: $email, password: $password) {
         token
         loggedIn
       }
