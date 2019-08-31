@@ -1,0 +1,61 @@
+.button {
+  border: none;
+  cursor: pointer;
+}
+
+.input {
+  border: none;
+  outline: none;
+}
+
+.map-nav-container {
+}
+
+.map-nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background-color: #f1f1f1;
+}
+
+.search-input {
+  padding: 10px;
+  border: none;
+  font-size: 16px;
+  border-radius: 3px 0px 0px 3px;
+  outline: none;
+}
+
+.search-button {
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  background-color: #333;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 0px 3px 3px 0px;
+  width: 75px;
+}
+
+.map-nav__button {
+  padding: 10px;
+  font-size: 16px;
+  margin-right: 5px;
+  border-radius: 3px;
+  width: 60px;
+}
+
+.map-nav__button:hover {
+  background-color: #dddddd;
+}
+
+.button-save {
+  cursor: pointer;
+  padding: 10px;
+  border: none;
+  background-color: #fc4c02;
+  color: #fff;
+  font-size: 16px;
+  border-radius: 3px;
+  width: 75px;
+}
