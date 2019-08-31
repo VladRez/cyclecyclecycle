@@ -1,16 +1,3 @@
-.button {
-  border: none;
-  cursor: pointer;
-}
-
-.input {
-  border: none;
-  outline: none;
-}
-
-.map-nav-container {
-}
-
 .map-nav {
   display: flex;
   justify-content: space-between;
