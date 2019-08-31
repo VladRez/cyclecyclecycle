@@ -59,3 +59,8 @@
   border-radius: 3px;
   width: 75px;
 }
+
+.mapbox-container {
+  width: 100vw;
+  height: calc(100vh - 58px);
+}
