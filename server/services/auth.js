@@ -40,7 +40,7 @@ const register = async data => {
     user.save();
 
     const token = jwt.sign({ id: user._id }, keys.secretOrKey);
-
+      
     return { token, loggedIn: true, ...user._doc, password: null };
   } catch (err) {
     throw err;
@@ -79,7 +79,6 @@ const login = async data => {
     if (!validPWord) throw new Error("Invalid Password");
 
     const token = jwt.sign({ id: existingUser._id }, keys.secretOrKey);
-
     return { token, loggedIn: true, ...existingUser._doc, password: null };
   } catch (err) {
     throw err;
