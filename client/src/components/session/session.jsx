@@ -1,10 +1,11 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Session = props => {
-  // eslint-disable-next-line
-  const SessionLinks = () => <h1>Session Links</h1>;
-  const WelcomePage = () => <h1>Welcome Page</h1>;
-  return WelcomePage();
+  return <div>
+    <Link to="/login">Login</Link>
+    <Link to="/signup">Signup</Link>
+  </div>;
 };
 
 export default Session;

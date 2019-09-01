@@ -1,7 +1,7 @@
 import React from "react";
-
+import Logout from "../session/logout";
 const Dashboard = props => {
-  return <h1>Dashboard</h1>;
+  return <div>Dashboard <Logout/> </div>;
 };
 
 export default Dashboard;
