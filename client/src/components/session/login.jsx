@@ -1,6 +1,8 @@
 import React from "react";
 import { Mutation } from "react-apollo";
 import Mutations from "../../graphql/mutations";
+import { Link } from "react-router-dom";
+
 const { LOGIN_USER } = Mutations;
 
 class Login extends React.Component {
@@ -18,7 +20,6 @@ class Login extends React.Component {
   }
 
   updateCache(client, { data }) {
-    
     client.writeData({
       data: { isLoggedIn: data.login.loggedIn }
     });
@@ -62,6 +63,7 @@ class Login extends React.Component {
               />
               <button type="submit">Log In</button>
             </form>
+            <Link to="/signup">Sign Up</Link>
           </div>
         )}
       </Mutation>

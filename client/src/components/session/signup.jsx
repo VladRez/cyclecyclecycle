@@ -1,6 +1,7 @@
 import React from "react";
 import { Mutation } from "react-apollo";
 import Mutations from "../../graphql/mutations";
+import { Link } from "react-router-dom";
 const { REGISTER_USER } = Mutations;
 
 class Signup extends React.Component {
@@ -82,6 +83,7 @@ class Signup extends React.Component {
               />
               <button type="submit">Sign Up</button>
             </form>
+            <Link to="/login">Login</Link>
           </div>
         )}
       </Mutation>
