@@ -79,7 +79,7 @@ const Root = () => {
 ReactDOM.render(<Root />, document.getElementById("root"));
 
 //for debugging purposes only
-window.httpLink = httpLink;
-window.token = token;
-window.cache = cache;
-window.client = client;
+// window.httpLink = httpLink;
+// window.token = token;
+// window.cache = cache;
+// window.client = client;
