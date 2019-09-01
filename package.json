@@ -12,6 +12,7 @@
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "server:debug": "nodemon --inspect index.js",
+    "server": "nodemon --inspect index.js",
     "frontend-install": "npm install --prefix client",
     "frontend": "npm start --prefix client",
     "dev-debug": "concurrently \"npm run server:debug\" \"npm run frontend\""
