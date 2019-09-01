@@ -7,12 +7,14 @@ export default {
       $lname: String!
       $email: String!
       $password: String!
+      $password2: String!
     ) {
       register(
         fname: $fname
         lname: $lname
         email: $email
         password: $password
+        password2: $password2
       ) {
         token
         loggedIn

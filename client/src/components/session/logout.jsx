@@ -11,7 +11,7 @@ const Logout = props => (
       <Query query={IS_LOGGED_IN}>
         {({ data }) => {
           if (data.isLoggedIn) {
-            debugger;
+           
             return (
               <button
                 onClick={e => {
