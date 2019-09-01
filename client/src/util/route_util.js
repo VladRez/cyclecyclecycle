@@ -2,11 +2,13 @@ import React from "react";
 import { Route, Redirect, withRouter } from "react-router-dom";
 import { Query } from "react-apollo";
 
-const { IS_LOGGED_IN } = require("../graphql/queries");
+import Queries from "../graphql/queries";
+const { IS_LOGGED_IN } = Queries;
 
 const Protected = ({ component: Component, path, exact, ...rest }) => (
   <Query query={IS_LOGGED_IN}>
     {({ data }) => {
+      
       return (
         <Route
           {...rest}
@@ -26,6 +28,7 @@ const Protected = ({ component: Component, path, exact, ...rest }) => (
 const Auth = ({ component: Component, path, exact, ...rest }) => (
   <Query query={IS_LOGGED_IN}>
     {({ data }) => {
+      
       return (
         <Route
           path={path}

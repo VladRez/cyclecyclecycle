@@ -12,7 +12,8 @@ import { onError } from "apollo-link-error";
 // eslint-disable-next-line
 import { ApolloLink } from "apollo-link";
 
-const { VERIFY_USER } = require("./graphql/mutations");
+import Mutations from "./graphql/mutations";
+const { VERIFY_USER } = Mutations;
 
 // pass token within header
 const httpLink = createHttpLink({
@@ -26,7 +27,7 @@ const httpLink = createHttpLink({
 const token = localStorage.getItem("auth-token");
 
 const cache = new InMemoryCache({
-  dataIdFromObject: obj => obj._id || null
+  dataIdFromObject: object => object._id || null
 });
 
 // eslint-disable-next-line
@@ -76,3 +77,9 @@ const Root = () => {
 };
 
 ReactDOM.render(<Root />, document.getElementById("root"));
+
+//for debugging purposes only
+window.httpLink = httpLink;
+window.token = token;
+window.cache = cache;
+window.client = client;
