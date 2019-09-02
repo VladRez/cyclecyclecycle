@@ -74,8 +74,8 @@ class Login extends React.Component {
                 </button>
                 <Demo />
               </form>
-              <span className="margin-right-s">Don't have an account?</span>
-              <Link to="/signup">Sign Up</Link>
+              {/* <span className="margin-right-s">Don't have an account?</span>
+              <Link to="/signup">Sign Up</Link> */}
             </div>
           </div>
         )}

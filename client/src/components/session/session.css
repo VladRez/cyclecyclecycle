@@ -6,18 +6,20 @@
   transform: translate(-50%, -50%);
   background-color: #fff;
   border-radius: 3px;
-  padding: 60px 40px;
+  padding: 40px 40px;
 }
 
 .login-page-background {
-  height: 100vh;
-  background-image: url("https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80");
+  position: relative;
+  height: calc(100vh - 56px);
+  background-image: url("https://images.unsplash.com/photo-1496163668521-39614a16b23f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80");
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 .signup-page-background {
-  height: 100vh;
+  position: relative;
+  height: calc(100vh - 56px);
   background-image: url("https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80");
   background-size: cover;
   background-repeat: no-repeat;

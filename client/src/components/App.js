@@ -23,7 +23,7 @@ function App() {
       <HashRouter>
         <Navbar />
         <Switch>
-          <AuthRoute exact path="/" component={Session} />
+          <AuthRoute exact path="/" component={Signup} />
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/signup" component={Signup} />
           <ProtectedRoute exact path="/dashboard" component={Dashboard} />
