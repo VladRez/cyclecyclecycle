@@ -3,6 +3,7 @@ import React from "react";
 import { Mutation } from "react-apollo";
 import Mutations from "../../graphql/mutations";
 import { Link } from "react-router-dom";
+import Demo from "./demo";
 const { REGISTER_USER } = Mutations;
 
 class Signup extends React.Component {
@@ -91,9 +92,13 @@ class Signup extends React.Component {
                   placeholder="Password"
                   className="session-form-input"
                 />
-                <button className="button session-form-button" type="submit">
+                <button
+                  className="button session-form-button-primary"
+                  type="submit"
+                >
                   Sign Up
                 </button>
+                <Demo />
               </form>
               <span className="margin-right-s">Already have an account?</span>
               <Link to="/login">Login</Link>

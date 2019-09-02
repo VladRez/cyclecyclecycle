@@ -2,6 +2,7 @@ import React from "react";
 import { Mutation } from "react-apollo";
 import Mutations from "../../graphql/mutations";
 import { Link } from "react-router-dom";
+import Demo from "./demo";
 import "./session.css";
 
 const { LOGIN_USER } = Mutations;
@@ -68,9 +69,10 @@ class Login extends React.Component {
                   placeholder="Password"
                   className="session-form-input"
                 />
-                <button className="session-form-button button" type="submit">
+                <button className="session-form-button-primary button" type="submit">
                   Log In
                 </button>
+                <Demo />
               </form>
               <span className="margin-right-s">Don't have an account?</span>
               <Link to="/signup">Sign Up</Link>

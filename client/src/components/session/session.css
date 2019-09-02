@@ -37,15 +37,27 @@
   color: #222;
 }
 
-.session-form-button {
+.session-form-button-primary {
   background-color: #fc4c02;
   border: none;
   border-radius: 3px;
   padding: 10px;
-  margin-bottom: 25px;
+  margin-bottom: 15px;
   color: #ffffff;
   font-weight: 700;
   font-size: 16px;
+}
+
+.session-form-button-secondary {
+  background-color: #222;
+  border: none;
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 15px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  width: 100%;
 }
 
 .session-form-button:focus {

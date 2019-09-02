@@ -1,3 +1,4 @@
+import "./session.css";
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { Mutation } from "react-apollo";
@@ -42,7 +43,12 @@ class Demo extends React.Component {
                 });
               }}
             >
-              <button type="submit">Demo</button>
+              <button
+                className="session-form-button-secondary button"
+                type="submit"
+              >
+                Demo Login
+              </button>
             </form>
           </div>
         )}
