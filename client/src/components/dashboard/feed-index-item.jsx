@@ -6,20 +6,24 @@ export default class FeedIndexItem extends Component {
     return (
       <div className="container flex-column feed-item">
         <div className="flex-row margin-bottom-s">
-          <div className="feed-item-avatar">*Img*</div>
+          <div className="feed-item-avatar">
+            <i class="fas fa-user font-size-l"></i>
+          </div>
           <div className="flex-column">
             <div className="feed-item-username">*Robert* *Yeakel*</div>
             <div className="feed-item-date">*Today at 4:00 PM*</div>
           </div>
         </div>
         <div className="flex-row">
-          <div className="feed-item-activity-type">*Run*</div>
+          <div className="feed-item-activity-type">
+            <i class="fas fa-biking"></i>
+          </div>
           <div className="flex-column">
             <div className="feed-item-title margin-bottom-s">
               *Tour Le Paris*
             </div>
             <div className="feed-item-description margin-bottom-s">
-              *Jog around the Eiffel Tower*
+              *Biking around the Eiffel Tower*
             </div>
             <div className="flex-row">
               <div className="flex-column margin-right-xl">

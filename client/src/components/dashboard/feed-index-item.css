@@ -2,12 +2,16 @@
   width: 600px;
   margin: auto;
   border-radius: 5px;
+  margin-bottom: 20px;
 }
 
 .feed-item-avatar {
   width: 40px;
-  height: 40px;
+  height: 30px;
   margin-right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .feed-item-username {
@@ -22,8 +26,11 @@
 
 .feed-item-activity-type {
   width: 40px;
-  height: 40px;
+  height: 30px;
   margin-right: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .feed-item-title {

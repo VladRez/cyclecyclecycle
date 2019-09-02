@@ -6,6 +6,7 @@ export default class FeedIndex extends Component {
     return (
       <div>
         <FeedIndexItem />
+        <FeedIndexItem />
       </div>
     );
   }
