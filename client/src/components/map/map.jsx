@@ -8,6 +8,7 @@ import {
   Map,
   GoogleApiWrapper,
   Marker,
+  GoogleMap,
   DirectionsRenderer,
   DirectionsService
 } from "google-maps-react";
@@ -22,16 +23,22 @@ class GMaps extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      markers: []
+      markers: [],
+      waypoints: [],
+      origin: {},
+      destination: {}
     };
-    this.onClick = this.onClick.bind(this);
+    this.addMarker = this.addMarker.bind(this);
+    debugger
   }
-  onClick(t, map, coord) {
+
+  addMarker(t, map, coord) {
     const { latLng } = coord;
     const lat = latLng.lat();
     const lng = latLng.lng();
 
     this.setState(previousState => {
+      
       return {
         markers: [
           ...previousState.markers,
@@ -40,31 +47,28 @@ class GMaps extends React.Component {
             name: "",
             position: { lat, lng }
           }
-        ]
+        ],
       };
     });
+    
   }
 
   render() {
-    console.log(this.state.markers);
+    let initMarker = "";
+      if (this.state.markers.length === 1) {
+        let obj = this.state.markers[0]
+        initMarker= <Marker title={obj.title} name={obj.name} position={obj.position}/>
+      } 
     return (
       <div>
-        <h1 className="text-center">My Maps</h1>
         <Map
           google={this.props.google}
           style={{ width: "100%", margin: "auto", height: "80%" }}
           className={"map"}
           zoom={14}
-          onClick={this.onClick}
+          onClick={this.addMarker}
         >
-          {this.state.markers.map((marker, index) => (
-            <Marker
-              key={index}
-              title={marker.title}
-              name={marker.name}
-              position={marker.position}
-            />
-          ))}
+          {initMarker}
         </Map>
       </div>
     );
@@ -72,5 +76,14 @@ class GMaps extends React.Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: ""
+  apiKey: "AIzaSyDd-3Aoty8CsCWocHbsrg9mBSm5V-evBhw"
 })(GMaps);
+
+// {this.state.markers.map((marker, index) => (
+//   <Marker
+//     key={index}
+//     title={marker.title}
+//     name={marker.name}
+//     position={marker.position}
+//   />
+// ))}

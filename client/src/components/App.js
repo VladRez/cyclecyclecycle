@@ -15,7 +15,7 @@ import Dashboard from "./dashboard/dashboard"
 // Routes
 import NewRoute from "./new_route";
 import Navbar from "./navbar";
-import Map from "./map/map"
+import Map from "./map/index"
 
 function App() {
   return (
