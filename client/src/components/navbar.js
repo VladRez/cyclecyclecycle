@@ -27,7 +27,7 @@ export default class Navbar extends Component {
                       <div className="nav-group">
                         <div className="dropdown">
                           <div className="nav-item nav-profile dropbtn">
-                            <i class="fas fa-user font-size-l"></i>
+                            <i className="fas fa-user font-size-l"></i>
                           </div>
                           <div className="dropdown-content">
                             <Logout />
@@ -35,7 +35,7 @@ export default class Navbar extends Component {
                         </div>
                         <div className="dropdown">
                           <div className="nav-item nav-profile dropbtn">
-                            <i class="fas fa-plus font-size-l"></i>
+                            <i className="fas fa-plus font-size-l"></i>
                           </div>
                           <div className="dropdown-content">
                             <Link to="/routes/new">Create a route</Link>
