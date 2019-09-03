@@ -12,6 +12,7 @@ import Signup from "./session/signup";
 // Protected Components
 import Session from "./session/session";
 import Dashboard from "./dashboard/dashboard";
+import Activity from "./activity/Activity";
 
 // Routes
 import NewRoute from "./new_route";
@@ -34,6 +35,7 @@ function App() {
             component={ActivityShow}
           />
           <ProtectedRoute exact path="/routes/new" component={NewRoute} />
+          <Route exact path="/activity/new" component={Activity} />
         </Switch>
       </HashRouter>
     </div>

@@ -40,3 +40,29 @@ mutation{
   }
 }
 ```
+
+Add Activity
+```js
+mutation {
+  addActivity(distance:0.5, duration:0.25, elevation: 1, sport:"crossfit", 
+    title: "Sprint", runtype: "Race", tags: "Commute", 
+    description: "HIIT in the park"){
+    _id,
+    title,
+    description
+  }
+    
+  
+}
+```
+
+Query Activity
+```js
+{
+      activity(_id: "5d6d8f6b01745d7d53dc4007"
+) {
+       _id,
+        title
+      }
+    }
+    ```
