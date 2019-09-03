@@ -1,4 +1,5 @@
 import "./App.css";
+import "../index.css";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 // eslint-disable-next-line
 import { HashRouter, Switch, Route } from "react-router-dom";
@@ -10,7 +11,7 @@ import Signup from "./session/signup";
 
 // Protected Components
 import Session from "./session/session";
-import Dashboard from "./dashboard/dashboard"
+import Dashboard from "./dashboard/dashboard";
 
 // Routes
 import NewRoute from "./new_route";
@@ -20,12 +21,12 @@ function App() {
   return (
     <div>
       <HashRouter>
-      <Navbar />
+        <Navbar />
         <Switch>
-          <AuthRoute exact path="/" component={Session} />
+          <AuthRoute exact path="/" component={Signup} />
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/signup" component={Signup} />
-          <ProtectedRoute exact path="/dashboard" component={Dashboard}/>
+          <ProtectedRoute exact path="/dashboard" component={Dashboard} />
           <ProtectedRoute exact path="/routes/new" component={NewRoute} />
         </Switch>
       </HashRouter>

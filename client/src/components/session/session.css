@@ -1,0 +1,67 @@
+.session-form-container {
+  width: 400px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border-radius: 3px;
+  padding: 40px 40px;
+}
+
+.login-page-background {
+  position: relative;
+  height: calc(100vh - 56px);
+  background-image: url("https://images.unsplash.com/photo-1496163668521-39614a16b23f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.signup-page-background {
+  position: relative;
+  height: calc(100vh - 56px);
+  background-image: url("https://images.unsplash.com/photo-1534787238916-9ba6764efd4f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1189&q=80");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.session-form-input {
+  padding: 10px;
+  outline: none;
+  margin-bottom: 15px;
+  border-radius: 3px;
+  border-style: none;
+  background-color: #eaeaea;
+}
+.session-form-heading {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #222;
+}
+
+.session-form-button-primary {
+  background-color: #fc4c02;
+  border: none;
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 15px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.session-form-button-secondary {
+  background-color: #222;
+  border: none;
+  border-radius: 3px;
+  padding: 10px;
+  margin-bottom: 15px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  width: 100%;
+}
+
+.session-form-button:focus {
+  outline: none;
+}

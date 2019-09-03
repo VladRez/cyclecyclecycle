@@ -1,5 +1,6 @@
 * {
   box-sizing: border-box;
+  color: #222;
 }
 
 h1,
@@ -11,16 +12,141 @@ h6 {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
 body {
   background-color: #f5f5fa;
+  margin: 0;
 }
 
 .button {
   border: none;
   cursor: pointer;
+  text-align: center;
+  border-radius: 3px;
+}
+
+.button-primary {
+  background-color: #fc4c02;
+  color: #fff;
+  width: 75px;
+  padding: 10px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+.button-secondary {
+  background-color: #eaeaea;
+  width: 75px;
+  padding: 10px;
+  font-weight: 700;
+  font-size: 13px;
 }
 
 .input {
   border: none;
   outline: none;
+}
+
+.container {
+  background-color: #fff;
+  padding: 15px;
+}
+
+.flex-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-container {
+  max-width: 1248px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.margin-top-xs {
+  margin-top: 5px;
+}
+
+.margin-top-s {
+  margin-top: 10px;
+}
+
+.margin-top-m {
+  margin-top: 15px;
+}
+
+.margin-top-l {
+  margin-top: 20px;
+}
+
+.margin-top-xl {
+  margin-top: 25px;
+}
+
+.margin-right-xs {
+  margin-right: 5px;
+}
+
+.margin-right-s {
+  margin-right: 10px;
+}
+
+.margin-right-m {
+  margin-right: 15px;
+}
+
+.margin-right-l {
+  margin-right: 20px;
+}
+
+.margin-right-xl {
+  margin-right: 25px;
+}
+
+.margin-bottom-xs {
+  margin-bottom: 5px;
+}
+
+.margin-bottom-s {
+  margin-bottom: 10px;
+}
+
+.margin-bottom-m {
+  margin-bottom: 15px;
+}
+
+.margin-bottom-l {
+  margin-bottom: 20px;
+}
+
+.margin-bottom-xl {
+  margin-bottom: 25px;
+}
+
+.margin-left-xs {
+  margin-left: 5px;
+}
+
+.margin-left-s {
+  margin-left: 10px;
+}
+
+.margin-left-m {
+  margin-left: 15px;
+}
+
+.margin-left-l {
+  margin-left: 20px;
+}
+
+.margin-left-xl {
+  margin-left: 25px;
 }

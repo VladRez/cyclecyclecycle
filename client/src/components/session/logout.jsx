@@ -11,9 +11,8 @@ const Logout = props => (
       <Query query={IS_LOGGED_IN}>
         {({ data }) => {
           if (data.isLoggedIn) {
-           
             return (
-              <button
+              <a
                 onClick={e => {
                   e.preventDefault();
                   localStorage.removeItem("auth-token");
@@ -22,8 +21,10 @@ const Logout = props => (
                 }}
               >
                 Logout
-              </button>
+              </a>
             );
+          } else {
+            return null;
           }
         }}
       </Query>

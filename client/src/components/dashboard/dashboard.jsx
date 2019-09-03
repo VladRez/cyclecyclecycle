@@ -1,7 +1,13 @@
-import React from "react";
-import Logout from "../session/logout";
-const Dashboard = props => {
-  return <div>Dashboard <Logout/> </div>;
-};
+import React, { Component } from "react";
+import FeedIndex from "./feed-index";
+import "./dashboard.css";
 
-export default Dashboard;
+export default class Dashboard extends Component {
+  render() {
+    return (
+      <div className="page-container">
+        <FeedIndex />
+      </div>
+    );
+  }
+}

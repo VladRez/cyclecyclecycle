@@ -5,6 +5,7 @@
 }
 
 .navbar {
+  height: 55px;
   max-width: 1236px;
   margin: auto;
   display: flex;

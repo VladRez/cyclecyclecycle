@@ -2,6 +2,8 @@ import React from "react";
 import { Mutation } from "react-apollo";
 import Mutations from "../../graphql/mutations";
 import { Link } from "react-router-dom";
+import Demo from "./demo";
+import "./session.css";
 
 const { LOGIN_USER } = Mutations;
 
@@ -37,33 +39,44 @@ class Login extends React.Component {
         update={(client, data) => this.updateCache(client, data)}
       >
         {LoginUser => (
-          <div>
-            <form
-              onSubmit={e => {
-                e.preventDefault();
+          <div className="login-page-background">
+            <div className="session-form-container">
+              <form
+                className="flex-column"
+                onSubmit={e => {
+                  e.preventDefault();
 
-                LoginUser({
-                  variables: {
-                    email: this.state.email,
-                    password: this.state.password
-                  }
-                });
-              }}
-            >
-              <input
-                value={this.state.email}
-                onChange={this.update("email")}
-                placeholder="Email"
-              />
-              <input
-                value={this.state.password}
-                onChange={this.update("password")}
-                type="password"
-                placeholder="Password"
-              />
-              <button type="submit">Log In</button>
-            </form>
-            <Link to="/signup">Sign Up</Link>
+                  LoginUser({
+                    variables: {
+                      email: this.state.email,
+                      password: this.state.password
+                    }
+                  });
+                }}
+              >
+                <h1 className="session-form-heading">Log In</h1>
+
+                <input
+                  value={this.state.email}
+                  onChange={this.update("email")}
+                  placeholder="Email"
+                  className="session-form-input"
+                />
+                <input
+                  value={this.state.password}
+                  onChange={this.update("password")}
+                  type="password"
+                  placeholder="Password"
+                  className="session-form-input"
+                />
+                <button className="session-form-button-primary button" type="submit">
+                  Log In
+                </button>
+                <Demo />
+              </form>
+              {/* <span className="margin-right-s">Don't have an account?</span>
+              <Link to="/signup">Sign Up</Link> */}
+            </div>
           </div>
         )}
       </Mutation>
