@@ -7,24 +7,63 @@ import {
   DirectionsRenderer
 } from "react-google-maps";
 class Map extends Component {
-  state = {
-    directions: null
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      directions: null,
+      routePoints: []
+    };
 
-  componentDidMount() {
+    this.addRoutePoint = this.addRoutePoint.bind(this);
+    this.calculateAndDisplayRoute = this.calculateAndDisplayRoute.bind(this);
+  }
+
+  addRoutePoint(event) {
+    const { latLng } = event;
+    const lat = latLng.lat();
+    const lng = latLng.lng();
+
+    const routePoint = {
+      location: { lat, lng },
+      stopover: true
+    };
+
+    this.setState(prevState => {
+      return {
+        routePoints: [...prevState.routePoints, routePoint]
+      };
+    });
+
+    // if (this.state.routePoints.length > 1) {
+      this.calculateAndDisplayRoute();
+    // }
+  }
+
+  calculateAndDisplayRoute() {
     const directionsService = new google.maps.DirectionsService();
 
-    const origin = { lat: 37.771381, lng: -122.511009 };
-    const destination = { lat: 37.770157, lng: -122.495133 };
+    const origin = this.state.routePoints[0].location;
+    const destination = this.state.routePoints[
+      this.state.routePoints.length - 1
+    ].location;
+
+    const waypts = this.state.routePoints.slice(
+      1,
+      this.state.routePoints.length - 1
+    );
 
     directionsService.route(
       {
         origin: origin,
         destination: destination,
+        waypoints: waypts,
+        optimizeWaypoints: true,
         travelMode: google.maps.TravelMode.WALKING
       },
       (result, status) => {
+        // debugger;
         if (status === google.maps.DirectionsStatus.OK) {
+          console.log(result);
           this.setState({
             directions: result
           });
@@ -36,14 +75,15 @@ class Map extends Component {
   }
 
   render() {
+    // debugger
+    console.log(this.state.routePoints)
     const GoogleMapDirection = withGoogleMap(props => (
       <GoogleMap
         defaultCenter={{ lat: 37.769337, lng: -122.482471 }}
         defaultZoom={13}
+        onClick={this.addRoutePoint}
       >
-        <DirectionsRenderer
-          directions={this.state.directions}
-        />
+        <DirectionsRenderer directions={this.state.directions} />
       </GoogleMap>
     ));
 
@@ -76,18 +116,16 @@ export default Map;
 
 //   componentDidMount() {
 //     const { places, travelMode } = this.props;
-    
+
 //     const waypoints = places.map(p =>({
 //         location: {lat: p.latitude, lng:p.longitude},
 //         stopover: true
 //     }))
 //     const origin = waypoints.shift().location;
 //     const destination = waypoints.pop().location;
-    
-    
 
 //     const directionsService = new window.google.maps.DirectionsService();
-    
+
 //     directionsService.route(
 //       {
 //         origin: origin,
@@ -96,7 +134,7 @@ export default Map;
 //         waypoints: waypoints
 //       },
 //       (result, status) => {
-        
+
 //         if (status === window.google.maps.DirectionsStatus.OK) {
 //           this.setState({
 //             directions: result
