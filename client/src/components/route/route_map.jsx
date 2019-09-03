@@ -7,13 +7,18 @@ const mapOptions = {
     lng: -122.431297
   }, // San Francisco coords
   zoom: 15,
-  mapTypeId: "terrain"
+  mapTypeId: "terrain",
+  disableDefaultUI: true
 };
 
 class RouteMap extends React.Component {
   constructor(props) {
     super(props);
-    this.routes = [];
+    // this.routes = [];
+    this.state = {
+      routes: [],
+      TravelMode: 'WALKING'
+    }
   }
 
 
@@ -38,7 +43,8 @@ class RouteMap extends React.Component {
         ),
         stopover: false
       };
-      this.routes.push(point);
+      // this.routes.push(point);
+      this.setState({routes:[...this.state.routes, point]})
       // let m = new window.google.maps.Marker({
       //   position: point.location,
       //   map: this.map
@@ -46,14 +52,11 @@ class RouteMap extends React.Component {
       this.calculateAndDisplayRoute(
         directionsService,
         directionsDisplay,
-        this.routes
+        this.state.routes
       );
     });
   }
 
-  calculateAndDisplayPolyLine(directionsService, routes){
-    
-  }
 
   calculateAndDisplayRoute(directionsService, directionsDisplay, routes) {
     let origin = routes[0].location;
@@ -80,7 +83,15 @@ class RouteMap extends React.Component {
     // directionPolyLine.setMap(this.map);
     directionsService.route(options, (res, status) => {
       if (status === "OK") {
-        directionsDisplay.setDirections(res);
+        // directionsDisplay.setDirections(res);
+        const directionPolyLine = new window.google.maps.Polyline({
+          path: res.routes[res.routes.length - 1].overview_path,
+          geodesic: true,
+          strokeColor: "#444444",
+          strokeOpacity: 0.9,
+          strokeWeight: 4
+        });
+        directionPolyLine.setMap(this.map);
       } else {
         console.log("error " + status);
       }
@@ -89,12 +100,17 @@ class RouteMap extends React.Component {
 
   render() {
     return (
+     <div>
+        <button
+      style={{zindex: 2}}
+      onClick={()=>{this.setState({routes:[]});this.initMap()}}>clear</button>
         <div
-          style={{position: "absolute", width: "100%", margin: "auto", height: "100%" }}
+          style={{ position: "absolute", width: "100%", margin: "auto", height: "100%" }}
           ref="map"
         >
-          map
+      
         </div>
+     </div>
 
     );
   }
