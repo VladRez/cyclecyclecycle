@@ -10,10 +10,12 @@ const { FETCH_ACTIVITIES } = queries;
 const ADD_ACTIVITY = gql`
   mutation AddActivity(
     $distance: Float
+    $distance_unit: String
     $duration_hr: Int
     $duration_min: Int
     $duration_sec: Int
     $elevation: Float
+    $elevation_unit: String
     $sport: String
     $date: String
     $time: String
@@ -25,10 +27,12 @@ const ADD_ACTIVITY = gql`
   ) {
     addActivity(
       distance: $distance
+      distance: $distance_unit
       duration_hr: $duration_hr
       duration_min: $duration_min
       duration_sec: $duration_sec
       elevation: $elevation
+      elevation: $elevation_unit
       sport: $sport
       date: $date
       time: $time
@@ -39,10 +43,12 @@ const ADD_ACTIVITY = gql`
       privacycontrols: $privacycontrols
     ) {
       distance
+      distance_unit
       duration_hr
       duration_min
       duration_sec
       elevation
+      elevation_unit
       sport
       date
       time
@@ -62,11 +68,13 @@ class Activity extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      distance: 0,
+        distance: 0,
+        distance_unit: "miles",
         duration_hr: 0,
         duration_min: 0,
       duration_sec: 0,
-      elevation: 0,
+        elevation: 0,
+      elevation_unit: "feet",
       sport: "windsurf",
       date: 0,
       time: 0,
@@ -88,10 +96,12 @@ class Activity extends React.Component {
     addActivity({
       variables: {
         distance: parseFloat(this.state.distance),
-            duration_hr: parseInt(this.state.duration_hr),
-            duration_min: parseInt(this.state.duration_min),
+        distance_unit: this.state.distance_unit,
+        duration_hr: parseInt(this.state.duration_hr),
+        duration_min: parseInt(this.state.duration_min),
         duration_sec: parseInt(this.state.duration_sec),
         elevation: parseFloat(this.state.elevation),
+        elevation_unit: this.state.elevation_unit,
         sport: this.state.sport,
         date: this.state.date,
         time: this.state.time,
