@@ -1,0 +1,36 @@
+.activity-item {
+  background-color: #fff;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.activity-item-body {
+  padding: 15px;
+}
+
+.activity-item-nav {
+  justify-content: space-between;
+  background-color: #eaeaea;
+}
+
+.activity-item-section-1 {
+  width: 50%;
+  border-right: 1px solid #ccccd1;
+  padding-right: 15px;
+}
+
+.activity-item-section-2 {
+  width: 50%;
+  padding-left: 15px;
+}
+
+.activity-show-navbar-icon {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.activity-item-stats {
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ccccd1;
+  justify-content: space-between;
+}

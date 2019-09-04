@@ -1,6 +1,15 @@
 * {
   box-sizing: border-box;
-  color: #222;
+  color: #2d2d2d;
+}
+
+::selection {
+  background: #fc4c02;
+  color: #fff;
+}
+::-moz-selection {
+  background: #fc4c02;
+  color: #fff;
 }
 
 h1,
@@ -21,11 +30,71 @@ body {
   margin: 0;
 }
 
+.page-container {
+  max-width: 1248px;
+  margin: auto;
+  margin-top: 50px;
+}
+
+.container-xs {
+  padding: 5px;
+}
+
+.container-s {
+  padding: 10px;
+}
+
+.container-m {
+  padding: 15px;
+}
+
+.container-l {
+  padding: 20px;
+}
+
+.container-xl {
+  padding: 25px;
+}
+
+.group-row-xs > *:not(:last-child) {
+  margin-right: 5px;
+}
+
+.group-row-s > *:not(:last-child) {
+  margin-right: 10px;
+}
+
+.group-row-m > *:not(:last-child) {
+  margin-right: 15px;
+}
+
+.group-row-l > *:not(:last-child) {
+  margin-right: 20px;
+}
+
+.group-row-xl > *:not(:last-child) {
+  margin-right: 25px;
+}
+
 .button {
   border: none;
   cursor: pointer;
   text-align: center;
   border-radius: 3px;
+}
+
+.icon-button {
+  height: 100%;
+  display: table;
+  text-align: center;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  background-color: inherit;
+}
+
+.icon-button:hover {
+  background-color: #fff;
 }
 
 .button-primary {
@@ -48,6 +117,9 @@ body {
 .input {
   border: none;
   outline: none;
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 3px;
 }
 
 .container {
@@ -65,10 +137,28 @@ body {
   flex-direction: column;
 }
 
-.page-container {
-  max-width: 1248px;
-  margin: auto;
-  margin-top: 50px;
+.padding-xs {
+  padding: 5px;
+}
+
+.padding-s {
+  padding: 10px;
+}
+
+.padding-m {
+  padding: 15px;
+}
+
+.padding-l {
+  padding: 20px;
+}
+
+.padding-xl {
+  padding: 25px;
+}
+
+.padding-xxl {
+  padding: 30px;
 }
 
 .margin-top-xs {
@@ -149,4 +239,84 @@ body {
 
 .margin-left-xl {
   margin-left: 25px;
+}
+
+.font-xs {
+  font-size: 12px;
+}
+
+.font-s {
+  font-size: 14px;
+}
+
+.font-m {
+  font-size: 16px;
+}
+
+.font-l {
+  font-size: 18px;
+}
+
+.font-xl {
+  font-size: 20px;
+}
+
+.font-xxl {
+  font-size: 22px;
+}
+
+.font-xxxl {
+  font-size: 24px;
+}
+
+.line-height-xs {
+  line-height: 19px;
+}
+
+.line-height-s {
+  line-height: 23px;
+}
+
+.line-height-m {
+  line-height: 26px;
+}
+
+.line-height-l {
+  line-height: 29px;
+}
+
+.line-height-xl {
+  line-height: 32px;
+}
+
+.line-height-xxl {
+  line-height: 36px;
+}
+
+.line-height-xxxl {
+  line-height: 39px;
+}
+
+.font-weight-lightest {
+  font-weight: 100;
+}
+
+.font-weight-light {
+  font-weight: 300;
+}
+
+.font-weight-medium {
+  font-weight: 500;
+}
+
+.font-weight-dark {
+  font-weight: 700;
+}
+
+.font-weight-darkest {
+  font-weight: 900;
+}
+
+.font-color-light {
+  color: #666;
 }

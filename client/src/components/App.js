@@ -17,6 +17,7 @@ import Activity from "./activity/Activity";
 // Routes
 import NewRoute from "./new_route";
 import Navbar from "./navbar";
+import ActivityShow from "./activity_show/activity_show";
 
 function App() {
   return (
@@ -28,6 +29,11 @@ function App() {
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/signup" component={Signup} />
           <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+          <ProtectedRoute
+            exact
+            path="/activities/:activityId"
+            component={ActivityShow}
+          />
           <ProtectedRoute exact path="/routes/new" component={NewRoute} />
           <Route exact path="/activity/new" component={Activity} />
         </Switch>
