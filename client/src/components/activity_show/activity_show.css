@@ -32,4 +32,5 @@
 .activity-item-stats {
   padding-bottom: 15px;
   border-bottom: 1px solid #ccccd1;
+  justify-content: space-between;
 }
