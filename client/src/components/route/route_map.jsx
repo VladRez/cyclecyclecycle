@@ -49,7 +49,8 @@ class RouteMap extends React.Component {
       routes: [],
       TravelMode: "WALKING",
       routeType: "polyline",
-      route_details: {}
+      route_details: {},
+      modal: false
     };
 
     const directionsService = new window.google.maps.DirectionsService();
@@ -132,6 +133,14 @@ class RouteMap extends React.Component {
     this.setState({ routes: [], route_details: {} });
     this.directionPolyLine.setPath([]);
   }
+
+  openModal() {
+    this.setState({ modal: true });
+  }
+
+  closeModal() {
+    this.setState({ modal: false });
+  }
   render() {
     let distance = this.state.route_details.distance
       ? this.state.route_details.distance.text
@@ -141,8 +150,28 @@ class RouteMap extends React.Component {
       ? this.state.route_details.duration.text
       : "0";
     let RouteType = this.state.TravelMode === "WALKING" ? "Run" : "Ride";
+
+    let modal = this.state.modal ? (
+      <div className="modal">
+        <form className="modalForm">
+         <label>Route Name
+         <input value="" type="text" />
+         </label>
+
+         <label>Description
+         <textarea name="" id="" cols="30" rows="10"></textarea>
+         </label>
+          <input type="button" value="Save" />
+          <button onClick={() => this.closeModal()}>close</button>
+        </form>
+       
+      </div>
+    ) : (
+      ""
+    );
     return (
       <div className="workspace">
+        {modal}
         <div className="panel topPanel">
           {/* <div className="searchBar">
             <input placeholder="" type="text" />
@@ -150,7 +179,7 @@ class RouteMap extends React.Component {
           </div> */}
           <div className="toolControls">
             <button onClick={() => this.clearMap()}>X</button>
-            <label>Clear</label>
+            <button onClick={() => this.openModal()}>save</button>
           </div>
         </div>
         <div className="mapCanvas" ref="map"></div>
