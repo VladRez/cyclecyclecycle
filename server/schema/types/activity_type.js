@@ -9,6 +9,7 @@ const {
   GraphQLString,
   GraphQLID,
   GraphQLBoolean,
+  GraphQLInt,
   GraphQLFloat
 } = require("graphql");
 
@@ -17,7 +18,9 @@ const ActivityType = new GraphQLObjectType({
   fields: {
     _id: { type: GraphQLID },
     distance: { type: GraphQLFloat },
-    duration: { type: GraphQLFloat },
+    duration_hr: { type: GraphQLInt },
+    duration_min: { type: GraphQLInt },
+    duration_sec: { type: GraphQLInt },
     elevation: { type: GraphQLFloat },
     sport: { type: GraphQLString },
     date: { type: GraphQLString },

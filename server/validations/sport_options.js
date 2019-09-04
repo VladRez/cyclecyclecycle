@@ -24,18 +24,26 @@ module.exports = function validateSportOptions(data) {
 
   var Tags = ["Commute", "Treadmill"];
 
-  //   if (!Validator.isIn(data.sport, Sports)) {
-  //     return { message: "Invalid Activity,choose from the list", isValid: false };
-  //   }
+  var PrivacyControls = ["All", "Followers", "Only you"];
 
-  //   if (!Validator.isIn(data.runtype, RunType)) {
-  //     return { message: "Invalid Run Type,choose from the list", isValid: false };
-  //   }
+  if (!Validator.isIn(data.sport, Sports)) {
+    return { message: "Invalid Activity,choose from the list", isValid: false };
+  }
 
-  //   if (!Validator.isIn(data.tags, Tags)) {
-  //     return { message: "Invalid Tags,choose from the list", isValid: false };
-  //   }
+  if (!Validator.isIn(data.runtype, RunType)) {
+    return { message: "Invalid Run Type,choose from the list", isValid: false };
+  }
 
+  if (!Validator.isIn(data.tags, Tags)) {
+    return { message: "Invalid Tags,choose from the list", isValid: false };
+  }
+
+  if (!Validator.isIn(data.privacycontrols, PrivacyControls)) {
+    return {
+      message: "Invalid Privacy controls, choose from the list",
+      isValid: false
+    };
+  }
   return {
     message: "",
     isValid: true

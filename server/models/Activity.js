@@ -6,48 +6,60 @@ const ActivitySchema = new Schema({
     type: Number,
     required: false,
     min: 0
+  },
+  duration_hr: {
+    type: Number,
+    required: false,
+    min: 0
+  },
+  duration_min: {
+    type: Number,
+    required: false,
+    min: 0,
+    max: 60
+  },
+  duration_sec: {
+    type: Number,
+    required: false,
+    min: 0,
+    max: 60
+  },
+  elevation: {
+    type: Number,
+    required: false
+  },
+  sport: {
+    type: String,
+    required: false
+  },
+  date: {
+    type: String,
+    required: false
+  },
+  time: {
+    type: String,
+    required: false
+  },
+  title: {
+    type: String,
+    required: false
+  },
+  runtype: {
+    type: String,
+    required: false
+  },
+  tags: {
+    type: String,
+    required: false
+  },
+  description: {
+    type: String,
+    required: false
+  },
+  privacycontrols: {
+    type: String,
+    default: "All"
   }
-  //   duration: {
-  //     type: Number,
-  //     required: false,
-  //     min: 0
-  //   },
-  //   elevation: {
-  //     type: Number,
-  //     required: false
-  //   },
-  //   sport: {
-  //     type: String,
-  //     required: true
-  //   },
-  //   date: {
-  //     type: Date,
-  //     default: Date.now
-  //   },
-  //   time: {
-  //     type: Date,
-  //     default: Date.now
-  //   },
-  //   title: {
-  //     type: String,
-  //     required: true
-  //   },
-  //   runtype: {
-  //     type: String,
-  //     required: true
-  //   },
-  //   tags: {
-  //     type: String,
-  //     required: false
-  //   },
-  //   description: {
-  //     type: String,
-  //     required: true
-  //   },
-  //   privacycontrols: {
-  //     type: String,
-  //     default: "All"
-  //   }
 });
 
 module.exports = mongoose.model("activities", ActivitySchema);

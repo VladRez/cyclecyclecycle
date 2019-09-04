@@ -8,19 +8,49 @@ import queries from "../../graphql/queries";
 const { FETCH_ACTIVITIES } = queries;
 
 const ADD_ACTIVITY = gql`
-  mutation AddActivity($distance: Float) {
-    addActivity(distance: $distance) {
-      distance,
-      elevation,
-        sport,
-        date,
-        time
-        title
-        runtype
-        tags
-        description
-        privacycontrols
-
+  mutation AddActivity(
+    $distance: Float
+    $duration_hr: Int
+    $duration_min: Int
+    $duration_sec: Int
+    $elevation: Float
+    $sport: String
+    $date: String
+    $time: String
+    $title: String
+    $runtype: String
+    $tags: String
+    $description: String
+    $privacycontrols: String
+  ) {
+    addActivity(
+      distance: $distance
+      duration_hr: $duration_hr
+      duration_min: $duration_min
+      duration_sec: $duration_sec
+      elevation: $elevation
+      sport: $sport
+      date: $date
+      time: $time
+      title: $title
+      runtype: $runtype
+      tags: $tags
+      description: $description
+      privacycontrols: $privacycontrols
+    ) {
+      distance
+      duration_hr
+      duration_min
+      duration_sec
+      elevation
+      sport
+      date
+      time
+      title
+      runtype
+      tags
+      description
+      privacycontrols
     }
   }
 `;
@@ -33,7 +63,9 @@ class Activity extends React.Component {
     super(props);
     this.state = {
       distance: 0,
-      duration: 0,
+        duration_hr: 0,
+        duration_min: 0,
+      duration_sec: 0,
       elevation: 0,
       sport: "windsurf",
       date: 0,
@@ -56,7 +88,9 @@ class Activity extends React.Component {
     addActivity({
       variables: {
         distance: parseFloat(this.state.distance),
-        duration: parseFloat(this.state.duration),
+            duration_hr: parseInt(this.state.duration_hr),
+            duration_min: parseInt(this.state.duration_min),
+        duration_sec: parseInt(this.state.duration_sec),
         elevation: parseFloat(this.state.elevation),
         sport: this.state.sport,
         date: this.state.date,
@@ -119,18 +153,32 @@ class Activity extends React.Component {
                 value={this.state.distance}
                 placeholder="Distance"
               />
-              Duration
+              Duration Hours
               <input
                 type="text"
-                onChange={this.handleChange("duration")}
-                value={this.state.duration}
-                placeholder="Duration"
-              />
+                onChange={this.handleChange("duration_hr")}
+                value={this.state.duration_hr}
+                placeholder="Hours"
+                        />
+                        Duration Mins
+              <input
+                            type="text"
+                            onChange={this.handleChange("duration_min")}
+                            value={this.state.duration_min}
+                            placeholder="Mins"
+                        />
+                        Duration Seconds
+              <input
+                            type="text"
+                            onChange={this.handleChange("duration_sec")}
+                            value={this.state.duration_sec}
+                            placeholder="Sec"
+                        />
               Elevation
               <input
                 type="text"
                 onChange={this.handleChange("elevation")}
-                value={this.state.duration}
+                value={this.state.elevation}
                 placeholder="Elevation"
               />
               Sport
@@ -146,6 +194,12 @@ class Activity extends React.Component {
                 onChange={this.handleChange("date")}
                 value={this.state.date}
                 placeholder="date"
+              />
+              <input
+                type="text"
+                onChange={this.handleChange("time")}
+                value={this.state.time}
+                placeholder="time"
               />
               Title
               <input
@@ -174,6 +228,13 @@ class Activity extends React.Component {
                 onChange={this.handleChange("description")}
                 value={this.state.description}
                 placeholder="description"
+              />
+              Privacy controls
+              <input
+                type="text"
+                onChange={this.handleChange("privacycontrols")}
+                value={this.state.privacycontrols}
+                placeholder="All"
               />
               <button type="submit"> Submit</button>
             </form>

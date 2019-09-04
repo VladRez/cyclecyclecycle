@@ -3,6 +3,7 @@ const {
   GraphQLObjectType,
   GraphQLFloat,
   GraphQLString,
+  GraphQLInt,
   GraphQLID
 } = require("graphql");
 const UserType = require("./types/user_type");
@@ -58,7 +59,9 @@ const mutation = new GraphQLObjectType({
       type: ActivityType,
       args: {
         distance: { type: GraphQLFloat },
-        duration: { type: GraphQLFloat },
+        duration_hr: { type: GraphQLInt },
+        duration_min: { type: GraphQLInt },
+        duration_sec: { type: GraphQLInt },
         elevation: { type: GraphQLFloat },
         sport: { type: GraphQLString },
         date: { type: GraphQLString },
@@ -71,7 +74,7 @@ const mutation = new GraphQLObjectType({
       },
       resolve(_, args) {
         console.log("Args: ", args);
-        debugger;
+        //debugger;
         return Activity.addActivity(args);
       }
     }
