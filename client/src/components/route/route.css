@@ -1,0 +1,204 @@
+.modal {
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+  .modalForm {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+
+
+.workspace {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50px;
+    bottom: 0;
+}
+
+.mapCanvas{
+    background-color: #DDD;
+    /* top: 50px; */
+    bottom: 0;
+    cursor: -webkit-grab;
+    background: #fff;
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    color: #404040;
+    color: rgba(0,0,0,0.75);
+    outline: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+.panel {
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.15);
+    overflow: hidden;
+    z-index: 50;
+    position: absolute;
+
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+.topPanel {
+    background-color: #F1F1F1;
+    top: 0;
+    height: 38px;
+    padding: 6px 20px;
+    width: 100%;
+    z-index: 60;
+}
+
+.toolControls{
+    margin-top: -6px;
+    margin-bottom: -6px;
+    margin-left: 20px;
+    margin-right: 20px;
+    
+    float: left;
+}
+
+.toolControls button{
+    display: inline-block;
+    padding: 6px 10px;
+    min-width: 40px;
+}
+
+.toolControls label {
+    display: block;
+
+    font-size: 12px;
+    color: #666;
+    margin: 2px 0 0;
+
+    cursor: pointer;
+    clear: both;
+
+    margin-top: 15px;
+    margin-bottom: 3px;
+    z-index: 65;
+}
+
+.searchBar {
+    padding: 0;
+    margin-right: 20px;
+    float: left;
+    margin: 0;
+}
+
+.searchBar input {
+    width: 180px;
+    font-size: 14px;
+    padding: 12px;
+    margin: 0 0px 0 0;
+
+    border: none;
+    height: 40px;
+
+    transition: border-color 0.1s ease;
+
+    background-color: #fff;
+
+    color: #666;
+    line-height: 1.4em;
+
+    vertical-align: baseline;
+    display: inline-block;
+}
+
+.searchBar button {
+    padding: 7px 20px;
+    line-height: 1em;
+    vertical-align: bottom;  
+
+    font-size: 12px;
+    min-height: 24px;
+
+    background-color: #e6e6eb;
+    border-color: #e6e6eb;
+
+    text-align: center;
+
+    border: 1px solid #ccccd1;
+    border-radius: 4px;
+    color: #2d2d32;
+    cursor: pointer;
+
+    display: inline-flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+
+
+    flex-direction: row;
+
+    justify-content: space-around;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+
+    box-sizing: border-box;
+
+    user-select: none;
+
+    transition: border-color 0.1s linear, background 0.1s linear, color 0.1s linear;
+
+    font-weight: 700;
+}
+
+.bottomPanel {
+    background-color: #F1F1F1;
+    bottom: 30px;
+    right: 20px;
+    left: 20px;
+    
+}
+
+.inlineStats {
+    margin: 0;
+    height: 38px;
+    padding: 6px 20px;
+
+    list-style: none;
+    clear: both;
+    font-weight: 300;
+
+    user-select: none;
+
+    background-color: rgba(0,0,0,0.05);
+
+}
+
+.inlineStats li {
+    float: left;
+    margin-right: 40px;
+}
+.inLineStats strong{
+    display: block;
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 1em;
+}
+
+.inLineStats label {
+    margin: 0;
+
+    font-size: 12px;
+    display: inline-block;
+    color: #666;
+
+    vertical-align: text-bottom;
+
+    clear: both;
+    user-select: none;
+
+} 
