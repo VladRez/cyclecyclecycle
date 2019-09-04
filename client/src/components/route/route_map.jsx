@@ -189,7 +189,9 @@ class RouteMap extends React.Component {
     ) : (
       ""
     );
+    debugger
     return (
+      
       <div className="workspace">
         {modal}
         <div className="panel topPanel">
