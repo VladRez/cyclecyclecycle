@@ -15,8 +15,7 @@ import Dashboard from "./dashboard/dashboard"
 // Routes
 import NewRoute from "./new_route";
 import Navbar from "./navbar";
-// import Map from "./map/index"
-// import Async from "./map/Map"
+
 import RouteMap from "./route/route_map"
 
 function App() {
@@ -31,7 +30,6 @@ function App() {
           <ProtectedRoute exact path="/dashboard" component={Dashboard}/>
           <ProtectedRoute exact path="/routes/new" component={NewRoute} />
           <Route exact path="/map" component={RouteMap}/>
-          {/* <Route exact path="/amap" component={Async}/> */}
          
         </Switch>
           
