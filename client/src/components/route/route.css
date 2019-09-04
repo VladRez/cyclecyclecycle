@@ -1,0 +1,78 @@
+.workspace {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50px;
+    bottom: 0;
+}
+
+.mapCanvas{
+    background-color: #DDD;
+    /* top: 50px; */
+    bottom: 0;
+    cursor: -webkit-grab;
+    background: #fff;
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    color: #404040;
+    color: rgba(0,0,0,0.75);
+    outline: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+.panel {
+    box-shadow: 2px 2px 2px rgba(0,0,0,0.15);
+    overflow: hidden;
+    z-index: 50;
+    position: absolute;
+}
+.topPanel {
+    background-color: #F1F1F1;
+    top: 0;
+    height: 38px;
+    padding: 6px 20px;
+    width: 100%;
+}
+
+.bottomPanel {
+    background-color: #F1F1F1;
+    bottom: 30px;
+    right: 20px;
+    left: 20px;
+    
+}
+
+.inlineStats {
+    margin: 0;
+    height: 38px;
+    padding: 6px 20px;
+
+    list-style: none;
+    clear: both;
+    font-weight: 300;
+}
+
+.inlineStats li {
+    float: left;
+    margin-right: 40px;
+}
+.inLineStats strong{
+    
+    font-weight: 300;
+    font-size: 22px;
+    line-height: 1em;
+}
+
+.inLineStats label {
+    margin: 0;
+
+    font-size: 12px;
+    display: inline-block;
+    color: #666;
+    margin: 2px 0 0;
+    vertical-align: text-bottom;
+
+    clear: both;
+    user-select: none;
+
+} 

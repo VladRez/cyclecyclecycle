@@ -1,6 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
-
+import "./route.css";
 const mapOptions = {
   center: {
     lat: 37.773972,
@@ -48,15 +48,14 @@ class RouteMap extends React.Component {
     this.state = {
       routes: [],
       TravelMode: "WALKING",
-      routeType: "polyline"
+      routeType: "polyline",
+      route_details: {}
     };
 
     const directionsService = new window.google.maps.DirectionsService();
     this.directionsService = directionsService;
 
-    this.clearMap = this.clearMap.bind(this)
-
-    
+    this.clearMap = this.clearMap.bind(this);
   }
 
   componentDidMount() {
@@ -75,8 +74,8 @@ class RouteMap extends React.Component {
       strokeWeight: 5
     });
 
-    this.directionPolyLine = directionPolyLine
-    this.directionPolyLine.setMap(this.map)
+    this.directionPolyLine = directionPolyLine;
+    this.directionPolyLine.setMap(this.map);
   }
 
   handleClick() {
@@ -111,6 +110,7 @@ class RouteMap extends React.Component {
 
     this.directionsService.route(options, (res, status) => {
       if (status === "OK") {
+        this.setState({ route_details: res.routes[0].legs[0] });
         if (this.state.routeType === "polyline") {
           this.renderPolyLine(res);
         } else {
@@ -124,31 +124,29 @@ class RouteMap extends React.Component {
 
   renderPolyLine(res) {
     // this.directionPolyLine.setMap(null);
+    console.log(res);
     this.directionPolyLine.setPath(res.routes[0].overview_path);
   }
 
-  clearMap(){
-
-    
+  clearMap() {
+    this.setState({ routes: [] });
+    this.directionPolyLine.setPath([]);
   }
   render() {
+    let distance = this.state.route_details.distance
+      ? this.state.route_details.distance.text
+      : "0";
     return (
-      <div>
-        <button
-          style={{ zindex: 2 }}
-          onClick={()=>this.clearMap()}
-        >
-          clear
-        </button>
-        <div
-          style={{
-            position: "absolute",
-            width: "100%",
-            margin: "auto",
-            height: "100%"
-          }}
-          ref="map"
-        ></div>
+      <div className="workspace">
+        <div className="panel topPanel">{distance}</div>
+        <div className="mapCanvas" ref="map"></div>
+        <div className="panel bottomPanel">
+          <ul className="inlineStats">
+            <li>
+              <strong>{distance}</strong><label>Distance</label>
+            </li>
+          </ul>
+        </div>
       </div>
     );
   }
