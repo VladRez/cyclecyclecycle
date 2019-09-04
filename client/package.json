@@ -10,9 +10,10 @@
     "apollo-link-error": "^1.1.11",
     "apollo-link-http": "^1.5.15",
     "react": "^16.9.0",
+    "react-addons-update": "^15.6.2",
     "react-apollo": "^3.0.1",
     "react-dom": "^16.9.0",
-    "react-map-gl": "^5.0.10",
+    "react-icons": "^3.7.0",
     "react-scripts": "3.1.1"
   },
   "scripts": {
