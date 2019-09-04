@@ -10,7 +10,7 @@
 //   return (
 //     <MapLoader
 //     id="map" 
-//       googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDd-3Aoty8CsCWocHbsrg9mBSm5V-evBhw"
+//       googleMapURL=""
 //       loadingElement={<div id="map" style={{ height: `100%` }} />}
 //     />
 //   );

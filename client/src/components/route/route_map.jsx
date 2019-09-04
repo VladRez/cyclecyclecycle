@@ -129,21 +129,47 @@ class RouteMap extends React.Component {
   }
 
   clearMap() {
-    this.setState({ routes: [] });
+    this.setState({ routes: [], route_details: {} });
     this.directionPolyLine.setPath([]);
   }
   render() {
     let distance = this.state.route_details.distance
       ? this.state.route_details.distance.text
       : "0";
+
+    let duration = this.state.route_details.duration
+      ? this.state.route_details.duration.text
+      : "0";
+    let RouteType = this.state.TravelMode === "WALKING" ? "Run" : "Ride";
     return (
       <div className="workspace">
-        <div className="panel topPanel">{distance}</div>
+        <div className="panel topPanel">
+          {/* <div className="searchBar">
+            <input placeholder="" type="text" />
+            <button>Search</button>
+          </div> */}
+          <div className="toolControls">
+            <button onClick={() => this.clearMap()}>X</button>
+            <label>Clear</label>
+          </div>
+        </div>
         <div className="mapCanvas" ref="map"></div>
         <div className="panel bottomPanel">
           <ul className="inlineStats">
             <li>
-              <strong>{distance}</strong><label>Distance</label>
+              <strong>{RouteType}</strong>
+              <br />
+              <label>Route Type</label>
+            </li>
+            <li>
+              <strong>{distance}</strong>
+              <br />
+              <label>Distance</label>
+            </li>
+            <li>
+              <strong>{duration}</strong>
+              <br />
+              <label>Est. Duration</label>
             </li>
           </ul>
         </div>

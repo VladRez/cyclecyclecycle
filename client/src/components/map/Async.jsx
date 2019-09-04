@@ -110,7 +110,7 @@
 //     }
   
 //     render () {
-//       // <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places" />
+//       // <script type="text/javascript" src="" />
 //       // return this.renderDeprecatedBehavior(); // Uncomment for legacy support
 //     //   return this.renderNewBehavior();
 //     return (<ScriptjsLoader></ScriptjsLoader>)
