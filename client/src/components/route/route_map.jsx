@@ -59,7 +59,6 @@ class RouteMap extends React.Component {
     this.clearMap = this.clearMap.bind(this);
   }
 
-
   componentDidMount() {
     const map = this.refs.map;
     this.map = new window.google.maps.Map(map, mapOptions);
@@ -83,12 +82,13 @@ class RouteMap extends React.Component {
   handleClick() {
     window.google.maps.event.addListener(this.map, "click", event => {
       let point = {
-        location: new window.google.maps.LatLng(
-          event.latLng.lat(),
-          event.latLng.lng()
-        ),
+        location: {
+          lat: event.latLng.lat(),
+          lng: event.latLng.lng()
+        },
         stopover: false
       };
+      
       this.setState({ routes: [...this.state.routes, point] });
 
       this.calculateAndDisplayRoute();
@@ -96,13 +96,15 @@ class RouteMap extends React.Component {
   }
 
   calculateAndDisplayRoute(opt = {}) {
-  
     let origin = opt.origin || this.state.routes[0].location;
-    let destination = opt.destination || this.state.routes[this.state.routes.length - 1].location;
-    let waypoints = opt.waypoints || this.state.routes.slice(1, this.state.routes.length - 1);
+    let destination =
+      opt.destination ||
+      this.state.routes[this.state.routes.length - 1].location;
+    let waypoints =
+      opt.waypoints || this.state.routes.slice(1, this.state.routes.length - 1);
     let travelMode = opt.travelMode || this.state.TravelMode; //window.google.maps.TravelMode.WALKING;
     let optimizeWaypoints = opt.optimizeWaypoints || false;
-      
+
     let options = {
       origin,
       destination,
@@ -113,8 +115,7 @@ class RouteMap extends React.Component {
 
     this.directionsService.route(options, (res, status) => {
       if (status === "OK") {
-
-        this.setState({route_details: res.routes[0].legs[0] });
+        this.setState({ route_details: res.routes[0].legs[0] });
         if (this.state.routeType === "polyline") {
           this.renderPolyLine(res);
         } else {
@@ -146,22 +147,19 @@ class RouteMap extends React.Component {
   }
 
   changeTravelMode() {
-
     if (this.state.TravelMode === "WALKING") {
-      this.setState({TravelMode: "BICYCLING"}) 
-      if (this.state.routes.length) this.calculateAndDisplayRoute({travelMode: "BICYCLING"})
-      
-      }
-      else {
-        this.setState({TravelMode: "WALKING"})
-      if (this.state.routes.length) this.calculateAndDisplayRoute({travelMode: "WALKING"})
-      }
-
-    
+      this.setState({ TravelMode: "BICYCLING" });
+      if (this.state.routes.length)
+        this.calculateAndDisplayRoute({ travelMode: "BICYCLING" });
+    } else {
+      this.setState({ TravelMode: "WALKING" });
+      if (this.state.routes.length)
+        this.calculateAndDisplayRoute({ travelMode: "WALKING" });
+    }
   }
 
-
   render() {
+    
     let distance = this.state.route_details.distance
       ? this.state.route_details.distance.text
       : "0";
@@ -175,17 +173,18 @@ class RouteMap extends React.Component {
     let modal = this.state.modal ? (
       <div className="modal">
         <form className="modalForm">
-         <label>Route Name
-         <input value="" type="text" />
-         </label>
+          <label>
+            Route Name
+            <input value="" type="text" />
+          </label>
 
-         <label>Description
-         <textarea name="" id="" cols="30" rows="10"></textarea>
-         </label>
+          <label>
+            Description
+            <textarea name="" id="" cols="30" rows="10"></textarea>
+          </label>
           <input type="button" value="Save" />
           <button onClick={() => this.closeModal()}>close</button>
         </form>
-       
       </div>
     ) : (
       ""
@@ -201,7 +200,13 @@ class RouteMap extends React.Component {
           <div className="toolControls">
             <button onClick={() => this.clearMap()}>X</button>
             <button onClick={() => this.openModal()}>save</button>
-            <button onClick={() => {this.changeTravelMode()}}>{OtherRouteType}</button>
+            <button
+              onClick={() => {
+                this.changeTravelMode();
+              }}
+            >
+              {OtherRouteType}
+            </button>
           </div>
         </div>
         <div className="mapCanvas" ref="map"></div>

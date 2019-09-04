@@ -13,10 +13,9 @@ import Session from "./session/session";
 import Dashboard from "./dashboard/dashboard"
 
 // Routes
-import NewRoute from "./new_route";
 import Navbar from "./navbar";
 
-import RouteMap from "./route/route_map"
+import RouteMapCreator from "./route/route_map"
 
 function App() {
   return (
@@ -28,8 +27,7 @@ function App() {
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/signup" component={Signup} />
           <ProtectedRoute exact path="/dashboard" component={Dashboard}/>
-          <ProtectedRoute exact path="/routes/new" component={NewRoute} />
-          <Route exact path="/map" component={RouteMap}/>
+          <ProtectedRoute exact path="/routes/new" component={RouteMapCreator} />
          
         </Switch>
           
