@@ -61,8 +61,8 @@ const mutation = new GraphQLObjectType({
         duration: { type: GraphQLFloat },
         elevation: { type: GraphQLFloat },
         sport: { type: GraphQLString },
-        date: { type: GraphQLDate },
-        time: { type: GraphQLTime },
+        date: { type: GraphQLString },
+        time: { type: GraphQLString },
         title: { type: GraphQLString },
         runtype: { type: GraphQLString },
         tags: { type: GraphQLString },
@@ -70,6 +70,8 @@ const mutation = new GraphQLObjectType({
         privacycontrols: { type: GraphQLString }
       },
       resolve(_, args) {
+        console.log("Args: ", args);
+        debugger;
         return Activity.addActivity(args);
       }
     }

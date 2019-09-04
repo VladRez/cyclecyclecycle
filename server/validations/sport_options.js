@@ -24,17 +24,17 @@ module.exports = function validateSportOptions(data) {
 
   var Tags = ["Commute", "Treadmill"];
 
-  if (!Validator.isIn(data.sport, Sports)) {
-    return { message: "Invalid Activity,choose from the list", isValid: false };
-  }
+  //   if (!Validator.isIn(data.sport, Sports)) {
+  //     return { message: "Invalid Activity,choose from the list", isValid: false };
+  //   }
 
-  if (!Validator.isIn(data.runtype, RunType)) {
-    return { message: "Invalid Run Type,choose from the list", isValid: false };
-  }
+  //   if (!Validator.isIn(data.runtype, RunType)) {
+  //     return { message: "Invalid Run Type,choose from the list", isValid: false };
+  //   }
 
-  if (!Validator.isIn(data.tags, Tags)) {
-    return { message: "Invalid Tags,choose from the list", isValid: false };
-  }
+  //   if (!Validator.isIn(data.tags, Tags)) {
+  //     return { message: "Invalid Tags,choose from the list", isValid: false };
+  //   }
 
   return {
     message: "",

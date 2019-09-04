@@ -3,7 +3,12 @@ const User = mongoose.model("users");
 const Activity = mongoose.model("activities");
 const UserType = require("./user_type");
 const ActivityType = require("./activity_type");
-const { GraphQLObjectType, GraphQLNonNull, GraphQLID } = require("graphql");
+const {
+  GraphQLObjectType,
+  GraphQLNonNull,
+  GraphQLID,
+  GraphQLList
+} = require("graphql");
 
 const RootQueryType = new GraphQLObjectType({
   name: "RootQueryType",
@@ -20,6 +25,12 @@ const RootQueryType = new GraphQLObjectType({
       args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(parentValue, args) {
         return Activity.findById(args._id);
+      }
+    },
+    activities: {
+      type: new GraphQLList(ActivityType),
+      resolve() {
+        return Activity.find({});
       }
     }
   })
