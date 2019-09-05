@@ -1,62 +1,27 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import "./route.css";
-const mapOptions = {
-  center: {
-    lat: 37.773972,
-    lng: -122.431297
-  }, // San Francisco coords
-  zoom: 15,
-  mapTypeId: "terrain",
-  disableDefaultUI: true,
-  styles: [
-    {
-      featureType: "poi.business",
-      stylers: [{ visibility: "off" }]
-    },
-    {
-      featureType: "poi.government",
-      stylers: [{ visibility: "off" }]
-    },
-    {
-      featureType: "poi.attraction",
-      stylers: [{ visibility: "off" }]
-    },
-    {
-      featureType: "poi.medical",
-      stylers: [{ visibility: "off" }]
-    },
-    {
-      featureType: "poi.school",
-      stylers: [{ visibility: "off" }]
-    },
-    {
-      featureType: "poi.place_of_worship",
-      stylers: [{ visibility: "off" }]
-    },
-    {
-      featureType: "transit",
-      stylers: [{ visibility: "off" }]
-    }
-  ]
-};
+import mapOptions from "./gMapOptions"
 
 class RouteMap extends React.Component {
   constructor(props) {
     super(props);
-    // this.routes = [];
+
     this.state = {
       routes: [],
       TravelMode: "WALKING",
       routeType: "polyline",
       route_details: {},
-      modal: false
+      modal: false,
+      route_name: "",
+      route_description: ""
     };
 
     const directionsService = new window.google.maps.DirectionsService();
     this.directionsService = directionsService;
 
     this.clearMap = this.clearMap.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   componentDidMount() {
@@ -88,7 +53,7 @@ class RouteMap extends React.Component {
         },
         stopover: false
       };
-      
+
       this.setState({ routes: [...this.state.routes, point] });
 
       this.calculateAndDisplayRoute();
@@ -146,6 +111,25 @@ class RouteMap extends React.Component {
     this.setState({ modal: false });
   }
 
+  handleSubmit(e) {
+    console.log(this.state);
+    let mapData = {
+      name: this.state.route_name,
+      description: this.state.route_description,
+      travelMode: this.state.TravelMode,
+      routes: this.state.routes
+    };
+    console.log(mapData);
+
+    debugger;
+  }
+
+  handleChange(field) {
+    return e => {
+      this.setState({ [field]: e.target.value });
+    };
+  }
+
   changeTravelMode() {
     if (this.state.TravelMode === "WALKING") {
       this.setState({ TravelMode: "BICYCLING" });
@@ -159,7 +143,6 @@ class RouteMap extends React.Component {
   }
 
   render() {
-    
     let distance = this.state.route_details.distance
       ? this.state.route_details.distance.text
       : "0";
@@ -172,26 +155,31 @@ class RouteMap extends React.Component {
 
     let modal = this.state.modal ? (
       <div className="modal">
-        <form className="modalForm">
-          <label>
-            Route Name
-            <input value="" type="text" />
-          </label>
-
+        <form onSubmit={e => this.handleSubmit(e)} className="modalForm">
+          Route Name
+          <input
+            type="text"
+            onChange={this.handleChange("route_name")}
+            value={this.state.route_name}
+          />
           <label>
             Description
-            <textarea name="" id="" cols="30" rows="10"></textarea>
+            <textarea
+              cols="30"
+              rows="10"
+              onChange={this.handleChange("route_description")}
+              value={this.state.route_description}
+            />
           </label>
-          <input type="button" value="Save" />
+          <input type="submit" value="save" />
           <button onClick={() => this.closeModal()}>close</button>
         </form>
       </div>
     ) : (
       ""
     );
-    debugger
+
     return (
-      
       <div className="workspace">
         {modal}
         <div className="panel topPanel">

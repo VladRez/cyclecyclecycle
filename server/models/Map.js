@@ -1,21 +1,26 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const coordinate = new Schema({
-  lat: { type: Schema.Types.Double, required: true },
-  lng: { type: Schema.Types.Double, required: true }
-});
-
-const waypoint = new Schema({
-  location: [coordinate],
-  stepover: { type: Schema.Types.Boolean, required: true, default: false }
-});
-
 const MapSchema = new Schema({
-  name: { type: Schema.Types.String, required: true },
-  description: { type: Schema.Types.String, required: true },
-  travelMethod: { type: Schema.Types.String, required: true },
-  routes: [[waypoint]]
-});
+    name: Schema.Types.String,
+    description: Schema.Types.String,
+    travelMode: Schema.Types.String,
+    routes: [{
+        type: Schema.Types.ObjectId,
+        ref: "route"
+    }]
+})
 
-module.exports = mongoose.model("maps", MapSchema);
+MapSchema.static.findRoutes = (mapId) => {
+    return this.findById(mapId)
+        .populate("routes")
+        .then(map=>map.routes)
+}
+
+MapSchema.static.createMap = (data) => {
+    const Location = mongoose.model("location")
+    const Route = mongoose.model("route")
+    debugger
+}
+
+module.exports = mongoose.model("map", MapSchema)

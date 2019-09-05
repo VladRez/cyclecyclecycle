@@ -4,13 +4,43 @@ const {
   GraphQLFloat,
   GraphQLString,
   GraphQLInt,
-  GraphQLID
+  GraphQLID,
+  GraphQLList,
+  GraphQLNonNull,
+  GraphQLInputObjectType,
+  GraphQLBoolean
 } = require("graphql");
 const UserType = require("./types/user_type");
 const ActivityType = require("./types/activity_type");
 const AuthService = require("../services/auth");
 const Activity = require("../services/activity_actions");
+const MapType = require("./types/map_type");
 
+
+const LocationInputType = new GraphQLInputObjectType({
+  name: "LocationInputType",
+  fields: {
+    lat: { type: GraphQLFloat },
+    lng: { type: GraphQLFloat }
+  }
+});
+const RouteInputType = new GraphQLInputObjectType({
+  name: "RouteInputType",
+  fields: {
+    location: { type: LocationInputType },
+    stopover: { type: GraphQLBoolean }
+  }
+});
+
+const MapInputType = new GraphQLInputObjectType({
+  name: "MapInputType",
+  fields: {
+    name: { type: GraphQLString },
+    description: { type: GraphQLString },
+    travelMode: { type: GraphQLString },
+    routes: { type: new GraphQLList(RouteInputType) }
+  }
+});
 const mutation = new GraphQLObjectType({
   name: "Mutation",
   fields: {
@@ -76,6 +106,17 @@ const mutation = new GraphQLObjectType({
         console.log("Args: ", args);
         //debugger;
         return Activity.addActivity(args);
+      }
+    },
+
+    addMap: {
+      type: MapType,
+      args: {
+        input: { type: MapInputType }
+      },
+      resolve(_, {input}) {
+     
+        console.log(input);
       }
     }
   }
