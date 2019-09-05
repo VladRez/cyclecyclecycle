@@ -140,6 +140,7 @@ class Activity extends React.Component {
     });
   }
 
+  // we need to remember to update our cache directly with our new product
   updateCache(cache, { data }) {
     let activities;
     try {
@@ -166,10 +167,12 @@ class Activity extends React.Component {
       <Mutation
         mutation={ADD_ACTIVITY}
         onError={err => {
+          debugger;
           this.setState({ message: err.message });
         }}
         // update={(cache, data) => this.updateCache(cache, data)}
         onCompleted={data => {
+          debugger;
           const { distance } = data.addActivity;
           this.setState({
             message: `New activity ${distance} created successfully`
