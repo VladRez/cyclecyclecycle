@@ -3,6 +3,7 @@ const User = mongoose.model("users");
 const Activity = mongoose.model("activities");
 const UserType = require("./user_type");
 const ActivityType = require("./activity_type");
+
 const {
   GraphQLObjectType,
   GraphQLNonNull,

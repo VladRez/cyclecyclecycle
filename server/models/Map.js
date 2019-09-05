@@ -2,12 +2,23 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const MapSchema = new Schema({
-  name: { type: String, required: true },
-  description: { type: String, required: true },
-  routes: {
-    type: Array,
-    default: []
-  }
+  userId: Schema.Types.ObjectId,
+  name: Schema.Types.String,
+  description: Schema.Types.String,
+  travelMode: Schema.Types.String,
+  // routes: [{
+  //     type: Schema.Types.ObjectId,
+  //     ref: "route"
+  // }]
+  routes: [
+    {
+      location: {
+        lat: Schema.Types.Number,
+        lng: Schema.Types.Number
+      },
+      stopover: Schema.Types.Boolean
+    }
+  ]
 });
 
-module.exports = mongoose.model("maps", MapSchema);
+module.exports = mongoose.model("map", MapSchema);

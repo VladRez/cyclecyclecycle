@@ -10,6 +10,9 @@ const UserType = require("./types/user_type");
 const ActivityType = require("./types/activity_type");
 const AuthService = require("../services/auth");
 const Activity = require("../services/activity_actions");
+const MapType = require("./types/map_type");
+const MapInputType = require("./types/input_types");
+const MapService = require("../services/map")
 
 const mutation = new GraphQLObjectType({
   name: "Mutation",
@@ -78,6 +81,16 @@ const mutation = new GraphQLObjectType({
         console.log("Args: ", args);
         debugger;
         return Activity.addActivity(args);
+      }
+    },
+
+    addMap: {
+      type: MapType,
+      args: {
+        input: { type: MapInputType }
+      },
+      resolve(_, { input }) {
+        return MapService.createMap(input)
       }
     }
   }
