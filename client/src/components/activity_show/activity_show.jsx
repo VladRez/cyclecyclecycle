@@ -9,8 +9,12 @@ const ACTIVITY_QUERY = gql`
   query {
     activity(_id: "5d6d78db4aff4475172c67b2") {
       distance
-      duration
+      distance_unit
+      duration_hr
+      duration_min
+      duration_sec
       elevation
+      elevation_unit
       sport
       date
       time

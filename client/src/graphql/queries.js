@@ -10,7 +10,8 @@ export default {
     {
       activities {
         _id
-        distance
+        distance,
+        distance_unit
       }
     }
   `
