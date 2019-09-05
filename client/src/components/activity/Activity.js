@@ -1,7 +1,10 @@
 import React from "react";
 import gql from "graphql-tag";
-import moment from "moment";
 import { Mutation } from "react-apollo";
+
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 //import mutations from "../../graphql/mutations";
 import queries from "../../graphql/queries";
@@ -82,31 +85,60 @@ class Activity extends React.Component {
       runtype: "LongRun",
       tags: "Commute",
       description: "",
-      privacycontrols: "All"
+      privacycontrols: "All",
+      startDate: new Date(),
+      startTime: new Date()
     };
+
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleTimeChange = this.handleTimeChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
   handleChange(type) {
     return e => {
+      debugger;
       this.setState({ [type]: e.target.value });
     };
   }
+
+  handleDateChange(date) {
+    this.setState({ startDate: date });
+  }
+
+  handleTimeChange(time) {
+    this.setState({ startTime: time });
+  }
+
+  formatDate(date) {
+    // var d = new Date(date),
+    let month = "" + (date.getMonth() + 1);
+    let day = "" + date.getDate();
+    let year = date.getFullYear();
+
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
+
+    return [month, day, year].join("-");
+  }
+
+  formatTime(time) {
+    return time;
+  }
+
   handleSubmit(e, addActivity) {
     e.preventDefault();
-    var momentDate = moment(this.state.date);
-    debugger;
     addActivity({
       variables: {
         distance: parseFloat(this.state.distance),
-        distance_unit: this.state.distance_unit,
         duration_hr: parseInt(this.state.duration_hr),
         duration_min: parseInt(this.state.duration_min),
         duration_sec: parseInt(this.state.duration_sec),
         elevation: parseFloat(this.state.elevation),
         elevation_unit: this.state.elevation_unit,
+        distance_unit: this.state.distance_unit,
         sport: this.state.sport,
-        date: momentDate.toDate().startOf("day"),
-
-        // time: this.state.time,
+        date: this.formatDate(this.state.date),
+        time: this.formatTime(this.state.time),
         title: this.state.title,
         runtype: this.state.runtype,
         tags: this.state.tags,
@@ -156,115 +188,246 @@ class Activity extends React.Component {
         }}
       >
         {(addActivity, { data }) => (
-          <div>
+          <div className="page-container">
             <form onSubmit={e => this.handleSubmit(e, addActivity)}>
-              Distance
-              <input
-                type="text"
-                onChange={this.handleChange("distance")}
-                value={this.state.distance}
-                placeholder="Distance"
-              />
-              Distance Units
-              <input
-                type="text"
-                onChange={this.handleChange("distance_unit")}
-                value={this.state.distance_unit}
-                placeholder="Miles"
-              />
-              Duration Hours
-              <input
-                type="text"
-                onChange={this.handleChange("duration_hr")}
-                value={this.state.duration_hr}
-                placeholder="Hours"
-              />
-              Duration Mins
-              <input
-                type="text"
-                onChange={this.handleChange("duration_min")}
-                value={this.state.duration_min}
-                placeholder="Mins"
-              />
-              Duration Seconds
-              <input
-                type="text"
-                onChange={this.handleChange("duration_sec")}
-                value={this.state.duration_sec}
-                placeholder="Sec"
-              />
-              Elevation
-              <input
-                type="text"
-                onChange={this.handleChange("elevation")}
-                value={this.state.elevation}
-                placeholder="Elevation"
-              />
-              Elevation Unit
-              <input
-                type="text"
-                onChange={this.handleChange("elevation_unit")}
-                value={this.state.elevation_unit}
-                placeholder="Feet"
-              />
-              Sport
-              <input
-                type="text"
-                onChange={this.handleChange("sport")}
-                value={this.state.sport}
-                placeholder="sport"
-              />
-              Date and Time
-              <input
-                type="date"
-                onChange={this.handleChange("date")}
-                value={this.state.date}
-                placeholder="yyyy-mm-dd"
-              />
-              {/* <input
-                type="text"
-                onChange={this.handleChange("time")}
-                value={this.state.time}
-                placeholder="time"
-              /> */}
-              Title
-              <input
-                type="text"
-                onChange={this.handleChange("title")}
-                value={this.state.title}
-                placeholder="title"
-              />
-              Run Type
-              <input
-                type="text"
-                onChange={this.handleChange("runtype")}
-                value={this.state.runtype}
-                placeholder="runtype"
-              />
-              Tags
-              <input
-                type="text"
-                onChange={this.handleChange("tags")}
-                value={this.state.tags}
-                placeholder="tags"
-              />
-              Description
-              <input
-                type="text"
-                onChange={this.handleChange("description")}
-                value={this.state.description}
-                placeholder="description"
-              />
-              Privacy controls
-              <input
-                type="text"
-                onChange={this.handleChange("privacycontrols")}
-                value={this.state.privacycontrols}
-                placeholder="All"
-              />
-              <button type="submit"> Submit</button>
+              <div className="activity-form-container">
+                <div className="activity-form-section">
+                  <h1 className="activity-form-heading">Manual Entry</h1>
+                </div>
+                <div className="flex-row">
+                  <div>
+                    <div>
+                      <label className="label">Distance</label>
+                    </div>
+                    <div className="flex-row">
+                      <div>
+                        <input
+                          className="input"
+                          type="text"
+                          onChange={this.handleChange("distance")}
+                          value={this.state.distance}
+                          placeholder="Distance"
+                        />
+                      </div>
+                      <div>
+                        <select
+                          className="input select"
+                          name="distance_unit"
+                          defaultValue={"DEFAULT"}
+                          onChange={this.handleChange("distance_unit")}
+                        >
+                          <option value="Miles">miles</option>
+                          <option value="Yards">yards</option>
+                          <option value="Meters">meters</option>
+                          <option value="Kilometers">kilometers</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div>
+                      <label className="label">Duration</label>
+                    </div>
+                    <div className="flex-row">
+                      <div className="flex-row">
+                        <div>
+                          <input
+                            className="input"
+                            type="text"
+                            onChange={this.handleChange("duration_hr")}
+                            value={this.state.duration_hr}
+                            placeholder="01"
+                          />
+                        </div>
+                        <div>
+                          <label className="label">hr</label>
+                        </div>
+                      </div>
+                      <div className="flex-row">
+                        <div>
+                          <input
+                            className="input"
+                            type="text"
+                            onChange={this.handleChange("duration_min")}
+                            value={this.state.duration_min}
+                            placeholder="00"
+                          />
+                        </div>
+                        <div>
+                          <label className="label">min</label>
+                        </div>
+                      </div>
+                      <div className="flex-row">
+                        <div>
+                          <input
+                            className="input"
+                            type="text"
+                            onChange={this.handleChange("duration_sec")}
+                            value={this.state.duration_sec}
+                            placeholder="00"
+                          />
+                        </div>
+                        <div>
+                          <label className="label">s</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div>
+                      <label className="label">Elevation</label>
+                    </div>
+
+                    <div className="flex-row">
+                      <div>
+                        <input
+                          className="input"
+                          type="text"
+                          onChange={this.handleChange("elevation")}
+                          value={this.state.elevation}
+                          placeholder="Elevation"
+                        />
+                      </div>
+                      <div>
+                        <select
+                          className="input select"
+                          name="elevation_unit"
+                          defaultValue={"DEFAULT"}
+                          onChange={this.handleChange("elevation_unit")}
+                        >
+                          <option value="Feet">Feet</option>
+                          <option value="Meters">Meters</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="activity-form-section">
+                  <div className="flex-row">
+                    <div>
+                      <div>
+                        <label className="label">Sport</label>
+                      </div>
+                      <div>
+                        <input
+                          className="input"
+                          type="text"
+                          onChange={this.handleChange("sport")}
+                          value={this.state.sport}
+                          placeholder="sport"
+                        />
+                      </div>
+                    </div>
+
+                    <div>
+                      <div>
+                        <label className="label">Date & Time</label>
+                      </div>
+                      <div className="flex-row">
+                        <div>
+                          <DatePicker
+                            className="input"
+                            selected={this.state.startDate}
+                            onChange={this.handleDateChange}
+                          />
+                        </div>
+                        <div>
+                          <DatePicker
+                            className="input"
+                            selected={this.state.startTime}
+                            onChange={this.handleTimeChange}
+                            showTimeSelect
+                            showTimeSelectOnly
+                            timeIntervals={15}
+                            timeCaption="Time"
+                            dateFormat="h:mm aa"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div>
+                      <div>
+                        <label className="label">Title</label>
+                      </div>
+                      <div>
+                        <input
+                          className="input"
+                          type="text"
+                          onChange={this.handleChange("title")}
+                          value={this.state.title}
+                          placeholder="title"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <div>
+                    <div>
+                      <div>
+                        <label className="label">Run Type</label>
+                      </div>
+                      <div>
+                        <select
+                          className="input select"
+                          name="runtype"
+                          defaultValue={"Workout"}
+                          onChange={this.handleChange("runtype")}
+                        >
+                          <option value="Race">Race</option>
+                          <option value="Longrun">Long Run</option>
+                          <option value="Workout">Workout</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div>
+                      <label className="label">Description</label>
+                    </div>
+                    <div>
+                      <textarea
+                        type="text"
+                        onChange={this.handleChange("description")}
+                        value={this.state.description}
+                        placeholder="description"
+                      ></textarea>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div>
+                      <label className="label">
+                        Privacy Controls - who can see?
+                      </label>
+                      <div>
+                        <select
+                          className="input select"
+                          name="privacycontrols"
+                          defaultValue={"DEFAULT"}
+                          onChange={this.handleChange("privacycontrols")}
+                        >
+                          <option value="All">Everyone</option>
+                          <option value="Followers">Followers</option>
+                          <option value="Only you">Only You</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <button className="button button-primary">Create</button>
+                </div>
+              </div>
             </form>
-            <p>{this.state.message}</p>
           </div>
         )}
       </Mutation>
