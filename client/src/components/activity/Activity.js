@@ -78,16 +78,16 @@ class Activity extends React.Component {
       duration_sec: 0,
       elevation: 0,
       elevation_unit: "Feet",
-      sport: "windsurf",
-      date: "2011-05-05",
-      //   time: 0,
+      sport: "Windsurf",
+      date: new Date(),
+      time: new Date(),
       title: "",
       runtype: "LongRun",
       tags: "Commute",
       description: "",
-      privacycontrols: "All",
-      startDate: new Date(),
-      startTime: new Date()
+      privacycontrols: "All"
+      // startDate: new Date(),
+      // startTime: new Date()
     };
 
     this.handleDateChange = this.handleDateChange.bind(this);
@@ -102,18 +102,19 @@ class Activity extends React.Component {
   }
 
   handleDateChange(date) {
-    this.setState({ startDate: date });
+    this.setState({ date: date });
   }
 
   handleTimeChange(time) {
-    this.setState({ startTime: time });
+    this.setState({ time: time });
   }
 
   formatDate(date) {
-    // var d = new Date(date),
-    let month = "" + (date.getMonth() + 1);
-    let day = "" + date.getDate();
-    let year = date.getFullYear();
+    var d = new Date(date);
+    debugger;
+    let month = "" + (d.getMonth() + 1);
+    let day = "" + d.getDate();
+    let year = d.getFullYear();
 
     if (month.length < 2) month = "0" + month;
     if (day.length < 2) day = "0" + day;
@@ -127,6 +128,7 @@ class Activity extends React.Component {
 
   handleSubmit(e, addActivity) {
     e.preventDefault();
+    debugger;
     addActivity({
       variables: {
         distance: parseFloat(this.state.distance),
@@ -216,10 +218,10 @@ class Activity extends React.Component {
                           defaultValue={"DEFAULT"}
                           onChange={this.handleChange("distance_unit")}
                         >
-                          <option value="Miles">miles</option>
-                          <option value="Yards">yards</option>
-                          <option value="Meters">meters</option>
-                          <option value="Kilometers">kilometers</option>
+                          <option value="Miles">Miles</option>
+                          <option value="Yards">Yards</option>
+                          <option value="Meters">Meters</option>
+                          <option value="Kilometers">Kilometers</option>
                         </select>
                       </div>
                     </div>
@@ -329,14 +331,14 @@ class Activity extends React.Component {
                         <div>
                           <DatePicker
                             className="input"
-                            selected={this.state.startDate}
+                            selected={this.state.date}
                             onChange={this.handleDateChange}
                           />
                         </div>
                         <div>
                           <DatePicker
                             className="input"
-                            selected={this.state.startTime}
+                            selected={this.state.time}
                             onChange={this.handleTimeChange}
                             showTimeSelect
                             showTimeSelectOnly
