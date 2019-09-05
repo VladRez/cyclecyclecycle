@@ -1,4 +1,4 @@
-const { GraphQLString, GraphQLBoolean ,GraphQLObjectType, GraphQLInputObjectType } = require("graphql");
+const { GraphQLBoolean, GraphQLObjectType } = require("graphql");
 const LocationType = require("./location_type");
 
 const RouteType = new GraphQLObjectType({

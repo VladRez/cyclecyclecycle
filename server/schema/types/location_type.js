@@ -1,4 +1,4 @@
-const { GraphQLFloat, GraphQLObjectType, GraphQLInputObjectType } = require("graphql");
+const { GraphQLFloat, GraphQLObjectType } = require("graphql");
 
 const LocationType = new GraphQLObjectType({
   name: "LocationType",
