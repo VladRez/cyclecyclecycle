@@ -14,13 +14,14 @@ const { FETCH_ACTIVITIES } = queries;
 const ADD_ACTIVITY = gql`
   mutation AddActivity(
     $distance: Float
+    $distance_unit: String
     $duration_hr: Int
     $duration_min: Int
     $duration_sec: Int
     $elevation: Float
+    $elevation_unit: String
     $sport: String
-    $date: String
-    $time: String
+    $date: Date
     $title: String
     $runtype: String
     $tags: String
@@ -29,13 +30,15 @@ const ADD_ACTIVITY = gql`
   ) {
     addActivity(
       distance: $distance
+      distance_unit: $distance_unit
       duration_hr: $duration_hr
       duration_min: $duration_min
       duration_sec: $duration_sec
       elevation: $elevation
+      elevation_unit: $elevation_unit
       sport: $sport
       date: $date
-      time: $time
+
       title: $title
       runtype: $runtype
       tags: $tags
@@ -43,13 +46,15 @@ const ADD_ACTIVITY = gql`
       privacycontrols: $privacycontrols
     ) {
       distance
+      distance_unit
       duration_hr
       duration_min
       duration_sec
       elevation
+      elevation_unit
       sport
       date
-      time
+
       title
       runtype
       tags
@@ -67,15 +72,15 @@ class Activity extends React.Component {
     super(props);
     this.state = {
       distance: 0,
-      distance_unit: "miles",
+      distance_unit: "Miles",
       duration_hr: 0,
       duration_min: 0,
       duration_sec: 0,
       elevation: 0,
-      elevation_unit: "feet",
+      elevation_unit: "Feet",
       sport: "windsurf",
-      date: 0,
-      time: 0,
+      date: "2011-05-05",
+      //   time: 0,
       title: "",
       runtype: "LongRun",
       tags: "Commute",
@@ -116,9 +121,12 @@ class Activity extends React.Component {
     return [month, day, year].join("-");
   }
 
+  formatTime(time) {
+    return time;
+  }
+
   handleSubmit(e, addActivity) {
     e.preventDefault();
-    debugger;
     addActivity({
       variables: {
         distance: parseFloat(this.state.distance),
@@ -129,8 +137,8 @@ class Activity extends React.Component {
         elevation_unit: this.state.elevation_unit,
         distance_unit: this.state.distance_unit,
         sport: this.state.sport,
-        date: this.state.date,
-        time: this.state.time,
+        date: this.formatDate(this.state.date),
+        time: this.formatTime(this.state.time),
         title: this.state.title,
         runtype: this.state.runtype,
         tags: this.state.tags,
@@ -208,10 +216,10 @@ class Activity extends React.Component {
                           defaultValue={"DEFAULT"}
                           onChange={this.handleChange("distance_unit")}
                         >
-                          <option value="miles">miles</option>
-                          <option value="yards">yards</option>
-                          <option value="meters">meters</option>
-                          <option value="kilometers">kilometers</option>
+                          <option value="Miles">miles</option>
+                          <option value="Yards">yards</option>
+                          <option value="Meters">meters</option>
+                          <option value="Kilometers">kilometers</option>
                         </select>
                       </div>
                     </div>
@@ -288,8 +296,8 @@ class Activity extends React.Component {
                           defaultValue={"DEFAULT"}
                           onChange={this.handleChange("elevation_unit")}
                         >
-                          <option value="feet">feet</option>
-                          <option value="meters">meters</option>
+                          <option value="Feet">Feet</option>
+                          <option value="Meters">Meters</option>
                         </select>
                       </div>
                     </div>
@@ -363,16 +371,19 @@ class Activity extends React.Component {
                   <div>
                     <div>
                       <div>
-                        <label className="label">Ride Type</label>
+                        <label className="label">Run Type</label>
                       </div>
                       <div>
-                        <input
-                          className="input"
-                          type="text"
+                        <select
+                          className="input select"
+                          name="runtype"
+                          defaultValue={"Workout"}
                           onChange={this.handleChange("runtype")}
-                          value={this.state.runtype}
-                          placeholder="runtype"
-                        />
+                        >
+                          <option value="Race">Race</option>
+                          <option value="Longrun">Long Run</option>
+                          <option value="Workout">Workout</option>
+                        </select>
                       </div>
                     </div>
                   </div>
