@@ -20,11 +20,25 @@ module.exports = function validateSportOptions(data) {
     "snowshoe"
   ];
 
-  var RunType = ["Race", "LongRun", "Workout"];
+  const RunType = ["Race", "LongRun", "Workout"];
 
-  var Tags = ["Commute", "Treadmill"];
+  const Tags = ["Commute", "Treadmill"];
 
-  var PrivacyControls = ["All", "Followers", "Only you"];
+  const PrivacyControls = ["All", "Followers", "Only you"];
+
+  const Units = ["Feet", "Kilometers", "Meters", "Miles", "Yards"];
+  //   if (!Validator.isIn(data.distance_unit, Units)) {
+  //     return {
+  //       message: "Invalid distance units, choose from the list",
+  //       isValid: false
+  //     };
+  //   }
+  //   if (!Validator.isIn(data.elevation_unit, Units)) {
+  //     return {
+  //       message: "Invalid elevation units, choose from the list",
+  //       isValid: false
+  //     };
+  //   }
 
   if (!Validator.isIn(data.sport, Sports)) {
     return { message: "Invalid Activity,choose from the list", isValid: false };
@@ -44,6 +58,7 @@ module.exports = function validateSportOptions(data) {
       isValid: false
     };
   }
+
   return {
     message: "",
     isValid: true

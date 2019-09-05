@@ -7,6 +7,11 @@ const ActivitySchema = new Schema({
     required: false,
     min: 0
   },
+  distance_unit: {
+    type: String,
+    required: false
+    // default: "Miles"
+  },
   duration_hr: {
     type: Number,
     required: false,
@@ -28,18 +33,23 @@ const ActivitySchema = new Schema({
     type: Number,
     required: false
   },
+  elevation_unit: {
+    type: String,
+    required: false
+    // default: "Feet"
+  },
   sport: {
     type: String,
     required: false
   },
   date: {
-    type: String,
+    type: Date,
     required: false
   },
-  time: {
-    type: String,
-    required: false
-  },
+//   time: {
+//     type: Date,
+//     required: false
+//   },
   title: {
     type: String,
     required: false

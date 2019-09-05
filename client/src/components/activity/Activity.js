@@ -1,5 +1,6 @@
 import React from "react";
 import gql from "graphql-tag";
+import moment from "moment";
 import { Mutation } from "react-apollo";
 
 //import mutations from "../../graphql/mutations";
@@ -17,8 +18,7 @@ const ADD_ACTIVITY = gql`
     $elevation: Float
     $elevation_unit: String
     $sport: String
-    $date: String
-    $time: String
+    $date: Date
     $title: String
     $runtype: String
     $tags: String
@@ -27,15 +27,15 @@ const ADD_ACTIVITY = gql`
   ) {
     addActivity(
       distance: $distance
-      distance: $distance_unit
+      distance_unit: $distance_unit
       duration_hr: $duration_hr
       duration_min: $duration_min
       duration_sec: $duration_sec
       elevation: $elevation
-      elevation: $elevation_unit
+      elevation_unit: $elevation_unit
       sport: $sport
       date: $date
-      time: $time
+
       title: $title
       runtype: $runtype
       tags: $tags
@@ -51,7 +51,7 @@ const ADD_ACTIVITY = gql`
       elevation_unit
       sport
       date
-      time
+
       title
       runtype
       tags
@@ -68,16 +68,16 @@ class Activity extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-        distance: 0,
-        distance_unit: "miles",
-        duration_hr: 0,
-        duration_min: 0,
+      distance: 0,
+      distance_unit: "Miles",
+      duration_hr: 0,
+      duration_min: 0,
       duration_sec: 0,
-        elevation: 0,
-      elevation_unit: "feet",
+      elevation: 0,
+      elevation_unit: "Feet",
       sport: "windsurf",
-      date: 0,
-      time: 0,
+      date: "2011-05-05",
+      //   time: 0,
       title: "",
       runtype: "LongRun",
       tags: "Commute",
@@ -92,6 +92,7 @@ class Activity extends React.Component {
   }
   handleSubmit(e, addActivity) {
     e.preventDefault();
+    var momentDate = moment(this.state.date);
     debugger;
     addActivity({
       variables: {
@@ -103,8 +104,9 @@ class Activity extends React.Component {
         elevation: parseFloat(this.state.elevation),
         elevation_unit: this.state.elevation_unit,
         sport: this.state.sport,
-        date: this.state.date,
-        time: this.state.time,
+        date: momentDate.toDate().startOf("day"),
+
+        // time: this.state.time,
         title: this.state.title,
         runtype: this.state.runtype,
         tags: this.state.tags,
@@ -163,33 +165,47 @@ class Activity extends React.Component {
                 value={this.state.distance}
                 placeholder="Distance"
               />
+              Distance Units
+              <input
+                type="text"
+                onChange={this.handleChange("distance_unit")}
+                value={this.state.distance_unit}
+                placeholder="Miles"
+              />
               Duration Hours
               <input
                 type="text"
                 onChange={this.handleChange("duration_hr")}
                 value={this.state.duration_hr}
                 placeholder="Hours"
-                        />
-                        Duration Mins
+              />
+              Duration Mins
               <input
-                            type="text"
-                            onChange={this.handleChange("duration_min")}
-                            value={this.state.duration_min}
-                            placeholder="Mins"
-                        />
-                        Duration Seconds
+                type="text"
+                onChange={this.handleChange("duration_min")}
+                value={this.state.duration_min}
+                placeholder="Mins"
+              />
+              Duration Seconds
               <input
-                            type="text"
-                            onChange={this.handleChange("duration_sec")}
-                            value={this.state.duration_sec}
-                            placeholder="Sec"
-                        />
+                type="text"
+                onChange={this.handleChange("duration_sec")}
+                value={this.state.duration_sec}
+                placeholder="Sec"
+              />
               Elevation
               <input
                 type="text"
                 onChange={this.handleChange("elevation")}
                 value={this.state.elevation}
                 placeholder="Elevation"
+              />
+              Elevation Unit
+              <input
+                type="text"
+                onChange={this.handleChange("elevation_unit")}
+                value={this.state.elevation_unit}
+                placeholder="Feet"
               />
               Sport
               <input
@@ -200,17 +216,17 @@ class Activity extends React.Component {
               />
               Date and Time
               <input
-                type="text"
+                type="date"
                 onChange={this.handleChange("date")}
                 value={this.state.date}
-                placeholder="date"
+                placeholder="yyyy-mm-dd"
               />
-              <input
+              {/* <input
                 type="text"
                 onChange={this.handleChange("time")}
                 value={this.state.time}
                 placeholder="time"
-              />
+              /> */}
               Title
               <input
                 type="text"

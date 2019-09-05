@@ -1,4 +1,4 @@
-const { GraphQLDate, GraphQLTime } = require("graphql-iso-date");
+const { GraphQLDate, GraphQLTime, GraphQLDateTime } = require("graphql-iso-date");
 const {
   GraphQLObjectType,
   GraphQLFloat,
@@ -59,13 +59,15 @@ const mutation = new GraphQLObjectType({
       type: ActivityType,
       args: {
         distance: { type: GraphQLFloat },
+        distance_unit: { type: GraphQLString },
         duration_hr: { type: GraphQLInt },
         duration_min: { type: GraphQLInt },
         duration_sec: { type: GraphQLInt },
         elevation: { type: GraphQLFloat },
+        elevation_unit: { type: GraphQLString },
         sport: { type: GraphQLString },
-        date: { type: GraphQLString },
-        time: { type: GraphQLString },
+        date: { type: GraphQLDate },
+        time: { type: GraphQLDateTime },
         title: { type: GraphQLString },
         runtype: { type: GraphQLString },
         tags: { type: GraphQLString },
@@ -74,7 +76,7 @@ const mutation = new GraphQLObjectType({
       },
       resolve(_, args) {
         console.log("Args: ", args);
-        //debugger;
+        debugger;
         return Activity.addActivity(args);
       }
     }
