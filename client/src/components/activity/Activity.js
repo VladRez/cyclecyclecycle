@@ -1,5 +1,8 @@
 import React from "react";
 //import { ADD_ACTIVITY } from "../../mutations";
+import DatePicker from "react-datepicker";
+
+import "react-datepicker/dist/react-datepicker.css";
 
 class Activity extends React.Component {
   constructor(props) {
@@ -15,19 +18,48 @@ class Activity extends React.Component {
       runtype: "LongRun",
       tags: "Commute",
       description: "",
-      privacycontrols: "All"
+      privacycontrols: "All",
+      startDate: new Date(),
+      startTime: new Date()
     };
+
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleTimeChange = this.handleTimeChange.bind(this);
+    this.handleChange = this.handleChange.bind(this);
   }
   handleChange(type) {
     return e => {
+      debugger;
       this.setState({ [type]: e.target.value });
     };
   }
+
+  handleDateChange(date) {
+    this.setState({ startDate: date });
+  }
+
+  handleTimeChange(time) {
+    this.setState({ startTime: time });
+  }
+
+  formatDate(date) {
+    // var d = new Date(date),
+    let month = "" + (date.getMonth() + 1);
+    let day = "" + date.getDate();
+    let year = date.getFullYear();
+
+    if (month.length < 2) month = "0" + month;
+    if (day.length < 2) day = "0" + day;
+
+    return [month, day, year].join("-");
+  }
+
   // handleSubmit(e) {
   //     e.preventDefault();
   //     this.props.(this.state);
   //     form.reset();
   // }
+
   render() {
     return (
       // <div>
@@ -68,17 +100,22 @@ class Activity extends React.Component {
             <div className="activity-form-section">
               <h1 className="activity-form-heading">Manual Entry</h1>
             </div>
-            <div>
+            <div className="flex-row">
               <div>
                 <div>
                   <label className="label">Distance</label>
                 </div>
-                <div>
+                <div className="flex-row">
                   <div>
                     <input className="input" />
                   </div>
                   <div>
-                    <input className="input" />
+                    <select className="input select font-">
+                      <option value="miles">miles</option>
+                      <option value="yards">yards</option>
+                      <option value="meters">meters</option>
+                      <option value="kilometers">kilometers</option>
+                    </select>
                   </div>
                 </div>
               </div>
@@ -87,29 +124,29 @@ class Activity extends React.Component {
                 <div>
                   <label className="label">Duration</label>
                 </div>
-                <div>
-                  <div>
+                <div className="flex-row">
+                  <div className="flex-row">
+                    <div>
+                      <input className="input" />
+                    </div>
                     <div>
                       <label className="label">hr</label>
                     </div>
+                  </div>
+                  <div className="flex-row">
                     <div>
                       <input className="input" />
                     </div>
-                  </div>
-                  <div>
                     <div>
                       <label className="label">min</label>
                     </div>
+                  </div>
+                  <div className="flex-row">
                     <div>
                       <input className="input" />
                     </div>
-                  </div>
-                  <div>
                     <div>
                       <label className="label">s</label>
-                    </div>
-                    <div>
-                      <input className="input" />
                     </div>
                   </div>
                 </div>
@@ -119,21 +156,20 @@ class Activity extends React.Component {
                 <div>
                   <label className="label">Elevation</label>
                 </div>
-                <div>
+
+                <div className="flex-row">
                   <div>
-                    <div>
-                      <input className="input" />
-                    </div>
-                    <div>
-                      <input className="input" />
-                    </div>
+                    <input className="input" />
+                  </div>
+                  <div>
+                    <input className="input" />
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="activity-form-section">
-              <div>
+              <div className="flex-row">
                 <div>
                   <div>
                     <label className="label">Sport</label>
@@ -147,12 +183,25 @@ class Activity extends React.Component {
                   <div>
                     <label className="label">Date & Time</label>
                   </div>
-                  <div>
+                  <div className="flex-row">
                     <div>
-                      <input className="input" />
+                      <DatePicker
+                        className="input"
+                        selected={this.state.startDate}
+                        onChange={this.handleDateChange}
+                      />
                     </div>
                     <div>
-                      <input className="input" />
+                      <DatePicker
+                        className="input"
+                        selected={this.state.startTime}
+                        onChange={this.handleTimeChange}
+                        showTimeSelect
+                        showTimeSelectOnly
+                        timeIntervals={15}
+                        timeCaption="Time"
+                        dateFormat="h:mm aa"
+                      />
                     </div>
                   </div>
                 </div>
