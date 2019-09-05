@@ -7,10 +7,22 @@ const ActivitySchema = new Schema({
     required: false,
     min: 0
   },
-  duration: {
+  duration_hr: {
     type: Number,
     required: false,
     min: 0
+  },
+  duration_min: {
+    type: Number,
+    required: false,
+    min: 0,
+    max: 60
+  },
+  duration_sec: {
+    type: Number,
+    required: false,
+    min: 0,
+    max: 60
   },
   elevation: {
     type: Number,
@@ -18,23 +30,23 @@ const ActivitySchema = new Schema({
   },
   sport: {
     type: String,
-    required: true
+    required: false
   },
   date: {
-    type: Date,
-    default: Date.now
+    type: String,
+    required: false
   },
   time: {
-    type: Date,
-    default: Date.now
+    type: String,
+    required: false
   },
   title: {
     type: String,
-    required: true
+    required: false
   },
   runtype: {
     type: String,
-    required: true
+    required: false
   },
   tags: {
     type: String,
@@ -42,7 +54,7 @@ const ActivitySchema = new Schema({
   },
   description: {
     type: String,
-    required: true
+    required: false
   },
   privacycontrols: {
     type: String,

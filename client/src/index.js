@@ -11,8 +11,10 @@ import { ApolloProvider } from "react-apollo";
 import { onError } from "apollo-link-error";
 // eslint-disable-next-line
 import { ApolloLink } from "apollo-link";
+import gql from "graphql-tag";
 
 import Mutations from "./graphql/mutations";
+import Queries from "./graphql/queries";
 const { VERIFY_USER } = Mutations;
 
 // pass token within header
