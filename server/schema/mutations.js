@@ -76,7 +76,8 @@ const mutation = new GraphQLObjectType({
         runtype: { type: GraphQLString },
         tags: { type: GraphQLString },
         description: { type: GraphQLString },
-        privacycontrols: { type: GraphQLString }
+        privacycontrols: { type: GraphQLString },
+        user_id: { type: GraphQLID }
       },
       resolve(_, args) {
         console.log("Args: ", args);

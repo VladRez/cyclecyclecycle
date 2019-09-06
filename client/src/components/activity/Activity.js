@@ -28,6 +28,7 @@ const ADD_ACTIVITY = gql`
     $tags: String
     $description: String
     $privacycontrols: String
+    $user_id: Int
   ) {
     addActivity(
       distance: $distance
@@ -45,6 +46,7 @@ const ADD_ACTIVITY = gql`
       tags: $tags
       description: $description
       privacycontrols: $privacycontrols
+      user_id: $user_id
     ) {
       distance
       distance_unit
@@ -61,6 +63,7 @@ const ADD_ACTIVITY = gql`
       tags
       description
       privacycontrols
+      user_id
     }
   }
 `;
@@ -72,6 +75,7 @@ class Activity extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      user_id: localStorage.getItem("currentUserId"),
       message: "",
       distance: 1,
       distance_unit: "Miles",
@@ -155,7 +159,8 @@ class Activity extends React.Component {
         runtype: this.state.runtype,
         tags: this.state.tags,
         description: this.state.description,
-        privacycontrols: this.state.privacycontrols
+        privacycontrols: this.state.privacycontrols,
+        user_id: "abc1234"
       }
     });
   }

@@ -69,6 +69,10 @@ const ActivitySchema = new Schema({
   privacycontrols: {
     type: String,
     default: "All"
+  },
+  user_id: {
+    type: Number,
+    required: false
   }
 });
 
