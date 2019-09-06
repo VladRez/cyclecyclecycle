@@ -5,9 +5,11 @@ import Queries from "../../graphql/queries";
 import { ApolloConsumer } from "react-apollo";
 import "./activity_show.css";
 
+// activityId => this.props.match.params.activityId
+
 const ACTIVITY_QUERY = gql`
-  query {
-    activity(_id: "5d6d78db4aff4475172c67b2") {
+  query ActivityQuery($id: ID!) {
+    activity(_id: $id) {
       distance
       distance_unit
       duration_hr
@@ -28,18 +30,57 @@ const ACTIVITY_QUERY = gql`
 `;
 
 export default class ActivityShow extends Component {
+  constructor(props) {
+    super(props);
+  }
+
+  componentDidMount() {
+    // debugger;
+  }
+
+  abbreviateUnit(unit) {
+    switch (unit) {
+      case "Feet":
+        return "ft";
+      case "Miles":
+        return "mi";
+      case "Kilometers":
+        return "km";
+      case "Meters":
+        return "m";
+      case "Yards":
+        return "yd";
+      default:
+        break;
+    }
+  }
+
+  getPace(hr, min, sec, distance) {
+    let totalSeconds;
+    totalSeconds = hr * 60 ** 2 + min * 60 + sec;
+    let pace = totalSeconds / distance;
+    let hours = Math.floor(pace / 3600);
+    pace %= 3600;
+    let minutes = Math.floor(pace / 60);
+    let seconds = Math.floor(pace % 60);
+    return `${hours}:${minutes}:${seconds}`;
+  }
+
   render() {
     return (
       <ApolloConsumer>
         {client => {
           debugger;
           return (
-            <Query query={ACTIVITY_QUERY}>
+            <Query
+              query={ACTIVITY_QUERY}
+              variables={{ id: this.props.match.params.activityId }}
+            >
               {({ loading, error, data }) => {
                 debugger;
                 if (loading) return <div>Loading</div>;
                 if (error) return <div>Error</div>;
-
+                debugger;
                 return (
                   <div className="page-container">
                     <div className="activity-item">
@@ -86,7 +127,11 @@ export default class ActivityShow extends Component {
                             <div className="flex-row group-row-xl activity-item-stats margin-bottom-m">
                               <div>
                                 <div className="font-xxl">
-                                  {data.activity.distance}
+                                  {`${
+                                    data.activity.distance
+                                  }${this.abbreviateUnit(
+                                    data.activity.distance_unit
+                                  )}`}
                                 </div>
                                 <div className="font-xs font-color-light font-weight-medium">
                                   Distance
@@ -94,29 +139,39 @@ export default class ActivityShow extends Component {
                               </div>
                               <div>
                                 <div className="font-xxl">
-                                  {data.activity.duration}
+                                  {`${data.activity.duration_hr}:${data.activity.duration_min}:${data.activity.duration_sec}`}
                                 </div>
                                 <div className="font-xs font-color-light font-weight-medium">
                                   Duration
                                 </div>
                               </div>
                               <div>
-                                <div className="font-xxl">*6:00/mi*</div>
+                                <div className="font-xxl">
+                                  {`${this.getPace(
+                                    data.activity.duration_hr,
+                                    data.activity.duration_min,
+                                    data.activity.duration_sec,
+                                    data.activity.distance
+                                  )}/${this.abbreviateUnit(
+                                    data.activity.distance_unit
+                                  )}`}
+                                </div>
                                 <div className="font-xs font-color-light font-weight-medium">
                                   Pace
                                 </div>
                               </div>
                               <div>
                                 <div className="font-xxl">
-                                  {data.activity.elevation}
+                                  {`${
+                                    data.activity.elevation
+                                  }${this.abbreviateUnit(
+                                    data.activity.elevation_unit
+                                  )}`}
                                 </div>
                                 <div className="font-xs font-color-light font-weight-medium">
                                   Elevation
                                 </div>
                               </div>
-                            </div>
-                            <div>
-                              <div>*Shoes: Nike Free RN (35.0 mi)*</div>
                             </div>
                           </div>
                         </div>
