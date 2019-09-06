@@ -21,7 +21,8 @@ const ADD_ACTIVITY = gql`
     $elevation: Float
     $elevation_unit: String
     $sport: String
-    $date: Date
+    $date: String
+    $time: String
     $title: String
     $runtype: String
     $tags: String
@@ -38,7 +39,7 @@ const ADD_ACTIVITY = gql`
       elevation_unit: $elevation_unit
       sport: $sport
       date: $date
-
+      time: $time
       title: $title
       runtype: $runtype
       tags: $tags
@@ -54,7 +55,7 @@ const ADD_ACTIVITY = gql`
       elevation_unit
       sport
       date
-
+      time
       title
       runtype
       tags
@@ -71,20 +72,21 @@ class Activity extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      distance: 0,
+      message: "",
+      distance: 1,
       distance_unit: "Miles",
-      duration_hr: 0,
-      duration_min: 0,
-      duration_sec: 0,
-      elevation: 0,
+      duration_hr: 2,
+      duration_min: 3,
+      duration_sec: 4,
+      elevation: 500,
       elevation_unit: "Feet",
-      sport: "Windsurf",
-      date: new Date(),
-      time: new Date(),
-      title: "",
+      sport: "Swim",
+      date: Date.now(),
+      time: Date.now(),
+      title: "Swimming with ",
       runtype: "LongRun",
       tags: "Commute",
-      description: "",
+      description: "dolphins",
       privacycontrols: "All"
       // startDate: new Date(),
       // startTime: new Date()
@@ -111,7 +113,6 @@ class Activity extends React.Component {
 
   formatDate(date) {
     var d = new Date(date);
-    debugger;
     let month = "" + (d.getMonth() + 1);
     let day = "" + d.getDate();
     let year = d.getFullYear();
@@ -122,13 +123,22 @@ class Activity extends React.Component {
     return [month, day, year].join("-");
   }
 
-  formatTime(time) {
-    return time;
+  formatTime(time1) {
+    debugger;
+    var time = new Date(time1);
+    let hrs = time.getHours();
+    let ap = "AM";
+    if (hrs > 12) {
+      hrs -= 12;
+      ap = "PM";
+    }
+    let mins = "" + time.getMinutes();
+    let sec = time.getSeconds();
+    return hrs + ":" + mins + ":" + sec + " " + ap;
   }
 
   handleSubmit(e, addActivity) {
     e.preventDefault();
-    debugger;
     addActivity({
       variables: {
         distance: parseFloat(this.state.distance),
@@ -180,7 +190,7 @@ class Activity extends React.Component {
           debugger;
           this.setState({ message: err.message });
         }}
-        // update={(cache, data) => this.updateCache(cache, data)}
+        update={(cache, data) => this.updateCache(cache, data)}
         onCompleted={data => {
           debugger;
           const { distance } = data.addActivity;
@@ -430,6 +440,7 @@ class Activity extends React.Component {
                 </div>
               </div>
             </form>
+            <div>{this.state.message}</div>
           </div>
         )}
       </Mutation>
