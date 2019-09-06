@@ -76,7 +76,7 @@
 // }
 
 // export default GoogleApiWrapper({
-//   apiKey: "AIzaSyDd-3Aoty8CsCWocHbsrg9mBSm5V-evBhw"
+//   apiKey: ""
 // })(GMaps);
 
 // // {this.state.markers.map((marker, index) => (

@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { Mutation } from "react-apollo";
-import { Redirect } from 'react-router-dom'
+import { Redirect } from "react-router-dom";
 import Mutations from "../../graphql/mutations";
 import "./route.css";
 import mapOptions from "./gMapOptions";
@@ -26,7 +26,6 @@ class RouteMap extends React.Component {
   }
 
   componentDidMount() {
-    
     const map = this.refs.map;
     this.map = new window.google.maps.Map(map, mapOptions);
     const directionsDisplay = new window.google.maps.DirectionsRenderer();
@@ -115,7 +114,6 @@ class RouteMap extends React.Component {
   }
 
   handleSubmit(e) {
-   
     let mapData = {
       name: this.state.route_name,
       description: this.state.route_description,
@@ -156,52 +154,55 @@ class RouteMap extends React.Component {
 
     let modal = this.state.modal ? (
       <div className="modal">
-        <Mutation
-          mutation={CREATE_MAP}
-          onCompleted={data => {
-            this.props.history.push(`/routes/${data.addMap._id}`);
-            
-            // return <Redirect to={`/routes/${data.addMap._id}`} />
-          }}
-        >
-          {CreateMap => (
-            <form
-              onSubmit={e => {
-
-                e.preventDefault()
-                this.handleSubmit(e);
-                CreateMap({
-                  variables: {
-                    name: this.state.route_name,
-                    description: this.state.route_description,
-                    travelMode: this.state.TravelMode,
-                    routes: this.state.routes,
-                    userId: localStorage.currentUserId
-                  }
-                });
-              }}
-              className="modalForm"
-            >
-              Route Name
-              <input
-                type="text"
-                onChange={this.handleChange("route_name")}
-                value={this.state.route_name}
-              />
-              <label>
-                Description
-                <textarea
-                  cols="30"
-                  rows="10"
-                  onChange={this.handleChange("route_description")}
-                  value={this.state.route_description}
+        <div className="modal-form-container">
+        <header>Save</header>
+          <Mutation
+            mutation={CREATE_MAP}
+            onCompleted={data => {
+              this.props.history.push(`/routes/${data.addMap._id}`);
+            }}
+          >
+            {CreateMap => (
+              <div>
+                
+                <form
+                onSubmit={e => {
+                  e.preventDefault();
+                  this.handleSubmit(e);
+                  CreateMap({
+                    variables: {
+                      name: this.state.route_name,
+                      description: this.state.route_description,
+                      travelMode: this.state.TravelMode,
+                      routes: this.state.routes,
+                      userId: localStorage.currentUserId
+                    }
+                  });
+                }}
+                className="modalForm"
+              >
+                Route Name
+                <input
+                  type="text"
+                  onChange={this.handleChange("route_name")}
+                  value={this.state.route_name}
                 />
-              </label>
-              <input type="submit" value="save" />
-              <button onClick={() => this.closeModal()}>close</button>
-            </form>
-          )}
-        </Mutation>
+                <label>
+                  Description
+                  <textarea
+                    cols="30"
+                    rows="10"
+                    onChange={this.handleChange("route_description")}
+                    value={this.state.route_description}
+                  />
+                </label>
+                <input type="submit" value="save" />
+                <button onClick={() => this.closeModal()}>close</button>
+              </form>
+              </div>
+            )}
+          </Mutation>
+        </div>
       </div>
     ) : (
       ""

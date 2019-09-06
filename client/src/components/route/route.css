@@ -1,22 +1,47 @@
 .modal {
-  position: fixed; /* Stay in place */
-  z-index: 100; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  background: rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+  position: fixed;
+  z-index: 110;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+  bottom: 0;
+  right: 0;
+}
+
+.modal-form-container {
+  width: 600px;
+
+  position: absolute;
+  top: 10%;
+  left: 40px;
+  right: 40px;
+
+  background: #f0f0f0;
+  border: 1px solid #e6e6eb;
+  margin: 0 auto;
+  -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
 }
 
 .modalForm {
-  background-color: #fefefe;
-  margin: auto;
-  padding: 20px;
-  border: 1px solid #888;
-  width: 80%;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.modalForm header{
+  overflow: hidden;
+  padding: 15px 20px;
+    position: relative;
+    background: #F7F7F7;
+    border-bottom: 1px solid #ccccd1;
+}
+
+.modalForm .modalFormContent {
+  min-height: 300px;
+  max-height: 65vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .workspace {
@@ -68,10 +93,21 @@
   float: left;
 }
 
-.toolControls button {
+.toolControls-button {
   display: inline-block;
   padding: 6px 10px;
   min-width: 40px;
+}
+
+.toolControls-button-save {
+  float: right;
+
+  margin-left: 10px;
+
+  background-color: #fe9366;
+  color: rgba(255, 255, 255, 0.75);
+
+  padding: 12px 15px;
 }
 
 .toolControls label {
@@ -201,48 +237,48 @@
   width: 80%;
 }
 
-.page-container{
-    box-sizing: border-box;
-    margin-top: 30px;
-    margin-bottom: 80px;
-    position: relative;
-    min-width: 1248px;
+.page-container {
+  box-sizing: border-box;
+  margin-top: 30px;
+  margin-bottom: 80px;
+  position: relative;
+  min-width: 1248px;
 
-    color: #2d2d32;
-    fill: currentColor;
-    font-size: 13px;
-    line-height: 1.45;
+  color: #2d2d32;
+  fill: currentColor;
+  font-size: 13px;
+  line-height: 1.45;
 }
 
-.details-container{
-    margin-top: 24px;
+.details-container {
+  margin-top: 24px;
 }
 
-.map-details-container{
-    margin: 0 -15px;
-    box-sizing: border-box;
+.map-details-container {
+  margin: 0 -15px;
+  box-sizing: border-box;
 }
 
-.map-route-body{
-    width: 66.66666667%;
+.map-route-body {
+  width: 66.66666667%;
 }
 
-.map-canvas{
-    height: 350px;
-    position: relative;
+.map-canvas {
+  height: 350px;
+  position: relative;
 }
 
-.route-segments{
-    box-sizing: border-box;
+.route-segments {
+  box-sizing: border-box;
 }
 
-.table-segments{
-    width: 100%;
-    max-width: 100%;
-    margin-bottom: 16px;
-    background-color: transparent;
-    border-collapse: collapse;
-    border-spacing: 0;
-    display: table;
-    border-color: grey;
+.table-segments {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 16px;
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+  display: table;
+  border-color: grey;
 }
