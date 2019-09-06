@@ -43,13 +43,13 @@ const ActivitySchema = new Schema({
     required: false
   },
   date: {
-    type: Date,
+    type: String,
     required: false
   },
-//   time: {
-//     type: Date,
-//     required: false
-//   },
+  time: {
+    type: String,
+    required: false
+  },
   title: {
     type: String,
     required: false
@@ -69,6 +69,10 @@ const ActivitySchema = new Schema({
   privacycontrols: {
     type: String,
     default: "All"
+  },
+  user_id: {
+    type: Schema.Types.ObjectId,
+    required: false
   }
 });
 

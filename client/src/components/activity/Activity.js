@@ -5,6 +5,7 @@ import { Mutation } from "react-apollo";
 import DatePicker from "react-datepicker";
 
 import "react-datepicker/dist/react-datepicker.css";
+import "./activity.css";
 
 //import mutations from "../../graphql/mutations";
 import queries from "../../graphql/queries";
@@ -21,12 +22,14 @@ const ADD_ACTIVITY = gql`
     $elevation: Float
     $elevation_unit: String
     $sport: String
-    $date: Date
+    $date: String
+    $time: String
     $title: String
     $runtype: String
     $tags: String
     $description: String
     $privacycontrols: String
+    $user_id: String
   ) {
     addActivity(
       distance: $distance
@@ -38,12 +41,13 @@ const ADD_ACTIVITY = gql`
       elevation_unit: $elevation_unit
       sport: $sport
       date: $date
-
+      time: $time
       title: $title
       runtype: $runtype
       tags: $tags
       description: $description
       privacycontrols: $privacycontrols
+      user_id: $user_id
     ) {
       distance
       distance_unit
@@ -54,12 +58,13 @@ const ADD_ACTIVITY = gql`
       elevation_unit
       sport
       date
-
+      time
       title
       runtype
       tags
       description
       privacycontrols
+      user_id
     }
   }
 `;
@@ -71,23 +76,26 @@ class Activity extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      distance: 0,
+      user_id: localStorage.getItem("currentUserId"),
+      message: "",
+      distance: 1,
       distance_unit: "Miles",
-      duration_hr: 0,
-      duration_min: 0,
-      duration_sec: 0,
-      elevation: 0,
+      duration_hr: 2,
+      duration_min: 3,
+      duration_sec: 4,
+      elevation: 500,
       elevation_unit: "Feet",
-      sport: "windsurf",
-      date: "2011-05-05",
-      //   time: 0,
-      title: "",
+      sport: "Swim",
+      date: Date.now(),
+      time: Date.now(),
+      title: "Swimming with ",
       runtype: "LongRun",
       tags: "Commute",
-      description: "",
+      description: "dolphins",
       privacycontrols: "All",
-      startDate: new Date(),
-      startTime: new Date()
+      user_id: ""
+      // startDate: new Date(),
+      // startTime: new Date()
     };
 
     this.handleDateChange = this.handleDateChange.bind(this);
@@ -102,18 +110,18 @@ class Activity extends React.Component {
   }
 
   handleDateChange(date) {
-    this.setState({ startDate: date });
+    this.setState({ date: date });
   }
 
   handleTimeChange(time) {
-    this.setState({ startTime: time });
+    this.setState({ time: time });
   }
 
   formatDate(date) {
-    // var d = new Date(date),
-    let month = "" + (date.getMonth() + 1);
-    let day = "" + date.getDate();
-    let year = date.getFullYear();
+    var d = new Date(date);
+    let month = "" + (d.getMonth() + 1);
+    let day = "" + d.getDate();
+    let year = d.getFullYear();
 
     if (month.length < 2) month = "0" + month;
     if (day.length < 2) day = "0" + day;
@@ -121,8 +129,18 @@ class Activity extends React.Component {
     return [month, day, year].join("-");
   }
 
-  formatTime(time) {
-    return time;
+  formatTime(time1) {
+    debugger;
+    var time = new Date(time1);
+    let hrs = time.getHours();
+    let ap = "AM";
+    if (hrs > 12) {
+      hrs -= 12;
+      ap = "PM";
+    }
+    let mins = "" + time.getMinutes();
+    let sec = time.getSeconds();
+    return hrs + ":" + mins + ":" + sec + " " + ap;
   }
 
   handleSubmit(e, addActivity) {
@@ -143,7 +161,8 @@ class Activity extends React.Component {
         runtype: this.state.runtype,
         tags: this.state.tags,
         description: this.state.description,
-        privacycontrols: this.state.privacycontrols
+        privacycontrols: this.state.privacycontrols,
+        user_id: localStorage.currentUserId
       }
     });
   }
@@ -178,7 +197,7 @@ class Activity extends React.Component {
           debugger;
           this.setState({ message: err.message });
         }}
-        // update={(cache, data) => this.updateCache(cache, data)}
+        update={(cache, data) => this.updateCache(cache, data)}
         onCompleted={data => {
           debugger;
           const { distance } = data.addActivity;
@@ -191,191 +210,185 @@ class Activity extends React.Component {
           <div className="page-container">
             <form onSubmit={e => this.handleSubmit(e, addActivity)}>
               <div className="activity-form-container">
+                <h1 className="activity-form-heading">Manual Entry</h1>
                 <div className="activity-form-section">
-                  <h1 className="activity-form-heading">Manual Entry</h1>
+                  <div className="flex-row">
+                    <div className="activity-margin-right">
+                      <div>
+                        <label className="label">Distance</label>
+                      </div>
+                      <div className="flex-row activity-input-group">
+                        <div>
+                          <input
+                            className="input activity-input activity-distance-input border-right"
+                            type="text"
+                            onChange={this.handleChange("distance")}
+                            value={this.state.distance}
+                            placeholder="Distance"
+                          />
+                        </div>
+                        <div className="activity-select-container">
+                          <select
+                            className="input select activity-select activity-distance-unit"
+                            name="distance_unit"
+                            defaultValue={"DEFAULT"}
+                            onChange={this.handleChange("distance_unit")}
+                          >
+                            <option value="Miles">Miles</option>
+                            <option value="Yards">Yards</option>
+                            <option value="Meters">Meters</option>
+                            <option value="Kilometers">Kilometers</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="activity-margin-right">
+                      <div>
+                        <label className="label">Duration</label>
+                      </div>
+                      <div className="flex-row activity-input-group">
+                        <div className="flex-row">
+                          <div>
+                            <input
+                              className="input activity-input activity-duration"
+                              type="text"
+                              onChange={this.handleChange("duration_hr")}
+                              value={this.state.duration_hr}
+                              placeholder="01"
+                            />
+                          </div>
+                          <div className="activity-duration-abrev-container border-right">
+                            <label className="label activity-duration-abrev">
+                              hr
+                            </label>
+                          </div>
+                        </div>
+                        <div className="flex-row">
+                          <div>
+                            <input
+                              className="input activity-input activity-duration"
+                              type="text"
+                              onChange={this.handleChange("duration_min")}
+                              value={this.state.duration_min}
+                              placeholder="00"
+                            />
+                          </div>
+                          <div className="activity-duration-abrev-container border-right">
+                            <label className="label activity-duration-abrev">
+                              min
+                            </label>
+                          </div>
+                        </div>
+                        <div className="flex-row">
+                          <div>
+                            <input
+                              className="input activity-input activity-duration"
+                              type="text"
+                              onChange={this.handleChange("duration_sec")}
+                              value={this.state.duration_sec}
+                              placeholder="00"
+                            />
+                          </div>
+                          <div className="activity-duration-abrev-container">
+                            <label className="label activity-duration-abrev">
+                              s
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div>
+                      <div>
+                        <label className="label">Elevation</label>
+                      </div>
+
+                      <div className="flex-row activity-input-group">
+                        <div>
+                          <input
+                            className="input activity-input activity-elevation border-right"
+                            type="text"
+                            onChange={this.handleChange("elevation")}
+                            value={this.state.elevation}
+                            placeholder="Elevation"
+                          />
+                        </div>
+                        <div className="activity-select-container">
+                          <select
+                            className="input select activity-select activity-elevation-unit"
+                            name="elevation_unit"
+                            defaultValue={"DEFAULT"}
+                            onChange={this.handleChange("elevation_unit")}
+                          >
+                            <option value="Feet">Feet</option>
+                            <option value="Meters">Meters</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className="flex-row">
-                  <div>
-                    <div>
-                      <label className="label">Distance</label>
-                    </div>
-                    <div className="flex-row">
-                      <div>
-                        <input
-                          className="input"
-                          type="text"
-                          onChange={this.handleChange("distance")}
-                          value={this.state.distance}
-                          placeholder="Distance"
-                        />
-                      </div>
-                      <div>
-                        <select
-                          className="input select"
-                          name="distance_unit"
-                          defaultValue={"DEFAULT"}
-                          onChange={this.handleChange("distance_unit")}
-                        >
-                          <option value="Miles">miles</option>
-                          <option value="Yards">yards</option>
-                          <option value="Meters">meters</option>
-                          <option value="Kilometers">kilometers</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div>
-                      <label className="label">Duration</label>
-                    </div>
-                    <div className="flex-row">
-                      <div className="flex-row">
-                        <div>
-                          <input
-                            className="input"
-                            type="text"
-                            onChange={this.handleChange("duration_hr")}
-                            value={this.state.duration_hr}
-                            placeholder="01"
-                          />
-                        </div>
-                        <div>
-                          <label className="label">hr</label>
-                        </div>
-                      </div>
-                      <div className="flex-row">
-                        <div>
-                          <input
-                            className="input"
-                            type="text"
-                            onChange={this.handleChange("duration_min")}
-                            value={this.state.duration_min}
-                            placeholder="00"
-                          />
-                        </div>
-                        <div>
-                          <label className="label">min</label>
-                        </div>
-                      </div>
-                      <div className="flex-row">
-                        <div>
-                          <input
-                            className="input"
-                            type="text"
-                            onChange={this.handleChange("duration_sec")}
-                            value={this.state.duration_sec}
-                            placeholder="00"
-                          />
-                        </div>
-                        <div>
-                          <label className="label">s</label>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <div>
-                      <label className="label">Elevation</label>
-                    </div>
-
-                    <div className="flex-row">
-                      <div>
-                        <input
-                          className="input"
-                          type="text"
-                          onChange={this.handleChange("elevation")}
-                          value={this.state.elevation}
-                          placeholder="Elevation"
-                        />
-                      </div>
-                      <div>
-                        <select
-                          className="input select"
-                          name="elevation_unit"
-                          defaultValue={"DEFAULT"}
-                          onChange={this.handleChange("elevation_unit")}
-                        >
-                          <option value="Feet">Feet</option>
-                          <option value="Meters">Meters</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
                 <div className="activity-form-section">
                   <div className="flex-row">
                     <div>
                       <div>
                         <label className="label">Sport</label>
                       </div>
-                      <div>
-                        <input
-                          className="input"
-                          type="text"
+                      <div className="activity-margin-right activity-input-group">
+                        <select
+                          className="input activity-select activity-sport activity-input-group"
+                          name="sport"
+                          defaultValue={"DEFAULT"}
                           onChange={this.handleChange("sport")}
-                          value={this.state.sport}
-                          placeholder="sport"
+                        >
+                          <option value="Cycle">cycle</option>
+                          <option value="Run">run</option>
+                          <option value="Walk">walk</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div className="activity-margin-right activity-date">
+                      <div>
+                        <label className="label">Date</label>
+                      </div>
+                      <div className="activity-input-group">
+                        <DatePicker
+                          className="input activity-input"
+                          selected={this.state.date}
+                          onChange={this.handleDateChange}
                         />
                       </div>
                     </div>
-
                     <div>
                       <div>
-                        <label className="label">Date & Time</label>
+                        <label className="label">Time</label>
                       </div>
-                      <div className="flex-row">
-                        <div>
-                          <DatePicker
-                            className="input"
-                            selected={this.state.startDate}
-                            onChange={this.handleDateChange}
-                          />
-                        </div>
-                        <div>
-                          <DatePicker
-                            className="input"
-                            selected={this.state.startTime}
-                            onChange={this.handleTimeChange}
-                            showTimeSelect
-                            showTimeSelectOnly
-                            timeIntervals={15}
-                            timeCaption="Time"
-                            dateFormat="h:mm aa"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <div>
-                      <div>
-                        <label className="label">Title</label>
-                      </div>
-                      <div>
-                        <input
-                          className="input"
-                          type="text"
-                          onChange={this.handleChange("title")}
-                          value={this.state.title}
-                          placeholder="title"
+                      <div className="activity-input-group activity-time">
+                        <DatePicker
+                          className="input activity-input"
+                          selected={this.state.time}
+                          onChange={this.handleTimeChange}
+                          showTimeSelect
+                          showTimeSelectOnly
+                          timeIntervals={15}
+                          timeCaption="Time"
+                          dateFormat="h:mm aa"
                         />
                       </div>
                     </div>
                   </div>
                 </div>
 
-                <div>
+                <div className="activity-form-section margin-bottom-l">
                   <div>
-                    <div>
+                    <div className="activity-runtype-container margin-bottom-l">
                       <div>
                         <label className="label">Run Type</label>
                       </div>
-                      <div>
+                      <div className="activity-input-group">
                         <select
-                          className="input select"
+                          className="input select activity-runtype activity-select"
                           name="runtype"
                           defaultValue={"Workout"}
                           onChange={this.handleChange("runtype")}
@@ -389,12 +402,30 @@ class Activity extends React.Component {
                   </div>
 
                   <div>
+                    <div className="margin-bottom-l">
+                      <div>
+                        <label className="label">Title</label>
+                      </div>
+                      <div>
+                        <input
+                          className="input activity-title activity-input activity-input-group"
+                          type="text"
+                          onChange={this.handleChange("title")}
+                          value={this.state.title}
+                          placeholder="title"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="margin-bottom-l">
                     <div>
                       <label className="label">Description</label>
                     </div>
                     <div>
                       <textarea
                         type="text"
+                        className="activity-textarea activity-description"
                         onChange={this.handleChange("description")}
                         value={this.state.description}
                         placeholder="description"
@@ -403,13 +434,13 @@ class Activity extends React.Component {
                   </div>
 
                   <div>
-                    <div>
+                    <div className="activity-privacycontrols-container">
                       <label className="label">
                         Privacy Controls - who can see?
                       </label>
-                      <div>
+                      <div className="activity-select-container">
                         <select
-                          className="input select"
+                          className="input select activity-select activity-privacycontrols"
                           name="privacycontrols"
                           defaultValue={"DEFAULT"}
                           onChange={this.handleChange("privacycontrols")}
@@ -428,6 +459,7 @@ class Activity extends React.Component {
                 </div>
               </div>
             </form>
+            <div>{this.state.message}</div>
           </div>
         )}
       </Mutation>

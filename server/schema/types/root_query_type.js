@@ -10,7 +10,8 @@ const {
   GraphQLObjectType,
   GraphQLNonNull,
   GraphQLID,
-  GraphQLList
+  GraphQLList,
+  GraphQLString
 } = require("graphql");
 
 const RootQueryType = new GraphQLObjectType({
@@ -28,6 +29,16 @@ const RootQueryType = new GraphQLObjectType({
       args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(parentValue, args) {
         return Activity.findById(args._id);
+      }
+    },
+    activity_by_user: {
+      type: new GraphQLList(ActivityType),
+      args: { user_id: { type: new GraphQLNonNull(GraphQLID) } },
+      resolve(parentValue, args) {
+        //debugger;
+        //console.log("USER_ID: ", args.user_id);
+        return Activity.find({ user_id: args.user_id });
+        //db.inventory.find({ status: "D" })
       }
     },
     activities: {

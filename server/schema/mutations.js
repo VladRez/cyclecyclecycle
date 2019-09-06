@@ -1,4 +1,8 @@
-const { GraphQLDate, GraphQLTime, GraphQLDateTime } = require("graphql-iso-date");
+const {
+  GraphQLDate,
+  GraphQLTime,
+  GraphQLDateTime
+} = require("graphql-iso-date");
 const {
   GraphQLObjectType,
   GraphQLFloat,
@@ -69,13 +73,14 @@ const mutation = new GraphQLObjectType({
         elevation: { type: GraphQLFloat },
         elevation_unit: { type: GraphQLString },
         sport: { type: GraphQLString },
-        date: { type: GraphQLDate },
-        time: { type: GraphQLDateTime },
+        date: { type: GraphQLString },
+        time: { type: GraphQLString },
         title: { type: GraphQLString },
         runtype: { type: GraphQLString },
         tags: { type: GraphQLString },
         description: { type: GraphQLString },
-        privacycontrols: { type: GraphQLString }
+        privacycontrols: { type: GraphQLString },
+        user_id: { type: GraphQLID }
       },
       resolve(_, args) {
         console.log("Args: ", args);
