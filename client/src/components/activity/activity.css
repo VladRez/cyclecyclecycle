@@ -76,4 +76,34 @@
 .activity-title {
   width: 513px;
   text-align: left;
+  color: rgb(102, 102, 102);
+  font-size: 14px;
+}
+
+.activity-textarea {
+  margin: 0px;
+  width: 513px;
+  min-height: 150px;
+  border: none;
+  resize: vertical;
+  height: 150px;
+  font-size: 14px;
+  padding: 10px;
+  color: rgb(102, 102, 102);
+}
+
+.activity-runtype {
+  width: 229px;
+}
+
+.activity-runtype-container {
+  width: 229px;
+}
+
+.activity-privacycontrols {
+  width: 229px;
+}
+
+.activity-privacycontrols-container {
+  width: 229px;
 }

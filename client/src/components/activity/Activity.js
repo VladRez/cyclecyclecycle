@@ -329,7 +329,7 @@ class Activity extends React.Component {
                   </div>
                 </div>
                 <div className="activity-form-section">
-                  <div className="flex-row margin-bottom-xl">
+                  <div className="flex-row">
                     <div>
                       <div>
                         <label className="label">Sport</label>
@@ -378,9 +378,31 @@ class Activity extends React.Component {
                       </div>
                     </div>
                   </div>
+                </div>
+
+                <div className="activity-form-section margin-bottom-l">
+                  <div>
+                    <div className="activity-runtype-container margin-bottom-l">
+                      <div>
+                        <label className="label">Run Type</label>
+                      </div>
+                      <div className="activity-input-group">
+                        <select
+                          className="input select activity-runtype activity-select"
+                          name="runtype"
+                          defaultValue={"Workout"}
+                          onChange={this.handleChange("runtype")}
+                        >
+                          <option value="Race">Race</option>
+                          <option value="Longrun">Long Run</option>
+                          <option value="Workout">Workout</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
 
                   <div>
-                    <div>
+                    <div className="margin-bottom-l">
                       <div>
                         <label className="label">Title</label>
                       </div>
@@ -395,36 +417,15 @@ class Activity extends React.Component {
                       </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="activity-form-section">
-                  <div>
-                    <div>
-                      <div>
-                        <label className="label">Run Type</label>
-                      </div>
-                      <div>
-                        <select
-                          className="input select activity-runtype"
-                          name="runtype"
-                          defaultValue={"Workout"}
-                          onChange={this.handleChange("runtype")}
-                        >
-                          <option value="Race">Race</option>
-                          <option value="Longrun">Long Run</option>
-                          <option value="Workout">Workout</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
+                  <div className="margin-bottom-l">
                     <div>
                       <label className="label">Description</label>
                     </div>
                     <div>
                       <textarea
-                        type="text activity-textarea activity-description"
+                        type="text"
+                        className="activity-textarea activity-description"
                         onChange={this.handleChange("description")}
                         value={this.state.description}
                         placeholder="description"
@@ -433,7 +434,7 @@ class Activity extends React.Component {
                   </div>
 
                   <div>
-                    <div>
+                    <div className="activity-privacycontrols-container">
                       <label className="label">
                         Privacy Controls - who can see?
                       </label>
