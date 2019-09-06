@@ -1,6 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { Mutation } from "react-apollo";
+import { Redirect } from 'react-router-dom'
 import Mutations from "../../graphql/mutations";
 import "./route.css";
 import mapOptions from "./gMapOptions";
@@ -19,8 +20,6 @@ class RouteMap extends React.Component {
       route_name: "",
       route_description: ""
     };
-
-
 
     this.clearMap = this.clearMap.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -159,10 +158,14 @@ class RouteMap extends React.Component {
 
     let modal = this.state.modal ? (
       <div className="modal">
-        <Mutation mutation={CREATE_MAP}  
-        onCompleted={data=>{
-          debugger
-                this.props.history.push(`/routes/${data.addMap._id}`)              }}>
+        <Mutation
+          mutation={CREATE_MAP}
+          onCompleted={data => {
+            // debugger
+            this.props.history.push(`/routes/${data.addMap._id}`);
+            return <Redirect to={`/routes/${data.addMap._id}`} />
+          }}
+        >
           {CreateMap => (
             <form
               onSubmit={e => {
@@ -177,7 +180,6 @@ class RouteMap extends React.Component {
                   }
                 });
               }}
-             
               className="modalForm"
             >
               Route Name

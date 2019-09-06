@@ -19,7 +19,7 @@ import Navbar from "./navbar";
 import ActivityShow from "./activity_show/activity_show";
 
 import RouteMapCreator from "./route/route_map"
-
+import RouteDisplay from "./route/route_display"
 function App() {
   return (
     <div>
@@ -38,7 +38,7 @@ function App() {
           <Route exact path="/activity/new" component={Activity} />
           <ProtectedRoute exact path="/dashboard" component={Dashboard}/>
           <ProtectedRoute exact path="/routes/new" component={RouteMapCreator} />
-          <ProtectedRoute exact path="/routes/:id" component={Dashboard} />
+          <ProtectedRoute exact path="/routes/:id" component={RouteDisplay} />
          
         </Switch>
           
