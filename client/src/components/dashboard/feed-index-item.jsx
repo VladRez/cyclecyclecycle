@@ -1,28 +1,7 @@
 import React, { Component } from "react";
 import "./feed-index-item.css";
-import gql from "graphql-tag";
 
-const ACTIVITY_QUERY = gql`
-  query {
-    activity(_id: "5d6d78db4aff4475172c67b2") {
-      distance
-      distance_unit
-      duration_hr
-      duration_min
-      duration_sec
-      elevation
-      elevation_unit
-      sport
-      date
-      time
-      title
-      runtype
-      tags
-      description
-      privacycontrols
-    }
-  }
-`;
+
 
 export default class FeedIndexItem extends Component {
   getPace(hr, min, sec, distance) {
@@ -37,7 +16,6 @@ export default class FeedIndexItem extends Component {
   }
 
   render() {
-    //debugger;
     const pace = this.getPace(
       this.props.activity.duration_hr,
       this.props.activity.duration_min,
