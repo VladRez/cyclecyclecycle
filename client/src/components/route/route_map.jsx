@@ -38,8 +38,8 @@ class RouteMap extends React.Component {
     const directionPolyLine = new window.google.maps.Polyline({
       path: [],
       geodesic: true,
-      strokeColor: "#444444",
-      strokeOpacity: 0.5,
+      strokeColor: "#000",
+      strokeOpacity: 0.6,
       strokeWeight: 5
     });
 
@@ -155,7 +155,7 @@ class RouteMap extends React.Component {
     let modal = this.state.modal ? (
       <div className="modal">
         <div className="modal-form-container">
-        <header>Save</header>
+          <header>Save</header>
           <Mutation
             mutation={CREATE_MAP}
             onCompleted={data => {
@@ -163,42 +163,49 @@ class RouteMap extends React.Component {
             }}
           >
             {CreateMap => (
-              <div>
-                
+              <div className="modal-form-content">
                 <form
-                onSubmit={e => {
-                  e.preventDefault();
-                  this.handleSubmit(e);
-                  CreateMap({
-                    variables: {
-                      name: this.state.route_name,
-                      description: this.state.route_description,
-                      travelMode: this.state.TravelMode,
-                      routes: this.state.routes,
-                      userId: localStorage.currentUserId
-                    }
-                  });
-                }}
-                className="modalForm"
-              >
-                Route Name
-                <input
-                  type="text"
-                  onChange={this.handleChange("route_name")}
-                  value={this.state.route_name}
-                />
-                <label>
-                  Description
-                  <textarea
-                    cols="30"
-                    rows="10"
-                    onChange={this.handleChange("route_description")}
-                    value={this.state.route_description}
-                  />
-                </label>
-                <input type="submit" value="save" />
-                <button onClick={() => this.closeModal()}>close</button>
-              </form>
+                  className="modal-form"
+                  onSubmit={e => {
+                    e.preventDefault();
+                    this.handleSubmit(e);
+                    CreateMap({
+                      variables: {
+                        name: this.state.route_name,
+                        description: this.state.route_description,
+                        travelMode: this.state.TravelMode,
+                        routes: this.state.routes,
+                        userId: localStorage.currentUserId
+                      }
+                    });
+                  }}
+                >
+                  Enter a name and description for your route below. On the next
+                  page, you'll be able to see your route.
+                  <div className="modal-inline-inputs">
+                    <div style={{ display: "block" }}>
+                      <label>Route Name (required)</label>
+                      <input
+                        type="text"
+                        onChange={this.handleChange("route_name")}
+                        value={this.state.route_name}
+                      />
+                    </div>
+                    </div>
+                    <label className="form-control-label">Description</label>
+                    <textarea className="form-control-textarea"
+                      cols="30"
+                      rows="10"
+                      onChange={this.handleChange("route_description")}
+                      value={this.state.route_description}
+                    />
+                  
+                  <div className="modal-action-buttons">
+               <button className="modal-action-buttons-cancel" onClick={() => this.closeModal()}>close</button>
+                  <input className="modal-action-buttons-save" type="submit" value="save" />
+                 
+                  </div>
+                </form>
               </div>
             )}
           </Mutation>
@@ -212,10 +219,6 @@ class RouteMap extends React.Component {
       <div className="workspace">
         {modal}
         <div className="panel topPanel">
-          {/* <div className="searchBar">
-            <input placeholder="" type="text" />
-            <button>Search</button>
-          </div> */}
           <div className="toolControls">
             <button onClick={() => this.clearMap()}>X</button>
             <button onClick={() => this.openModal()}>save</button>
