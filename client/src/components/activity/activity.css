@@ -1,0 +1,79 @@
+.activity-input {
+  border-radius: 0;
+  font-size: 16px;
+  text-align: center;
+}
+
+.activity-select {
+  font-size: 16px;
+  text-align: center;
+  height: 38px;
+}
+
+.activity-select-container {
+  background-color: #fff;
+}
+
+.activity-form-container {
+  width: 800px;
+  margin: auto;
+}
+
+.activity-input-group {
+  background-color: #fff;
+}
+
+.activity-form-section {
+  padding: 30px 0px;
+  border-bottom: 1px solid #ddd;
+}
+
+.activity-distance-input {
+  width: 126px;
+}
+
+.activity-duration-abrev {
+  display: table-cell;
+  vertical-align: middle;
+  color: #666;
+  font-size: 14px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.activity-duration-abrev-container {
+  background: #fff;
+  display: table;
+  height: 100%;
+}
+
+.activity-duration {
+  width: 41px;
+  text-align: right;
+  padding-right: 0;
+}
+
+.activity-elevation {
+  width: 125px;
+}
+
+.activity-margin-right {
+  margin-right: 84px;
+}
+
+.activity-sport {
+  width: 229px;
+}
+
+.activity-date {
+  width: 200px;
+}
+
+.activity-time {
+  width: 202px;
+}
+
+.activity-title {
+  width: 513px;
+  text-align: left;
+}
