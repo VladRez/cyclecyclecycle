@@ -55,6 +55,17 @@ export default class ActivityShow extends Component {
     }
   }
 
+  formatDuration(hr, min, sec) {
+    hr = hr.toString();
+    min = min.toString();
+    sec = sec.toString();
+
+    if (min.length < 2) min = "0" + min;
+    if (sec.length < 2) sec = "0" + sec;
+
+    return [hr, min, sec].join(":");
+  }
+
   getPace(hr, min, sec, distance) {
     let totalSeconds;
     totalSeconds = hr * 60 ** 2 + min * 60 + sec;
@@ -63,7 +74,15 @@ export default class ActivityShow extends Component {
     pace %= 3600;
     let minutes = Math.floor(pace / 60);
     let seconds = Math.floor(pace % 60);
-    return `${hours}:${minutes}:${seconds}`;
+
+    hours = hours.toString();
+    minutes = minutes.toString();
+    seconds = seconds.toString();
+
+    if (minutes.length < 2) minutes = "0" + minutes;
+    if (seconds.length < 2) seconds = "0" + seconds;
+
+    return [hours, minutes, seconds].join(":");
   }
 
   render() {
@@ -139,7 +158,11 @@ export default class ActivityShow extends Component {
                               </div>
                               <div>
                                 <div className="font-xxl">
-                                  {`${data.activity.duration_hr}:${data.activity.duration_min}:${data.activity.duration_sec}`}
+                                  {this.formatDuration(
+                                    data.activity.duration_hr,
+                                    data.activity.duration_min,
+                                    data.activity.duration_sec
+                                  )}
                                 </div>
                                 <div className="font-xs font-color-light font-weight-medium">
                                   Duration
