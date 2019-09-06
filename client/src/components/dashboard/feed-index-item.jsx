@@ -25,8 +25,25 @@ const ACTIVITY_QUERY = gql`
 `;
 
 export default class FeedIndexItem extends Component {
+  getPace(hr, min, sec, distance) {
+    let totalSeconds;
+    totalSeconds = hr * 60 ** 2 + min * 60 + sec;
+    let pace = totalSeconds / distance;
+    let hours = Math.floor(pace / 3600);
+    pace %= 3600;
+    let minutes = Math.floor(pace / 60);
+    let seconds = Math.floor(pace % 60);
+    return `${hours}:${minutes}:${seconds}`;
+  }
+
   render() {
     //debugger;
+    const pace = this.getPace(
+      this.props.activity.duration_hr,
+      this.props.activity.duration_min,
+      this.props.activity.duration_sec,
+      this.props.activity.distance
+    );
     return (
       <div className="container flex-column feed-item">
         <div className="flex-row margin-bottom-s">
@@ -35,12 +52,13 @@ export default class FeedIndexItem extends Component {
           </div>
           <div className="flex-column">
             <div className="feed-item-username">*Robert* *Yeakel*</div>
-            <div className="feed-item-date">*Today at 4:00 PM*</div>
+            <div className="feed-item-date">
+              {this.props.activity.date} at {this.props.activity.time}
+            </div>
           </div>
         </div>
         <div className="flex-row">
           <div className="feed-item-activity-type">
-            {this.props.activity.sport}
             <i class="fas fa-biking"></i>
           </div>
           <div className="flex-column">
@@ -53,15 +71,20 @@ export default class FeedIndexItem extends Component {
             <div className="flex-row">
               <div className="flex-column margin-right-xl">
                 <div className="feed-item-activity-stat-heading">Distance</div>
-                <div className="flex-item-activity-stat">*15.00 mi*</div>
+                <div className="flex-item-activity-stat">
+                  {this.props.activity.distance}
+                </div>
               </div>
               <div className="flex-column margin-right-xl">
                 <div className="feed-item-activity-stat-heading">Pace</div>
-                <div className="feed-item-activity-stat">*6:00 /mi*</div>
+                <div className="feed-item-activity-stat">{pace}Hr//Mile</div>
               </div>
               <div className="flex-column margin-right-xl">
                 <div className="feed-item-activity-stat-heading">Time</div>
-                <div className="feed-item-activity-stat">*1h 30m*</div>
+                <div className="feed-item-activity-stat">
+                  {this.props.activity.duration_hr}Hr
+                  {this.props.activity.duration_min}Min
+                </div>
               </div>
             </div>
           </div>
