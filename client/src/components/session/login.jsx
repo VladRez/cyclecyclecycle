@@ -32,8 +32,10 @@ class Login extends React.Component {
       <Mutation
         mutation={LOGIN_USER}
         onCompleted={data => {
-          const { token } = data.login;
+          debugger;
+          const { token, _id } = data.login;
           localStorage.setItem("auth-token", token);
+          localStorage.setItem("currentUserId", _id);
           this.props.history.push("/dashboard");
         }}
         update={(client, data) => this.updateCache(client, data)}
@@ -69,7 +71,10 @@ class Login extends React.Component {
                   placeholder="Password"
                   className="session-form-input"
                 />
-                <button className="session-form-button-primary button" type="submit">
+                <button
+                  className="session-form-button-primary button"
+                  type="submit"
+                >
                   Log In
                 </button>
                 <Demo />

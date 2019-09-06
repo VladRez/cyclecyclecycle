@@ -18,6 +18,7 @@ export default {
       ) {
         token
         loggedIn
+        _id
       }
     }
   `,
@@ -26,6 +27,7 @@ export default {
       login(email: $email, password: $password) {
         token
         loggedIn
+        _id
       }
     }
   `,

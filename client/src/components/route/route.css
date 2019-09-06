@@ -148,7 +148,6 @@
 
     box-sizing: border-box;
 
-    user-select: none;
 
     transition: border-color 0.1s linear, background 0.1s linear, color 0.1s linear;
 
@@ -172,7 +171,7 @@
     clear: both;
     font-weight: 300;
 
-    user-select: none;
+
 
     background-color: rgba(0,0,0,0.05);
 
@@ -199,6 +198,6 @@
     vertical-align: text-bottom;
 
     clear: both;
-    user-select: none;
+
 
 } 

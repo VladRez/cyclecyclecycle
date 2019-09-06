@@ -19,8 +19,9 @@ class Demo extends React.Component {
       <Mutation
         mutation={LOGIN_USER}
         onCompleted={data => {
-          const { token } = data.login;
+          const { token, _id } = data.login;
           localStorage.setItem("auth-token", token);
+          localStorage.setItem("currentUserId", _id);
         }}
         update={(client, { data }) => {
           client.writeData({
