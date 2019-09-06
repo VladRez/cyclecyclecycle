@@ -71,7 +71,7 @@ const ActivitySchema = new Schema({
     default: "All"
   },
   user_id: {
-    type: Number,
+    type: String,
     required: false
   }
 });

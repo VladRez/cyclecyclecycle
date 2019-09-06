@@ -28,7 +28,7 @@ const ADD_ACTIVITY = gql`
     $tags: String
     $description: String
     $privacycontrols: String
-    $user_id: Int
+    $user_id: String
   ) {
     addActivity(
       distance: $distance
@@ -91,7 +91,8 @@ class Activity extends React.Component {
       runtype: "LongRun",
       tags: "Commute",
       description: "dolphins",
-      privacycontrols: "All"
+      privacycontrols: "All",
+      user_id: ""
       // startDate: new Date(),
       // startTime: new Date()
     };
@@ -160,7 +161,7 @@ class Activity extends React.Component {
         tags: this.state.tags,
         description: this.state.description,
         privacycontrols: this.state.privacycontrols,
-        user_id: "abc1234"
+        user_id: localStorage.currentUserId
       }
     });
   }
