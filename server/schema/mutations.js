@@ -80,7 +80,7 @@ const mutation = new GraphQLObjectType({
         tags: { type: GraphQLString },
         description: { type: GraphQLString },
         privacycontrols: { type: GraphQLString },
-        user_id: { type: GraphQLString }
+        user_id: { type: GraphQLID }
       },
       resolve(_, args) {
         console.log("Args: ", args);

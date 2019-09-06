@@ -32,7 +32,7 @@ const ActivityType = new GraphQLObjectType({
     tags: { type: GraphQLString },
     description: { type: GraphQLString },
     privacycontrols: { type: GraphQLString },
-    user_id: { type: GraphQLString }
+    user_id: { type: GraphQLID }
   }
 });
 

@@ -71,7 +71,7 @@ const ActivitySchema = new Schema({
     default: "All"
   },
   user_id: {
-    type: String,
+    type: Schema.Types.ObjectId,
     required: false
   }
 });
