@@ -20,8 +20,7 @@ class RouteMap extends React.Component {
       route_description: ""
     };
 
-    const directionsService = new window.google.maps.DirectionsService();
-    this.directionsService = directionsService;
+
 
     this.clearMap = this.clearMap.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -33,6 +32,8 @@ class RouteMap extends React.Component {
     const directionsDisplay = new window.google.maps.DirectionsRenderer();
     this.directionsDisplay = directionsDisplay;
     this.directionsDisplay.setMap(this.map);
+    const directionsService = new window.google.maps.DirectionsService();
+    this.directionsService = directionsService;
     this.handleClick();
 
     const directionPolyLine = new window.google.maps.Polyline({
@@ -158,7 +159,10 @@ class RouteMap extends React.Component {
 
     let modal = this.state.modal ? (
       <div className="modal">
-        <Mutation mutation={CREATE_MAP}>
+        <Mutation mutation={CREATE_MAP}  
+        onCompleted={data=>{
+          debugger
+                this.props.history.push(`/routes/${data.addMap._id}`)              }}>
           {CreateMap => (
             <form
               onSubmit={e => {
@@ -168,10 +172,12 @@ class RouteMap extends React.Component {
                     name: this.state.route_name,
                     description: this.state.route_description,
                     travelMode: this.state.TravelMode,
-                    routes: this.state.routes
+                    routes: this.state.routes,
+                    userId: localStorage.currentUserId
                   }
                 });
               }}
+             
               className="modalForm"
             >
               Route Name

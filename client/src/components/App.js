@@ -38,6 +38,7 @@ function App() {
           <Route exact path="/activity/new" component={Activity} />
           <ProtectedRoute exact path="/dashboard" component={Dashboard}/>
           <ProtectedRoute exact path="/routes/new" component={RouteMapCreator} />
+          <ProtectedRoute exact path="/routes/:id" component={Dashboard} />
          
         </Switch>
           
