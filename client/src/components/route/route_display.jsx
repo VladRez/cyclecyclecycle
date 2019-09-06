@@ -31,27 +31,27 @@ class RouteDisplay extends React.Component {
     const directionPolyLine = new window.google.maps.Polyline({
       path: [],
       geodesic: true,
-      strokeColor: "#444444",
-      strokeOpacity: 0.5,
-      strokeWeight: 5
+      strokeColor: "#ff0000",
+      strokeOpacity: 1,
+      strokeWeight: 2
     });
     this.directionPolyLine = directionPolyLine;
     this.directionPolyLine.setMap(this.map);
   }
 
   calculateAndDisplayRoute(opt = {}) {
-    debugger
-    let origin = (({lat, lng})=>({lat, lng}))(opt.routes[0].location) 
-    let destination =(({lat, lng})=>({lat, lng}))(opt.routes[opt.routes.length - 1].location) 
-    let waypoints = opt.routes.slice(1, opt.routes.length - 1).map(waypoint=>{
+    let origin = (({ lat, lng }) => ({ lat, lng }))(opt.routes[0].location);
+    let destination = (({ lat, lng }) => ({ lat, lng }))(
+      opt.routes[opt.routes.length - 1].location
+    );
+    let waypoints = opt.routes.slice(1, opt.routes.length - 1).map(waypoint => {
       return {
         stopover: waypoint.stopover,
-        location: (({lat, lng})=>({lat, lng}))(waypoint.location) 
-      }
-    })
+        location: (({ lat, lng }) => ({ lat, lng }))(waypoint.location)
+      };
+    });
     let travelMode = opt.travelMode; //window.google.maps.TravelMode.WALKING;
     let optimizeWaypoints = opt.optimizeWaypoints || false;
-    ;
     let options = {
       origin,
       destination,
@@ -59,9 +59,13 @@ class RouteDisplay extends React.Component {
       optimizeWaypoints,
       travelMode
     };
-    
+    let center = {
+      lat: (origin.lat + destination.lat) / 2,
+      lng: (origin.lng + destination.lng) / 2
+    };
+    this.map.setCenter(center);
+    // this.map.fitBounds(origin, destination)
     this.directionsService.route(options, (res, status) => {
-      
       if (status === "OK") {
         this.setState({ route_details: res.routes[0].legs[0] });
         if (this.state.routeType === "polyline") {
@@ -77,28 +81,69 @@ class RouteDisplay extends React.Component {
 
   renderPolyLine(res) {
     // this.directionPolyLine.setMap(null);
-    debugger
     console.log(res);
     this.directionPolyLine.setPath(res.routes[0].overview_path);
   }
 
   render() {
     return (
-      <div>
-        <Query
-          query={FETCH_MAP}
-          variables={{ _id: this.props.match.params.id }}
-        >
-          {({ loading, error, data }) => {
-            if (loading) return <p>Loading...</p>;
-            if (error) return <p>Error</p>;
-            debugger
-            this.calculateAndDisplayRoute(data.map);
-            // this.setState(data.map)
-            return <div>{JSON.stringify(data.map)}</div>;
-          }}
-        </Query>
-        <div className="miniMap" ref="map"></div>
+      <div className="page-container">
+        <div className="details-container">
+          <div className="map-detail-container">
+            <div className="map-route-body">
+              <div className="map-canvas" ref="map"></div>
+
+              <Query
+                query={FETCH_MAP}
+                variables={{ _id: this.props.match.params.id }}
+              >
+                {({ loading, error, data }) => {
+                  if (loading) return <p>Loading...</p>;
+                  if (error) return <p>Error</p>;
+
+                  this.calculateAndDisplayRoute(data.map);
+
+                  let tablebody = !Object.keys(this.state.route_details)
+                    .length ? (
+                    <tr>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                  ) : (
+                    this.state.route_details.steps.map(step => {
+                      let segment = step.instructions.match(
+                        /(?<=\<b\>)(.*?)(?=\<\/b\>)/g
+                      );
+                      segment = segment ? segment.join(" ") : step.instructions;
+                      return (
+                        <tr>
+                          <td>{segment}</td>
+                          <td>{step.distance.text}</td>
+                          <td>{step.duration.text}</td>
+                        </tr>
+                      );
+                    })
+                  );
+                  // this.setState(data.map)
+
+                  return (
+                    <div className="route-segments">
+                      <table className="table-segments">
+                        <tr>
+                          <th>Name</th>
+                          <th>Distance</th>
+                          <th>Est Time</th>
+                        </tr>
+                        {tablebody}
+                      </table>
+                    </div>
+                  );
+                }}
+              </Query>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

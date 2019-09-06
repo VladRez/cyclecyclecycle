@@ -3,8 +3,8 @@ const User = mongoose.model("users");
 const Activity = mongoose.model("activities");
 const UserType = require("./user_type");
 const ActivityType = require("./activity_type");
-const MapType = require("./map_type")
-const Map = mongoose.model("map")
+const MapType = require("./map_type");
+const Map = mongoose.model("map");
 
 const {
   GraphQLObjectType,
@@ -44,9 +44,16 @@ const RootQueryType = new GraphQLObjectType({
     },
     map: {
       type: MapType,
-      args: {_id: {type: new GraphQLNonNull(GraphQLID)}},
+      args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(_, args) {
         return Map.findById(args._id);
+      }
+    },
+    user_maps: {
+      type: new GraphQLList(MapType),
+      args: { userId: { type: new GraphQLNonNull(GraphQLID) } },
+      resolve(_, args) {
+        return Map.find({ userId: args.userId });
       }
     }
   })

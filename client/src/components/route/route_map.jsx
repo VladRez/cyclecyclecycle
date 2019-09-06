@@ -26,6 +26,7 @@ class RouteMap extends React.Component {
   }
 
   componentDidMount() {
+    
     const map = this.refs.map;
     this.map = new window.google.maps.Map(map, mapOptions);
     const directionsDisplay = new window.google.maps.DirectionsRenderer();
@@ -97,7 +98,6 @@ class RouteMap extends React.Component {
 
   renderPolyLine(res) {
     // this.directionPolyLine.setMap(null);
-    console.log(res);
     this.directionPolyLine.setPath(res.routes[0].overview_path);
   }
 
@@ -115,16 +115,14 @@ class RouteMap extends React.Component {
   }
 
   handleSubmit(e) {
-    console.log(this.state);
+   
     let mapData = {
       name: this.state.route_name,
       description: this.state.route_description,
       travelMode: this.state.TravelMode,
       routes: this.state.routes
     };
-    console.log(mapData);
     return mapData;
-    debugger;
   }
 
   handleChange(field) {
@@ -161,14 +159,16 @@ class RouteMap extends React.Component {
         <Mutation
           mutation={CREATE_MAP}
           onCompleted={data => {
-            // debugger
             this.props.history.push(`/routes/${data.addMap._id}`);
-            return <Redirect to={`/routes/${data.addMap._id}`} />
+            
+            // return <Redirect to={`/routes/${data.addMap._id}`} />
           }}
         >
           {CreateMap => (
             <form
               onSubmit={e => {
+
+                e.preventDefault()
                 this.handleSubmit(e);
                 CreateMap({
                   variables: {
