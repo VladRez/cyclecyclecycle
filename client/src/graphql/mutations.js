@@ -37,5 +37,82 @@ export default {
         loggedIn
       }
     }
+  `,
+  CREATE_MAP: gql`
+    mutation CreateMap(
+      $userId: ID
+      $name: String
+      $description: String
+      $travelMode: String
+      $routes: [RouteInputType]
+    ) {
+      addMap(
+        input: {
+          travelMode: $travelMode
+          userId: $userId
+          routes: $routes
+          name: $name
+          description: $description
+        }
+      ) {
+        _id
+        userId
+        travelMode
+        name
+        routes {
+          stopover
+          location {
+            lat
+            lng
+          }
+        }
+      }
+    }
   `
 };
+
+
+/*
+{
+  "userId": "5d6b039a7b7dac15f7e99fa6",
+  "name": "another name",
+  "description": "another description",
+  "travelMode": "WALKING",
+  "routes": [
+    {
+      "stopover": false,
+      "location": {
+        "lat": 122,
+        "lng": 33
+      }
+    },
+    {
+      "stopover": false,
+      "location": {
+        "lat": 122,
+        "lng": 33
+      }
+    {
+  "userId": "5d6b039a7b7dac15f7e99fa6",
+  "name": "another name",
+  "description": "another description",
+  "travelMode": "WALKING",
+  "routes": [
+    {
+      "stopover": false,
+      "location": {
+        "lat": 122,
+        "lng": 33
+      }
+    },
+    {
+      "stopover": false,
+      "location": {
+        "lat": 122,
+        "lng": 33
+      }
+    }
+  ]
+}}
+  ]
+} */

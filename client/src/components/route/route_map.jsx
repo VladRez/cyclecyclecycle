@@ -1,7 +1,10 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
+import { Mutation } from "react-apollo";
+import Mutations from "../../graphql/mutations";
 import "./route.css";
-import mapOptions from "./gMapOptions"
+import mapOptions from "./gMapOptions";
+const { CREATE_MAP } = Mutations;
 
 class RouteMap extends React.Component {
   constructor(props) {
@@ -120,7 +123,7 @@ class RouteMap extends React.Component {
       routes: this.state.routes
     };
     console.log(mapData);
-
+    return mapData;
     debugger;
   }
 
@@ -155,25 +158,42 @@ class RouteMap extends React.Component {
 
     let modal = this.state.modal ? (
       <div className="modal">
-        <form onSubmit={e => this.handleSubmit(e)} className="modalForm">
-          Route Name
-          <input
-            type="text"
-            onChange={this.handleChange("route_name")}
-            value={this.state.route_name}
-          />
-          <label>
-            Description
-            <textarea
-              cols="30"
-              rows="10"
-              onChange={this.handleChange("route_description")}
-              value={this.state.route_description}
-            />
-          </label>
-          <input type="submit" value="save" />
-          <button onClick={() => this.closeModal()}>close</button>
-        </form>
+        <Mutation mutation={CREATE_MAP}>
+          {CreateMap => (
+            <form
+              onSubmit={e => {
+                this.handleSubmit(e);
+                CreateMap({
+                  variables: {
+                    name: this.state.route_name,
+                    description: this.state.route_description,
+                    travelMode: this.state.TravelMode,
+                    routes: this.state.routes
+                  }
+                });
+              }}
+              className="modalForm"
+            >
+              Route Name
+              <input
+                type="text"
+                onChange={this.handleChange("route_name")}
+                value={this.state.route_name}
+              />
+              <label>
+                Description
+                <textarea
+                  cols="30"
+                  rows="10"
+                  onChange={this.handleChange("route_description")}
+                  value={this.state.route_description}
+                />
+              </label>
+              <input type="submit" value="save" />
+              <button onClick={() => this.closeModal()}>close</button>
+            </form>
+          )}
+        </Mutation>
       </div>
     ) : (
       ""
