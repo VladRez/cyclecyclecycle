@@ -18,7 +18,7 @@ import Activity from "./activity/Activity";
 import Navbar from "./navbar";
 import ActivityShow from "./activity_show/activity_show";
 
-import RouteMapCreator from "./route/route_map"
+import RouteMapCreator from "./route/route_map";
 
 function App() {
   return (
@@ -36,11 +36,13 @@ function App() {
             component={ActivityShow}
           />
           <Route exact path="/activity/new" component={Activity} />
-          <ProtectedRoute exact path="/dashboard" component={Dashboard}/>
-          <ProtectedRoute exact path="/routes/new" component={RouteMapCreator} />
-         
+          <ProtectedRoute exact path="/dashboard" component={Dashboard} />
+          <ProtectedRoute
+            exact
+            path="/routes/new"
+            component={RouteMapCreator}
+          />
         </Switch>
-          
       </HashRouter>
     </div>
   );
