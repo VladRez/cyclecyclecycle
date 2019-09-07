@@ -29,7 +29,7 @@ const ADD_ACTIVITY = gql`
     $tags: String
     $description: String
     $privacycontrols: String
-    $user_id: String
+    $user_id: ID
   ) {
     addActivity(
       distance: $distance
@@ -104,7 +104,6 @@ class Activity extends React.Component {
   }
   handleChange(type) {
     return e => {
-      debugger;
       this.setState({ [type]: e.target.value });
     };
   }
@@ -171,13 +170,10 @@ class Activity extends React.Component {
   updateCache(cache, { data }) {
     let activities;
     try {
-      // if we've already fetched the products then we can read the
-      // query here
       activities = cache.readQuery({ query: FETCH_ACTIVITIES });
     } catch (err) {
       return;
     }
-    // if we had previously fetched products we'll add our new product to our cache
     if (activities) {
       let activityArray = activities.activities;
       let addActivity = data.addActivity;
@@ -189,7 +185,6 @@ class Activity extends React.Component {
   }
 
   render() {
-    //debugger;
     return (
       <Mutation
         mutation={ADD_ACTIVITY}
@@ -200,9 +195,9 @@ class Activity extends React.Component {
         update={(cache, data) => this.updateCache(cache, data)}
         onCompleted={data => {
           debugger;
-          const { distance } = data.addActivity;
+          const { title } = data.addActivity;
           this.setState({
-            message: `New activity ${distance} created successfully`
+            message: `New activity ${title} created successfully`
           });
         }}
       >
