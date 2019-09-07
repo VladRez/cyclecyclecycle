@@ -12,3 +12,4 @@ services:
         - "2222:5000"
       environment:
         -NODE_ENV=production
+    
