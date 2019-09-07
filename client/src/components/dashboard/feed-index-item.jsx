@@ -1,18 +1,10 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
 import { ApolloConsumer } from "react-apollo";
-import gql from "graphql-tag";
 import "./feed-index-item.css";
 import * as utils from "../../util/activity_util";
-
-const USER_QUERY = gql`
-  query UserQuery($id: ID!) {
-    user(_id: $id) {
-      fname
-      lname
-    }
-  }
-`;
+import Queries from "../../graphql/queries";
+const { USER_QUERY } = Queries;
 
 export default class FeedIndexItem extends Component {
   render() {
@@ -30,7 +22,6 @@ export default class FeedIndexItem extends Component {
           </div>
           <ApolloConsumer>
             {client => {
-              //debugger;
               return (
                 <Query
                   query={USER_QUERY}

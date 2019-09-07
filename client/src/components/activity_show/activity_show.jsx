@@ -1,35 +1,11 @@
 import React, { Component } from "react";
 import { Query } from "react-apollo";
-import gql from "graphql-tag";
+import "./activity_show.css";
 import Queries from "../../graphql/queries";
 import { ApolloConsumer } from "react-apollo";
 import * as utils from "../../util/activity_util";
+const { ACTIVITY_QUERY } = Queries;
 
-import "./activity_show.css";
-
-// activityId => this.props.match.params.activityId
-
-const ACTIVITY_QUERY = gql`
-  query ActivityQuery($id: ID!) {
-    activity(_id: $id) {
-      distance
-      distance_unit
-      duration_hr
-      duration_min
-      duration_sec
-      elevation
-      elevation_unit
-      sport
-      date
-      time
-      title
-      runtype
-      tags
-      description
-      privacycontrols
-    }
-  }
-`;
 
 export default class ActivityShow extends Component {
   constructor(props) {
@@ -66,7 +42,7 @@ export default class ActivityShow extends Component {
                             </span>
                             <span className="activity-item-activity-type">
                               {data.activity.sport}
-                            </span> 
+                            </span>
                           </div>
                           <div className=" flex-row">
                             <a className="padding-m icon-button">
@@ -81,9 +57,6 @@ export default class ActivityShow extends Component {
                         <div className="activity-item-body flex-row">
                           <div className="activity-item-section-1">
                             <div className="flex-row">
-                              {/* <div className="activity-item-avatar">
-                    <i class="fas fa-user font-size-l"></i>
-                  </div> */}
                               <div>
                                 <div className="font-xs line-height-xs font-weight-medium font-color-light">
                                   {data.activity.date}
