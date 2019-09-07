@@ -41,7 +41,6 @@ function App() {
           <ProtectedRoute exact path="/routes/:id" component={RouteDisplay} />
          
         </Switch>
-          
       </HashRouter>
     </div>
   );

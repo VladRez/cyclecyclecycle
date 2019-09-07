@@ -1,3 +1,4 @@
 node_modules
 config/dev_keys.js
 package-lock.json
+docker-compose.yml

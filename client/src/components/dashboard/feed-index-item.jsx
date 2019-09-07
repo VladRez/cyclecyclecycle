@@ -1,44 +1,14 @@
 import React, { Component } from "react";
+import { Query } from "react-apollo";
+import { ApolloConsumer } from "react-apollo";
 import "./feed-index-item.css";
-import gql from "graphql-tag";
-
-const ACTIVITY_QUERY = gql`
-  query {
-    activity(_id: "5d6d78db4aff4475172c67b2") {
-      distance
-      distance_unit
-      duration_hr
-      duration_min
-      duration_sec
-      elevation
-      elevation_unit
-      sport
-      date
-      time
-      title
-      runtype
-      tags
-      description
-      privacycontrols
-    }
-  }
-`;
+import * as utils from "../../util/activity_util";
+import Queries from "../../graphql/queries";
+const { USER_QUERY } = Queries;
 
 export default class FeedIndexItem extends Component {
-  getPace(hr, min, sec, distance) {
-    let totalSeconds;
-    totalSeconds = hr * 60 ** 2 + min * 60 + sec;
-    let pace = totalSeconds / distance;
-    let hours = Math.floor(pace / 3600);
-    pace %= 3600;
-    let minutes = Math.floor(pace / 60);
-    let seconds = Math.floor(pace % 60);
-    return `${hours}:${minutes}:${seconds}`;
-  }
-
   render() {
-    //debugger;
-    const pace = this.getPace(
+    const pace = utils.getPace(
       this.props.activity.duration_hr,
       this.props.activity.duration_min,
       this.props.activity.duration_sec,
@@ -50,12 +20,35 @@ export default class FeedIndexItem extends Component {
           <div className="feed-item-avatar">
             <i class="fas fa-user font-size-l"></i>
           </div>
-          <div className="flex-column">
-            <div className="feed-item-username">*Robert* *Yeakel*</div>
-            <div className="feed-item-date">
-              {this.props.activity.date} at {this.props.activity.time}
-            </div>
-          </div>
+          <ApolloConsumer>
+            {client => {
+              return (
+                <Query
+                  query={USER_QUERY}
+                  variables={{ id: this.props.activity.user_id }}
+                >
+                  {({ loading, error, data }) => {
+                    if (loading) return <div>Loading</div>;
+                    if (error) return <div>Error</div>;
+
+                    return (
+                      <div className="activity-item-name">
+                        <div className="flex-column">
+                          <div className="feed-item-username">
+                            {data.user.fname} {data.user.lname}
+                          </div>
+                          <div className="feed-item-date">
+                            {this.props.activity.date} at{" "}
+                            {this.props.activity.time}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  }}
+                </Query>
+              );
+            }}
+          </ApolloConsumer>
         </div>
         <div className="flex-row">
           <div className="feed-item-activity-type">
@@ -77,7 +70,7 @@ export default class FeedIndexItem extends Component {
               </div>
               <div className="flex-column margin-right-xl">
                 <div className="feed-item-activity-stat-heading">Pace</div>
-                <div className="feed-item-activity-stat">{pace}Hr//Mile</div>
+                <div className="feed-item-activity-stat">{pace}Hr/Mile</div>
               </div>
               <div className="flex-column margin-right-xl">
                 <div className="feed-item-activity-stat-heading">Time</div>
