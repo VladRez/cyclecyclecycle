@@ -1,22 +1,10 @@
 import React, { Component } from "react";
 import "./feed-index-item.css";
-
-
+import * as utils from "../../util/activity_util";
 
 export default class FeedIndexItem extends Component {
-  getPace(hr, min, sec, distance) {
-    let totalSeconds;
-    totalSeconds = hr * 60 ** 2 + min * 60 + sec;
-    let pace = totalSeconds / distance;
-    let hours = Math.floor(pace / 3600);
-    pace %= 3600;
-    let minutes = Math.floor(pace / 60);
-    let seconds = Math.floor(pace % 60);
-    return `${hours}:${minutes}:${seconds}`;
-  }
-
   render() {
-    const pace = this.getPace(
+    const pace = utils.getPace(
       this.props.activity.duration_hr,
       this.props.activity.duration_min,
       this.props.activity.duration_sec,
@@ -55,7 +43,7 @@ export default class FeedIndexItem extends Component {
               </div>
               <div className="flex-column margin-right-xl">
                 <div className="feed-item-activity-stat-heading">Pace</div>
-                <div className="feed-item-activity-stat">{pace}Hr//Mile</div>
+                <div className="feed-item-activity-stat">{pace}Hr/Mile</div>
               </div>
               <div className="flex-column margin-right-xl">
                 <div className="feed-item-activity-stat-heading">Time</div>
