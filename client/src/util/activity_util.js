@@ -25,3 +25,31 @@ export const abbreviateUnit = function(unit) {
       break;
   }
 };
+
+export const formatTime = function (time1) {
+  debugger;
+  var time = new Date(time1);
+  let hrs = time.getHours();
+  let ap = "AM";
+  if (hrs > 12) {
+    hrs -= 12;
+    ap = "PM";
+  }
+  let mins = "" + time.getMinutes();
+  let sec = time.getSeconds();
+  return hrs + ":" + mins + ":" + sec + " " + ap;
+};
+
+export const formatDate = function (date) {
+  var d = new Date(date);
+  let month = "" + (d.getMonth() + 1);
+  let day = "" + d.getDate();
+  let year = d.getFullYear();
+
+  if (month.length < 2) month = "0" + month;
+  if (day.length < 2) day = "0" + day;
+
+  return [month, day, year].join("-");
+};
+
+

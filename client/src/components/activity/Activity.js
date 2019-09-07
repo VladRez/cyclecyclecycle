@@ -1,16 +1,15 @@
 import React from "react";
-import gql from "graphql-tag";
 import { Mutation } from "react-apollo";
-
 import DatePicker from "react-datepicker";
-
 import "react-datepicker/dist/react-datepicker.css";
 import "./activity.css";
-
-//import mutations from "../../graphql/mutations";
 import queries from "../../graphql/queries";
-//const { ADD_ACTIVITY } = mutations;
+//import Mutations from "../../graphql/mutations";
+import * as utils from "../../util/activity_util";
+import gql from "graphql-tag";
+
 const { FETCH_ACTIVITIES } = queries;
+//const { ADD_ACTIVITY } = Mutations;
 
 const ADD_ACTIVITY = gql`
   mutation AddActivity(
@@ -69,9 +68,6 @@ const ADD_ACTIVITY = gql`
   }
 `;
 
-//import Mutations from "../../graphql/mutations";
-//import { ADD_ACTIVITY } from "../../mutations";
-
 class Activity extends React.Component {
   constructor(props) {
     super(props);
@@ -94,8 +90,6 @@ class Activity extends React.Component {
       description: "dolphins",
       privacycontrols: "All",
       user_id: ""
-      // startDate: new Date(),
-      // startTime: new Date()
     };
 
     this.handleDateChange = this.handleDateChange.bind(this);
@@ -116,32 +110,6 @@ class Activity extends React.Component {
     this.setState({ time: time });
   }
 
-  formatDate(date) {
-    var d = new Date(date);
-    let month = "" + (d.getMonth() + 1);
-    let day = "" + d.getDate();
-    let year = d.getFullYear();
-
-    if (month.length < 2) month = "0" + month;
-    if (day.length < 2) day = "0" + day;
-
-    return [month, day, year].join("-");
-  }
-
-  formatTime(time1) {
-    debugger;
-    var time = new Date(time1);
-    let hrs = time.getHours();
-    let ap = "AM";
-    if (hrs > 12) {
-      hrs -= 12;
-      ap = "PM";
-    }
-    let mins = "" + time.getMinutes();
-    let sec = time.getSeconds();
-    return hrs + ":" + mins + ":" + sec + " " + ap;
-  }
-
   handleSubmit(e, addActivity) {
     e.preventDefault();
     addActivity({
@@ -154,8 +122,8 @@ class Activity extends React.Component {
         elevation_unit: this.state.elevation_unit,
         distance_unit: this.state.distance_unit,
         sport: this.state.sport,
-        date: this.formatDate(this.state.date),
-        time: this.formatTime(this.state.time),
+        date: utils.formatDate(this.state.date),
+        time: utils.formatTime(this.state.time),
         title: this.state.title,
         runtype: this.state.runtype,
         tags: this.state.tags,
