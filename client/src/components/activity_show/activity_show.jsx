@@ -3,6 +3,8 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import Queries from "../../graphql/queries";
 import { ApolloConsumer } from "react-apollo";
+import * as utils from "../../util/activity_util";
+
 import "./activity_show.css";
 
 // activityId => this.props.match.params.activityId
@@ -38,53 +40,6 @@ export default class ActivityShow extends Component {
     // debugger;
   }
 
-  abbreviateUnit(unit) {
-    switch (unit) {
-      case "Feet":
-        return "ft";
-      case "Miles":
-        return "mi";
-      case "Kilometers":
-        return "km";
-      case "Meters":
-        return "m";
-      case "Yards":
-        return "yd";
-      default:
-        break;
-    }
-  }
-
-  formatDuration(hr, min, sec) {
-    hr = hr.toString();
-    min = min.toString();
-    sec = sec.toString();
-
-    if (min.length < 2) min = "0" + min;
-    if (sec.length < 2) sec = "0" + sec;
-
-    return [hr, min, sec].join(":");
-  }
-
-  getPace(hr, min, sec, distance) {
-    let totalSeconds;
-    totalSeconds = hr * 60 ** 2 + min * 60 + sec;
-    let pace = totalSeconds / distance;
-    let hours = Math.floor(pace / 3600);
-    pace %= 3600;
-    let minutes = Math.floor(pace / 60);
-    let seconds = Math.floor(pace % 60);
-
-    hours = hours.toString();
-    minutes = minutes.toString();
-    seconds = seconds.toString();
-
-    if (minutes.length < 2) minutes = "0" + minutes;
-    if (seconds.length < 2) seconds = "0" + seconds;
-
-    return [hours, minutes, seconds].join(":");
-  }
-
   render() {
     return (
       <ApolloConsumer>
@@ -111,7 +66,7 @@ export default class ActivityShow extends Component {
                             </span>
                             <span className="activity-item-activity-type">
                               {data.activity.sport}
-                            </span>
+                            </span> 
                           </div>
                           <div className=" flex-row">
                             <a className="padding-m icon-button">
@@ -170,12 +125,12 @@ export default class ActivityShow extends Component {
                               </div>
                               <div>
                                 <div className="font-xxl">
-                                  {`${this.getPace(
+                                  {`${utils.getPace(
                                     data.activity.duration_hr,
                                     data.activity.duration_min,
                                     data.activity.duration_sec,
                                     data.activity.distance
-                                  )}/${this.abbreviateUnit(
+                                  )}/${utils.abbreviateUnit(
                                     data.activity.distance_unit
                                   )}`}
                                 </div>

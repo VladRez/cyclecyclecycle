@@ -1,44 +1,10 @@
 import React, { Component } from "react";
 import "./feed-index-item.css";
-import gql from "graphql-tag";
-
-const ACTIVITY_QUERY = gql`
-  query {
-    activity(_id: "5d6d78db4aff4475172c67b2") {
-      distance
-      distance_unit
-      duration_hr
-      duration_min
-      duration_sec
-      elevation
-      elevation_unit
-      sport
-      date
-      time
-      title
-      runtype
-      tags
-      description
-      privacycontrols
-    }
-  }
-`;
+import * as utils from "../../util/activity_util";
 
 export default class FeedIndexItem extends Component {
-  getPace(hr, min, sec, distance) {
-    let totalSeconds;
-    totalSeconds = hr * 60 ** 2 + min * 60 + sec;
-    let pace = totalSeconds / distance;
-    let hours = Math.floor(pace / 3600);
-    pace %= 3600;
-    let minutes = Math.floor(pace / 60);
-    let seconds = Math.floor(pace % 60);
-    return `${hours}:${minutes}:${seconds}`;
-  }
-
   render() {
-    //debugger;
-    const pace = this.getPace(
+    const pace = utils.getPace(
       this.props.activity.duration_hr,
       this.props.activity.duration_min,
       this.props.activity.duration_sec,
@@ -77,7 +43,7 @@ export default class FeedIndexItem extends Component {
               </div>
               <div className="flex-column margin-right-xl">
                 <div className="feed-item-activity-stat-heading">Pace</div>
-                <div className="feed-item-activity-stat">{pace}Hr//Mile</div>
+                <div className="feed-item-activity-stat">{pace}Hr/Mile</div>
               </div>
               <div className="flex-column margin-right-xl">
                 <div className="feed-item-activity-stat-heading">Time</div>
