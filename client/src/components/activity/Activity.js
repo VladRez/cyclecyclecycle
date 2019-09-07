@@ -7,6 +7,7 @@ import queries from "../../graphql/queries";
 //import Mutations from "../../graphql/mutations";
 import * as utils from "../../util/activity_util";
 import gql from "graphql-tag";
+import { randomBytes } from "crypto";
 
 const { FETCH_ACTIVITIES } = queries;
 //const { ADD_ACTIVITY } = Mutations;
@@ -95,6 +96,7 @@ class Activity extends React.Component {
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleTimeChange = this.handleTimeChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.sampleActivity = this.sampleActivity.bind(this);
   }
   handleChange(type) {
     return e => {
@@ -129,6 +131,30 @@ class Activity extends React.Component {
         tags: this.state.tags,
         description: this.state.description,
         privacycontrols: this.state.privacycontrols,
+        user_id: localStorage.currentUserId
+      }
+    });
+  }
+
+  sampleActivity(e, addActivity) {
+    e.preventDefault();
+    addActivity({
+      variables: {
+        distance: Math.ceil(Math.random() * 10),
+        duration_hr: Math.ceil(Math.random() * 10),
+        duration_min: Math.ceil(Math.random() * 10),
+        duration_sec: Math.ceil(Math.random() * 10),
+        elevation: Math.ceil(Math.random() * 10),
+        elevation_unit: "Feet",
+        distance_unit: "Miles",
+        sport: "Run",
+        date: utils.formatDate(Date.now()),
+        time: utils.formatTime(Date.now()),
+        title: "My Run Today",
+        runtype: "Workout",
+        tags: "Commute",
+        description: "Felt good afterwards.",
+        privacycontrols: "All",
         user_id: localStorage.currentUserId
       }
     });
@@ -422,6 +448,14 @@ class Activity extends React.Component {
                 </div>
               </div>
             </form>
+            <div>
+              <button 
+                className="button button-primary"
+                onClick={e => this.sampleActivity(e, addActivity)}
+              >
+                Sample Activity
+              </button>
+            </div>
             <div>{this.state.message}</div>
           </div>
         )}

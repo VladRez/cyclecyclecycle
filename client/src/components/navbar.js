@@ -16,8 +16,6 @@ export default class Navbar extends Component {
           <Query query={IS_LOGGED_IN}>
             {({ data }) => {
               if (data.isLoggedIn) {
-                // console.log(data)
-                // console.log(client)
                 return (
                   <div className="navbar-container">
                     <div className="navbar">
