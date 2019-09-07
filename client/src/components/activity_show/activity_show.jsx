@@ -66,7 +66,7 @@ export default class ActivityShow extends Component {
                             </span>
                             <span className="activity-item-activity-type">
                               {data.activity.sport}
-                            </span>
+                            </span> 
                           </div>
                           <div className=" flex-row">
                             <a className="padding-m icon-button">
@@ -113,7 +113,11 @@ export default class ActivityShow extends Component {
                               </div>
                               <div>
                                 <div className="font-xxl">
-                                  {`${data.activity.duration_hr}:${data.activity.duration_min}:${data.activity.duration_sec}`}
+                                  {this.formatDuration(
+                                    data.activity.duration_hr,
+                                    data.activity.duration_min,
+                                    data.activity.duration_sec
+                                  )}
                                 </div>
                                 <div className="font-xs font-color-light font-weight-medium">
                                   Duration
