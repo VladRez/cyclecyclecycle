@@ -71,6 +71,7 @@ class RouteDisplay extends React.Component {
     // this.map.fitBounds(origin, destination)
     this.directionsService.route(options, (res, status) => {
       if (status === "OK") {
+        
         this.setState({ route_details: res.routes[0].legs[0] });
         if (this.state.routeType === "polyline") {
           this.renderPolyLine(res);
@@ -90,7 +91,7 @@ class RouteDisplay extends React.Component {
   }
 
   render() {
-    debugger
+    
     
     return (
       <div className="page-container">
