@@ -87,6 +87,8 @@ class RouteDisplay extends React.Component {
   }
 
   render() {
+    debugger
+    
     return (
       <div className="page-container">
         <div className="details-container">

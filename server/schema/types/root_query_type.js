@@ -57,7 +57,7 @@ const RootQueryType = new GraphQLObjectType({
       type: MapType,
       args: { _id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(_, args) {
-        return Map.findById(args._id);
+        return Map.findById(args._id).populate('userId');
       }
     },
     user_maps: {

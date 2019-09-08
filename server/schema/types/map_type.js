@@ -6,12 +6,13 @@ const {
   GraphQLID
 } = graphql;
 const RouteType = require("./route_type");
+const UserType = require("./user_type")
 
 const MapType = new GraphQLObjectType({
   name: "MapType",
   fields: {
     _id: {type: GraphQLID},
-    userId: {type: GraphQLID},
+    userId: {type: UserType},
     name: { type: GraphQLString },
     description: { type: GraphQLString },
     travelMode: { type: GraphQLString },
