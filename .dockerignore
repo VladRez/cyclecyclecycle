@@ -1,0 +1,5 @@
+config/dev_keys.js
+node_modules
+client/node_modules
+Dockerfile
+.git

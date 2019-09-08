@@ -64,7 +64,7 @@
 }
 
 .modal-inline-inputs input {
-  width: 95%;
+  width: 100%;
   padding-left: 10px;
     padding-right: 10px;
     box-sizing: border-box;
@@ -135,7 +135,7 @@
 }
 
 .form-control-textarea{
-  width: 96%;
+  width: 100%;
     margin-bottom: 0;
 }
 
@@ -173,7 +173,7 @@
 .topPanel {
   background-color: #f1f1f1;
   top: 0;
-  height: 38px;
+  height: 34px;
   padding: 6px 20px;
   width: 100%;
   z-index: 60;
@@ -182,6 +182,7 @@
 .toolControls {
   margin-top: -6px;
   margin-bottom: -6px;
+  margin-bottom: 2px;
   margin-left: 20px;
   margin-right: 20px;
 
@@ -402,4 +403,130 @@ td {
   display: flex;
   flex-direction: row;
   line-height: 1.45;
+}
+
+/*index page*/
+
+.routes-index-page-container {
+  margin-top: 30px;
+    margin-bottom: 80px;
+    position: relative;
+    min-width: 0;
+    box-sizing: border-box;
+    width: 1248px;
+    margin-right: auto;
+    margin-left: auto;
+    padding-left: 16px;
+    padding-right: 16px;
+
+}
+
+.routes-index-page-content {
+  margin: 0;
+  padding: 0;
+}
+
+.routes-index-heading{
+  margin: 0 -15px;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.routes-index-heading-title {
+  width: 50%;  
+  box-sizing: border-box;
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    position: relative;
+}
+
+.routes-index-heading-title h1 {
+  display: inline-block;
+  margin-bottom: 20px;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 41px;
+}
+
+.routes-index-heading-title .create-routes {
+  margin: 0;
+  padding: 0;
+}
+
+.create-routes-btn{
+  color: #fff;
+  background-color: #fc4c02;
+    border-color: #fc4c02;
+    text-decoration: none;
+    text-align: center;
+    border: 1px solid #ccccd1;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-around;
+    -webkit-box-align: center;
+    align-items: center;
+    position: relative;
+    box-sizing: border-box;
+    transition: border-color 0.1s linear, background 0.1s linear, color 0.1s linear;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 6px 16px;
+    min-height: 34px;
+}
+
+.all-routes{
+  margin-top: 0;
+  margin: 20px 0;
+  padding: 20px 0;
+  position: relative;
+  display: block;
+}
+
+.routes-list {
+  border-top: 1px solid #ccccd1;
+  padding-top: 10px;
+  margin-right: -20px;
+
+  list-style: none;
+  margin-top: 10px;
+  margin-bottom: 8px;
+
+}
+
+.route-card {
+  display: block;
+    float: left;
+    position: relative;
+    width: 35%;
+    margin: 0 1.6% 40px 0;
+    background-color: #e0dfdf;
+
+    padding: 0;
+}
+
+.route-data{
+  padding: 15px 20px;
+  margin: 0;
+}
+.route-data h3{
+  height: 47px;
+  overflow-y: hidden;
+  word-wrap: break-word;
+
+  margin-top: 0;
+
+  font-size: 20px;
+    line-height: 25px;
+    margin-bottom: 5px;
+}
+
+.route-data a {
+  color: #007FB6;
+    cursor: pointer;
+    text-decoration: none;
+
+    
 }

@@ -16,22 +16,23 @@ export default {
     }
   `,
   FETCH_MAP: gql`
-  query FetchMap($_id: ID!){
-  map(_id:$_id){
-    _id
-    userId
-    name
-    description
-    travelMode
-    routes{
-      stopover
-      location{
-        lat
-        lng
+    query FetchMap($_id: ID!) {
+      map(_id: $_id) {
+        _id
+        userId
+        name
+        description
+        travelMode
+        routes {
+          stopover
+          location {
+            lat
+            lng
+          }
+        }
       }
     }
-  }
-}`,
+  `,
   USER_QUERY: gql`
     query UserQuery($id: ID!) {
       user(_id: $id) {
@@ -80,6 +81,23 @@ export default {
         description
         privacycontrols
         user_id
+      }
+    }
+  `,
+  FETCH_USER_MAPS: gql`
+    query FetchUserMaps($userId: ID!) {
+      user_maps(userId: $userId) {
+        _id
+        name
+        description
+        travelMode
+        routes {
+          stopover
+          location {
+            lat
+            lng
+          }
+        }
       }
     }
   `

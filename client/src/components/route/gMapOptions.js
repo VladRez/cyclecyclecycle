@@ -3,16 +3,16 @@ export default {
     lat: 37.773972,
     lng: -122.431297
   }, // San Francisco coords
-  zoom: 15,
+  zoom: 13,
   mapTypeId: "terrain",
   disableDefaultUI: true,
   zoomControl: true,
   zoomControlOptions: {
-    position: window.google.maps.ControlPosition.LEFT_CENTER
+    position: window.google ? window.google.maps.ControlPosition.LEFT_CENTER : window.location.reload()
 },
   mapTypeControl: true,
   mapTypeControlOptions: {
-    position: window.google.maps.ControlPosition.LEFT_CENTER
+    position: window.google ? window.google.maps.ControlPosition.LEFT_CENTER : window.location.reload()
   },
   scaleControl: true,
   rotateControl: true,

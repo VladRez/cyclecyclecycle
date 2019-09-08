@@ -15,11 +15,12 @@ import Dashboard from "./dashboard/dashboard";
 import Activity from "./activity/Activity";
 
 // Routes
-import Navbar from "./navbar";
+import Navbar from "./navbar/navbar";
 import ActivityShow from "./activity_show/activity_show";
 
-import RouteMapCreator from "./route/route_map"
-import RouteDisplay from "./route/route_display"
+import RouteMapCreator from "./route/route_map";
+import RouteDisplay from "./route/route_display";
+import RouteIndex from "./route/route_index"
 function App() {
   return (
     <div>
@@ -36,10 +37,13 @@ function App() {
             component={ActivityShow}
           />
           <Route exact path="/activity/new" component={Activity} />
-          <ProtectedRoute exact path="/dashboard" component={Dashboard}/>
-          <ProtectedRoute exact path="/routes/new" component={RouteMapCreator} />
+          <ProtectedRoute
+            exact
+            path="/routes/new"
+            component={RouteMapCreator}
+          />
           <ProtectedRoute exact path="/routes/:id" component={RouteDisplay} />
-         
+          <ProtectedRoute exact path="/routes/" component={RouteIndex} />
         </Switch>
       </HashRouter>
     </div>

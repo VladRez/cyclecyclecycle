@@ -17,11 +17,20 @@ import Mutations from "./graphql/mutations";
 import Queries from "./graphql/queries";
 const { VERIFY_USER } = Mutations;
 
+
+let uri;
+if (process.env.NODE_ENV === "production") {
+  uri = `/graphql`;
+} else {
+  uri = "http://localhost:5000/graphql";
+}
+
 // pass token within header
+
 const httpLink = createHttpLink({
-  uri: "http://localhost:5000/graphql",
+  uri,
   headers: {
-    authorization: localStorage.getItem("auth-token")
+    authorization: localStorage.getItem("auth-token") || ""
   }
 });
 
@@ -38,7 +47,7 @@ const errorLink = onError(({ graphQLErrors }) => {
 });
 
 const client = new ApolloClient({
-  link: httpLink,
+  link: ApolloLink.from([errorLink, httpLink]),
   cache,
   onError: ({ networkError, graphQLErrors }) => {
     console.log("graphQLErrors", graphQLErrors);
