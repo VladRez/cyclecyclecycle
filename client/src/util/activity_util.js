@@ -8,7 +8,7 @@ export const getPace = function(hr, min, sec, distance) {
   let seconds = Math.floor(pace % 60);
   return `${hours}:${minutes}:${seconds}`;
 };
-        
+
 export const abbreviateUnit = function(unit) {
   switch (unit) {
     case "Feet":
@@ -26,8 +26,7 @@ export const abbreviateUnit = function(unit) {
   }
 };
 
-export const formatTime = function (time1) {
-  debugger;
+export const formatTime = function(time1) {
   var time = new Date(time1);
   let hrs = time.getHours();
   let ap = "AM";
@@ -40,7 +39,7 @@ export const formatTime = function (time1) {
   return hrs + ":" + mins + ":" + sec + " " + ap;
 };
 
-export const formatDate = function (date) {
+export const formatDate = function(date) {
   var d = new Date(date);
   let month = "" + (d.getMonth() + 1);
   let day = "" + d.getDate();
@@ -51,5 +50,3 @@ export const formatDate = function (date) {
 
   return [month, day, year].join("-");
 };
-
-
