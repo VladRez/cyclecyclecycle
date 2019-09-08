@@ -60,7 +60,11 @@ export default class Navbar extends Component {
                             this.dropdownMenu = element;
                           }}
                         >
+                          <Link to="/routes/" onClick={this.closeMenu}>
+                            My Routes
+                          </Link>
                           <Logout />
+                          
                         </div>
                       ) : null}
                     </div>

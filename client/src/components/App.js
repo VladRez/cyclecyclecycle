@@ -20,6 +20,7 @@ import ActivityShow from "./activity_show/activity_show";
 
 import RouteMapCreator from "./route/route_map";
 import RouteDisplay from "./route/route_display";
+import RouteIndex from "./route/route_index"
 function App() {
   return (
     <div>
@@ -42,6 +43,7 @@ function App() {
             component={RouteMapCreator}
           />
           <ProtectedRoute exact path="/routes/:id" component={RouteDisplay} />
+          <ProtectedRoute exact path="/routes/" component={RouteIndex} />
         </Switch>
       </HashRouter>
     </div>
