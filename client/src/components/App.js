@@ -36,7 +36,6 @@ function App() {
             component={ActivityShow}
           />
           <Route exact path="/activity/new" component={Activity} />
-          <ProtectedRoute exact path="/dashboard" component={Dashboard} />
           <ProtectedRoute
             exact
             path="/routes/new"
