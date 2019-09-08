@@ -16,8 +16,6 @@ export default class Navbar extends Component {
           <Query query={IS_LOGGED_IN}>
             {({ data }) => {
               if (data.isLoggedIn) {
-                // console.log(data)
-                // console.log(client)
                 return (
                   <div className="navbar-container">
                     <div className="navbar">
@@ -39,6 +37,7 @@ export default class Navbar extends Component {
                           </div>
                           <div className="dropdown-content">
                             <Link to="/routes/new">Create a route</Link>
+                            <Link to="/activity/new">Add manual entry</Link>
                           </div>
                         </div>
                       </div>

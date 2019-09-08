@@ -7,6 +7,11 @@ import queries from "../../graphql/queries";
 //import Mutations from "../../graphql/mutations";
 import * as utils from "../../util/activity_util";
 import gql from "graphql-tag";
+import { randomBytes } from "crypto";
+import {
+  serializeFetchParameter,
+  selectHttpOptionsAndBody
+} from "apollo-link-http-common";
 
 const { FETCH_ACTIVITIES } = queries;
 //const { ADD_ACTIVITY } = Mutations;
@@ -95,6 +100,7 @@ class Activity extends React.Component {
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleTimeChange = this.handleTimeChange.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.sampleActivity = this.sampleActivity.bind(this);
   }
   handleChange(type) {
     return e => {
@@ -132,6 +138,30 @@ class Activity extends React.Component {
         user_id: localStorage.currentUserId
       }
     });
+  }
+
+  sampleActivity(e, addActivity) {
+    const TitleDesc = [
+      ["Run", "Walk in the park", "With my dog"],
+      ["Run", "Hiking in Yosemite", "View from half dome"],
+      ["Run", "Early Morning Jog", "At Half Moon Bay"],
+      ["Swim", "Swimming with Dolphins", "On a beautiful sunny day"],
+      ["Cycle", "Biking in Sausalito", "Up down the winding roads"]
+    ];
+    let i = Math.ceil(Math.random() * 100) % 3;
+    e.preventDefault();
+    //debugger;
+    this.setState({
+      distance: Math.ceil(Math.random() * 10),
+      duration_hr: Math.ceil(Math.random() * 10),
+      duration_min: Math.ceil(Math.random() * 10),
+      duration_sec: Math.ceil(Math.random() * 10),
+      elevation: Math.ceil(Math.random() * 10),
+      sport: TitleDesc[i][0],
+      title: TitleDesc[i][1],
+      description: TitleDesc[i][2]
+    });
+    
   }
 
   // we need to remember to update our cache directly with our new product
@@ -304,9 +334,10 @@ class Activity extends React.Component {
                           defaultValue={"DEFAULT"}
                           onChange={this.handleChange("sport")}
                         >
-                          <option value="Cycle">cycle</option>
-                          <option value="Run">run</option>
-                          <option value="Walk">walk</option>
+                          <option value="Cycle">Cycle</option>
+                          <option value="Run">Run</option>
+                          <option value="Walk">Walk</option>
+                          <option value="Swim">Swim</option>
                         </select>
                       </div>
                     </div>
@@ -422,6 +453,14 @@ class Activity extends React.Component {
                 </div>
               </div>
             </form>
+            <div>
+              <button
+                className="button button-primary"
+                onClick={e => this.sampleActivity(e, addActivity)}
+              >
+                Sample Activity
+              </button>
+            </div>
             <div>{this.state.message}</div>
           </div>
         )}
