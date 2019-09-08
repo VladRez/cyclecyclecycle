@@ -34,7 +34,6 @@ class Signup extends React.Component {
       <Mutation
         mutation={REGISTER_USER}
         onCompleted={data => {
-          debugger;
           const { token, _id } = data.register;
           localStorage.setItem("auth-token", token);
           localStorage.setItem("currentUserId", _id);

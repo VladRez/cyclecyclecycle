@@ -93,5 +93,36 @@ export default {
         loggedIn
       }
     }
+  `,
+  CREATE_MAP: gql`
+    mutation CreateMap(
+      $userId: ID
+      $name: String
+      $description: String
+      $travelMode: String
+      $routes: [RouteInputType]
+    ) {
+      addMap(
+        input: {
+          travelMode: $travelMode
+          userId: $userId
+          routes: $routes
+          name: $name
+          description: $description
+        }
+      ) {
+        _id
+        userId
+        travelMode
+        name
+        routes {
+          stopover
+          location {
+            lat
+            lng
+          }
+        }
+      }
+    }
   `
 };

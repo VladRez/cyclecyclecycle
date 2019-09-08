@@ -1,203 +1,379 @@
 .modal {
-    position: fixed; /* Stay in place */
-    z-index: 100; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-  }
-
-  .modalForm {
-    background-color: #fefefe;
-    margin: auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-  }
-
-
-.workspace {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 50px;
-    bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  overflow: hidden;
+  position: fixed;
+  z-index: 110;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
 }
 
-.mapCanvas{
-    background-color: #DDD;
-    /* top: 50px; */
-    bottom: 0;
-    cursor: -webkit-grab;
-    background: #fff;
-    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
-    color: #404040;
-    color: rgba(0,0,0,0.75);
-    outline: 0;
-    overflow: hidden;
-    height: 100%;
+.modal-form-container {
+  width: 600px;
+
+  position: absolute;
+  top: 10%;
+  left: 40px;
+  right: 40px;
+
+  background: #f0f0f0;
+  border: 1px solid #e6e6eb;
+  margin: 0 auto;
+  -webkit-box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.05);
 }
 
-.panel {
-    box-shadow: 2px 2px 2px rgba(0,0,0,0.15);
-    overflow: hidden;
-    z-index: 50;
-    position: absolute;
+.modal-form {
+  padding: 20px;
+  margin: 0;
 
-    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-.topPanel {
-    background-color: #F1F1F1;
-    top: 0;
-    height: 38px;
-    padding: 6px 20px;
-    width: 100%;
-    z-index: 60;
+  display: block;
 }
 
-.toolControls{
-    margin-top: -6px;
-    margin-bottom: -6px;
-    margin-left: 20px;
-    margin-right: 20px;
-    
-    float: left;
+.modal-form-container header{
+  overflow: hidden;
+  padding: 15px 20px;
+    position: relative;
+    background: #F7F7F7;
+    border-bottom: 1px solid #ccccd1;
 }
 
-.toolControls button{
-    display: inline-block;
-    padding: 6px 10px;
-    min-width: 40px;
+.modal-form-content {
+  min-height: 300px;
+  max-height: 70vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
-.toolControls label {
+.modal-inline-inputs{
+  /* margin-left: -16px;
+    margin-right: -16px;
+    -webkit-box-sizing: border-box; */
+    margin: 15px 0;
+    box-sizing: border-box;
+}
+
+.modal-inline-inputs label{
+  margin: 0;
+  cursor: pointer;
+    clear: both;
+    color: #606065;
     display: block;
 
-    font-size: 12px;
-    color: #666;
-    margin: 2px 0 0;
-
-    cursor: pointer;
-    clear: both;
-
-    margin-top: 15px;
-    margin-bottom: 3px;
-    z-index: 65;
 }
 
-.searchBar {
-    padding: 0;
-    margin-right: 20px;
-    float: left;
-    margin: 0;
-}
-
-.searchBar input {
-    width: 180px;
+.modal-inline-inputs input {
+  width: 95%;
+  padding-left: 10px;
+    padding-right: 10px;
+    box-sizing: border-box;
     font-size: 14px;
-    padding: 12px;
-    margin: 0 0px 0 0;
-
-    border: none;
-    height: 40px;
-
-    transition: border-color 0.1s ease;
-
+    height: 34px;
     background-color: #fff;
-
+    border: 1px solid #ccccd1;
     color: #666;
     line-height: 1.4em;
-
-    vertical-align: baseline;
-    display: inline-block;
 }
 
-.searchBar button {
-    padding: 7px 20px;
-    line-height: 1em;
-    vertical-align: bottom;  
+.modal-action-buttons{
+  margin-top: 20px;
+  text-align: right;
+}
 
-    font-size: 12px;
-    min-height: 24px;
-
-    background-color: #e6e6eb;
-    border-color: #e6e6eb;
-
-    text-align: center;
-
+.modal-action-buttons-cancel{
+  text-align: center;
+  background-color: #fff;
     border: 1px solid #ccccd1;
     border-radius: 4px;
     color: #2d2d32;
     cursor: pointer;
-
     display: inline-flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-
-
     flex-direction: row;
-
     justify-content: space-around;
-    -webkit-box-align: center;
     align-items: center;
     position: relative;
-
     box-sizing: border-box;
-
-
     transition: border-color 0.1s linear, background 0.1s linear, color 0.1s linear;
-
+    font-size: 14px;
     font-weight: 700;
+    padding: 6px 16px;
+    min-height: 34px;
+    line-height: 1.4em;
+    overflow: hidden;
+}
+
+.modal-action-buttons-save{
+  color: #fff;
+  background-color: #2d2d32;
+  border-color: #2d2d32;
+  text-align: center;
+  border: 1px solid #ccccd1;
+    border-radius: 4px;
+    cursor: pointer;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    position: relative;
+    box-sizing: border-box;
+    transition: border-color 0.1s linear, background 0.1s linear, color 0.1s linear;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 6px 16px;
+    min-height: 34px;
+
+}
+
+.form-control-label{
+  cursor: pointer;
+    clear: both;
+    color: #606065;
+    margin-top: 15px;
+    margin-bottom: 3px;
+    display: block;
+}
+
+.form-control-textarea{
+  width: 96%;
+    margin-bottom: 0;
+}
+
+.workspace {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50px;
+  bottom: 0;
+}
+
+.mapCanvas {
+  background-color: #ddd;
+  /* top: 50px; */
+  bottom: 0;
+  cursor: -webkit-grab;
+  background: #fff;
+  font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+  color: #404040;
+  color: rgba(0, 0, 0, 0.75);
+  outline: 0;
+  overflow: hidden;
+  height: 100%;
+}
+
+.panel {
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+  z-index: 50;
+  position: absolute;
+
+  font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+}
+.topPanel {
+  background-color: #f1f1f1;
+  top: 0;
+  height: 38px;
+  padding: 6px 20px;
+  width: 100%;
+  z-index: 60;
+}
+
+.toolControls {
+  margin-top: -6px;
+  margin-bottom: -6px;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  float: left;
+}
+
+.toolControls-button {
+  display: inline-block;
+  padding: 6px 10px;
+  min-width: 40px;
+}
+
+.toolControls-button-save {
+  float: right;
+
+  margin-left: 10px;
+
+  background-color: #fe9366;
+  color: rgba(255, 255, 255, 0.75);
+
+  padding: 12px 15px;
+}
+
+.toolControls label {
+  display: block;
+
+  font-size: 12px;
+  color: #666;
+  margin: 2px 0 0;
+
+  cursor: pointer;
+  clear: both;
+
+  margin-top: 15px;
+  margin-bottom: 3px;
+  z-index: 65;
+}
+
+.searchBar {
+  padding: 0;
+  margin-right: 20px;
+  float: left;
+  margin: 0;
+}
+
+.searchBar input {
+  width: 180px;
+  font-size: 14px;
+  padding: 12px;
+  margin: 0 0px 0 0;
+
+  border: none;
+  height: 40px;
+
+  transition: border-color 0.1s ease;
+
+  background-color: #fff;
+
+  color: #666;
+  line-height: 1.4em;
+
+  vertical-align: baseline;
+  display: inline-block;
+}
+
+.searchBar button {
+  padding: 7px 20px;
+  line-height: 1em;
+  vertical-align: bottom;
+
+  font-size: 12px;
+  min-height: 24px;
+
+  background-color: #e6e6eb;
+  border-color: #e6e6eb;
+
+  text-align: center;
+
+  border: 1px solid #ccccd1;
+  border-radius: 4px;
+  color: #2d2d32;
+  cursor: pointer;
+
+  display: inline-flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+
+  flex-direction: row;
+
+  justify-content: space-around;
+  -webkit-box-align: center;
+  align-items: center;
+  position: relative;
+
+  box-sizing: border-box;
+
+  transition: border-color 0.1s linear, background 0.1s linear,
+    color 0.1s linear;
+
+  font-weight: 700;
 }
 
 .bottomPanel {
-    background-color: #F1F1F1;
-    bottom: 30px;
-    right: 20px;
-    left: 20px;
-    
+  background-color: #f1f1f1;
+  bottom: 30px;
+  right: 20px;
+  left: 20px;
 }
 
 .inlineStats {
-    margin: 0;
-    height: 38px;
-    padding: 6px 20px;
+  margin: 0;
+  height: 38px;
+  padding: 6px 20px;
 
-    list-style: none;
-    clear: both;
-    font-weight: 300;
+  list-style: none;
+  clear: both;
+  font-weight: 300;
 
-
-
-    background-color: rgba(0,0,0,0.05);
-
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .inlineStats li {
-    float: left;
-    margin-right: 40px;
+  float: left;
+  margin-right: 40px;
 }
-.inLineStats strong{
-    display: block;
-    font-weight: 300;
-    font-size: 22px;
-    line-height: 1em;
+.inLineStats strong {
+  display: block;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1em;
 }
 
 .inLineStats label {
-    margin: 0;
+  margin: 0;
 
-    font-size: 12px;
-    display: inline-block;
-    color: #666;
+  font-size: 12px;
+  display: inline-block;
+  color: #666;
 
-    vertical-align: text-bottom;
+  vertical-align: text-bottom;
 
-    clear: both;
+  clear: both;
+}
 
+/*Route Display*/
+.miniMap {
+  height: 500px;
+  width: 80%;
+}
 
-} 
+.page-container {
+  box-sizing: border-box;
+  margin-top: 30px;
+  margin-bottom: 80px;
+  position: relative;
+  min-width: 1248px;
+
+  color: #2d2d32;
+  fill: currentColor;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.details-container {
+  margin-top: 24px;
+}
+
+.map-details-container {
+  margin: 0 -15px;
+  box-sizing: border-box;
+}
+
+.map-route-body {
+  width: 66.66666667%;
+}
+
+.map-canvas {
+  height: 350px;
+  position: relative;
+}
+
+.route-segments {
+  box-sizing: border-box;
+}
+
+.table-segments {
+  width: 100%;
+  max-width: 100%;
+  margin-bottom: 16px;
+  background-color: transparent;
+  border-collapse: collapse;
+  border-spacing: 0;
+  display: table;
+  border-color: grey;
+}
