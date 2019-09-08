@@ -2,7 +2,7 @@ import "./App.css";
 import "../index.css";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 // eslint-disable-next-line
-import { HashRouter, Switch, Route } from "react-router-dom";
+import { HashRouter, Switch, Route, Router } from "react-router-dom";
 import React from "react";
 
 // Auth Components

@@ -84,7 +84,6 @@ const mutation = new GraphQLObjectType({
       },
       resolve(_, args) {
         console.log("Args: ", args);
-        debugger;
         return Activity.addActivity(args);
       }
     },
@@ -95,7 +94,7 @@ const mutation = new GraphQLObjectType({
         input: { type: MapInputType }
       },
       resolve(_, { input }) {
-        return MapService.createMap(input)
+        return MapService.createMap(Object.assign({},input, {user: input.userId}))
       }
     }
   }

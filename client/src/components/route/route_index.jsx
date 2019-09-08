@@ -6,11 +6,13 @@ const { FETCH_USER_MAPS } = Queries;
 class RouteIndex extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+        reload: 0
+    };
   }
 
   componentDidMount(){
-      
+    console.log("it did mount")
   }
   render() {
     return (
@@ -35,7 +37,7 @@ class RouteIndex extends React.Component {
                     if (error) return <p>Error</p>;
                     const user_maps = data.user_maps.map(user_map => {
                       return (
-                        <li className="route-card">
+                        <li key={user_map._id} className="route-card">
                           <div className="route-data">
                             <h3>
                               <Link to={`/routes/${user_map._id}`}>
