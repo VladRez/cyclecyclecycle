@@ -19,6 +19,7 @@ import Navbar from "./navbar";
 import ActivityShow from "./activity_show/activity_show";
 
 import RouteMapCreator from "./route/route_map";
+import ProfilePhoto from "./profile_photo/profile_photo";
 
 function App() {
   return (
@@ -35,7 +36,12 @@ function App() {
             path="/activities/:activityId"
             component={ActivityShow}
           />
-          <Route exact path="/activity/new" component={Activity} />
+          <ProtectedRoute exact path="/activity/new" component={Activity} />
+          <ProtectedRoute
+            exact
+            path="/profile/photo"
+            component={ProfilePhoto}
+          />
           <ProtectedRoute exact path="/dashboard" component={Dashboard} />
           <ProtectedRoute
             exact

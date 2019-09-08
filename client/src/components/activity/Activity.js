@@ -8,6 +8,10 @@ import queries from "../../graphql/queries";
 import * as utils from "../../util/activity_util";
 import gql from "graphql-tag";
 import { randomBytes } from "crypto";
+import {
+  serializeFetchParameter,
+  selectHttpOptionsAndBody
+} from "apollo-link-http-common";
 
 const { FETCH_ACTIVITIES } = queries;
 //const { ADD_ACTIVITY } = Mutations;
@@ -137,27 +141,27 @@ class Activity extends React.Component {
   }
 
   sampleActivity(e, addActivity) {
+    const TitleDesc = [
+      ["Run", "Walk in the park", "With my dog"],
+      ["Run", "Hiking in Yosemite", "View from half dome"],
+      ["Run", "Early Morning Jog", "At Half Moon Bay"],
+      ["Swim", "Swimming with Dolphins", "On a beautiful sunny day"],
+      ["Cycle", "Biking in Sausalito", "Up down the winding roads"]
+    ];
+    let i = Math.ceil(Math.random() * 100) % 3;
     e.preventDefault();
-    addActivity({
-      variables: {
-        distance: Math.ceil(Math.random() * 10),
-        duration_hr: Math.ceil(Math.random() * 10),
-        duration_min: Math.ceil(Math.random() * 10),
-        duration_sec: Math.ceil(Math.random() * 10),
-        elevation: Math.ceil(Math.random() * 10),
-        elevation_unit: "Feet",
-        distance_unit: "Miles",
-        sport: "Run",
-        date: utils.formatDate(Date.now()),
-        time: utils.formatTime(Date.now()),
-        title: "My Run Today",
-        runtype: "Workout",
-        tags: "Commute",
-        description: "Felt good afterwards.",
-        privacycontrols: "All",
-        user_id: localStorage.currentUserId
-      }
+    //debugger;
+    this.setState({
+      distance: Math.ceil(Math.random() * 10),
+      duration_hr: Math.ceil(Math.random() * 10),
+      duration_min: Math.ceil(Math.random() * 10),
+      duration_sec: Math.ceil(Math.random() * 10),
+      elevation: Math.ceil(Math.random() * 10),
+      sport: TitleDesc[i][0],
+      title: TitleDesc[i][1],
+      description: TitleDesc[i][2]
     });
+    
   }
 
   // we need to remember to update our cache directly with our new product
@@ -330,9 +334,10 @@ class Activity extends React.Component {
                           defaultValue={"DEFAULT"}
                           onChange={this.handleChange("sport")}
                         >
-                          <option value="Cycle">cycle</option>
-                          <option value="Run">run</option>
-                          <option value="Walk">walk</option>
+                          <option value="Cycle">Cycle</option>
+                          <option value="Run">Run</option>
+                          <option value="Walk">Walk</option>
+                          <option value="Swim">Swim</option>
                         </select>
                       </div>
                     </div>
@@ -449,7 +454,7 @@ class Activity extends React.Component {
               </div>
             </form>
             <div>
-              <button 
+              <button
                 className="button button-primary"
                 onClick={e => this.sampleActivity(e, addActivity)}
               >
