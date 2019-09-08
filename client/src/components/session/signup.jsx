@@ -11,6 +11,7 @@ class Signup extends React.Component {
     super(props);
 
     this.state = {
+      message: "",
       fname: "",
       lname: "",
       email: "",
@@ -33,6 +34,10 @@ class Signup extends React.Component {
     return (
       <Mutation
         mutation={REGISTER_USER}
+        onError={err => {
+          debugger;
+          this.setState({ message: err.message.split(":")[1] });
+        }}
         onCompleted={data => {
           const { token, _id } = data.register;
           localStorage.setItem("auth-token", token);
@@ -103,6 +108,7 @@ class Signup extends React.Component {
               </form>
               {/* <span className="margin-right-s">Already have an account?</span>
               <Link to="/login">Login</Link> */}
+              <div className = "err-msg">{this.state.message}</div>
             </div>
           </div>
         )}

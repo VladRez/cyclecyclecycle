@@ -65,3 +65,7 @@
 .session-form-button:focus {
   outline: none;
 }
+
+.err-msg {
+  color: red;
+}

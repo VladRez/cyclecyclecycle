@@ -4,7 +4,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./activity.css";
 import queries from "../../graphql/queries";
-//import Mutations from "../../graphql/mutations";
+import mutations from "../../graphql/mutations";
 import * as utils from "../../util/activity_util";
 import gql from "graphql-tag";
 import { randomBytes } from "crypto";
@@ -14,64 +14,7 @@ import {
 } from "apollo-link-http-common";
 
 const { FETCH_ACTIVITIES } = queries;
-//const { ADD_ACTIVITY } = Mutations;
-
-const ADD_ACTIVITY = gql`
-  mutation AddActivity(
-    $distance: Float
-    $distance_unit: String
-    $duration_hr: Int
-    $duration_min: Int
-    $duration_sec: Int
-    $elevation: Float
-    $elevation_unit: String
-    $sport: String
-    $date: String
-    $time: String
-    $title: String
-    $runtype: String
-    $tags: String
-    $description: String
-    $privacycontrols: String
-    $user_id: ID
-  ) {
-    addActivity(
-      distance: $distance
-      distance_unit: $distance_unit
-      duration_hr: $duration_hr
-      duration_min: $duration_min
-      duration_sec: $duration_sec
-      elevation: $elevation
-      elevation_unit: $elevation_unit
-      sport: $sport
-      date: $date
-      time: $time
-      title: $title
-      runtype: $runtype
-      tags: $tags
-      description: $description
-      privacycontrols: $privacycontrols
-      user_id: $user_id
-    ) {
-      distance
-      distance_unit
-      duration_hr
-      duration_min
-      duration_sec
-      elevation
-      elevation_unit
-      sport
-      date
-      time
-      title
-      runtype
-      tags
-      description
-      privacycontrols
-      user_id
-    }
-  }
-`;
+const { ADD_ACTIVITY } = mutations;
 
 class Activity extends React.Component {
   constructor(props) {
@@ -161,7 +104,6 @@ class Activity extends React.Component {
       title: TitleDesc[i][1],
       description: TitleDesc[i][2]
     });
-    
   }
 
   // we need to remember to update our cache directly with our new product
@@ -458,7 +400,7 @@ class Activity extends React.Component {
                 className="button button-primary"
                 onClick={e => this.sampleActivity(e, addActivity)}
               >
-                Sample Activity
+                Generate Activity
               </button>
             </div>
             <div>{this.state.message}</div>
