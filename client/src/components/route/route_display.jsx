@@ -3,7 +3,8 @@ import { withRouter } from "react-router-dom";
 import { Query } from "react-apollo";
 import Queries from "../../graphql/queries";
 import mapOptions from "./gMapOptions";
-const { FETCH_MAP } = Queries;
+import segmentNames from "./segment_names"
+const { FETCH_MAP, USER_QUERY } = Queries;
 
 class RouteDisplay extends React.Component {
   constructor(props) {
@@ -97,6 +98,7 @@ class RouteDisplay extends React.Component {
                 query={FETCH_MAP}
                 variables={{ _id: this.props.match.params.id }}
               >
+                
                 {({ loading, error, data }) => {
                   if (loading) return <p>Loading...</p>;
                   if (error) return <p>Error</p>;
@@ -114,10 +116,12 @@ class RouteDisplay extends React.Component {
                     this.state.route_details.steps.map(step => {
                       let segment = step.instructions.match(
                         /(?<=\<b\>)(.*?)(?=\<\/b\>)/g
-                      );
+                      ); //
+
                       segment = segment ? segment.join(" ") : step.instructions;
                       return (
                         <tr>
+                          <td>{segmentNames[Math.floor(Math.random() * segmentNames.length)]}</td>
                           <td>{segment}</td>
                           <td>{step.distance.text}</td>
                           <td>{step.duration.text}</td>
@@ -129,9 +133,11 @@ class RouteDisplay extends React.Component {
 
                   return (
                     <div className="route-segments">
+                      <h2>Segments</h2>
                       <table className="table-segments">
                         <tr>
                           <th>Name</th>
+                          <th>Maneuver</th>
                           <th>Distance</th>
                           <th>Est Time</th>
                         </tr>
@@ -143,6 +149,9 @@ class RouteDisplay extends React.Component {
               </Query>
             </div>
           </div>
+        </div>
+        <div className="map-detail-sidebar">
+          
         </div>
       </div>
     );

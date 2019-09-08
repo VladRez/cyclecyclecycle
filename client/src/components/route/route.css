@@ -363,11 +363,24 @@
   position: relative;
 }
 
+th {
+  text-align: left;
+  background: #ddd;
+  padding: 8px 5px;
+}
+
+td {
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+  padding: 8px 5px;
+}
 .route-segments {
+  padding-top: 20px;
   box-sizing: border-box;
 }
 
 .table-segments {
+  margin-top: 5px;
   width: 100%;
   max-width: 100%;
   margin-bottom: 16px;
@@ -376,4 +389,17 @@
   border-spacing: 0;
   display: table;
   border-color: grey;
+
+  line-height: 1.45;
+}
+
+.map-detail-sidebar{
+  width: 33.33333333%;
+}
+
+.map-detail-sidebar .sidebar-user-details {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  line-height: 1.45;
 }
