@@ -25,8 +25,9 @@ function App() {
   return (
     <div>
       <HashRouter>
-        <Navbar />
+      <Navbar />
         <Switch>
+        
           <AuthRoute exact path="/" component={Signup} />
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/signup" component={Signup} />
@@ -36,7 +37,7 @@ function App() {
             path="/activities/:activityId"
             component={ActivityShow}
           />
-          <Route exact path="/activity/new" component={Activity} />
+          <ProtectedRoute exact path="/activity/new" component={Activity} />
           <ProtectedRoute
             exact
             path="/routes/new"

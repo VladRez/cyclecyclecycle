@@ -12,7 +12,7 @@ class RouteIndex extends React.Component {
   }
 
   componentDidMount(){
-    console.log("it did mount")
+    this.setState({reload: 1})
   }
   render() {
     return (
