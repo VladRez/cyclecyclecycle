@@ -2,7 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const MapSchema = new Schema({
-  userId: {type: Schema.Types.ObjectId, ref: 'users'},
+  userId: Schema.Types.ObjectId,
+  user:{type: Schema.Types.ObjectId, ref: 'users'},
   name: Schema.Types.String,
   description: Schema.Types.String,
   travelMode: Schema.Types.String,

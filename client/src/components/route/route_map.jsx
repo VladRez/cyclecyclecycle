@@ -194,6 +194,7 @@ class RouteMap extends React.Component {
                   onSubmit={e => {
                     e.preventDefault();
                     this.handleSubmit(e);
+                    if (this.state.routes.length)
                     CreateMap({
                       variables: {
                         name: this.state.route_name,

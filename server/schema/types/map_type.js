@@ -12,7 +12,8 @@ const MapType = new GraphQLObjectType({
   name: "MapType",
   fields: {
     _id: {type: GraphQLID},
-    userId: {type: UserType},
+    userId: {type: GraphQLID},
+    user:{type: UserType},
     name: { type: GraphQLString },
     description: { type: GraphQLString },
     travelMode: { type: GraphQLString },

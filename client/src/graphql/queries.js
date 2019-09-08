@@ -19,11 +19,7 @@ export default {
     query FetchMap($_id: ID!) {
       map(_id: $_id) {
         _id
-        userId {
-          _id
-          fname
-          lname
-        }
+        userId 
         name
         description
         travelMode
