@@ -65,5 +65,23 @@ export default {
         user_id
       }
     }
+  `,
+  FETCH_MAP: gql`
+    query FetchMap($_id: ID!) {
+      map(_id: $_id) {
+        _id
+        userId
+        name
+        description
+        travelMode
+        routes {
+          stopover
+          location {
+            lat
+            lng
+          }
+        }
+      }
+    }
   `
 };

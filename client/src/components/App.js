@@ -15,11 +15,11 @@ import Dashboard from "./dashboard/dashboard";
 import Activity from "./activity/Activity";
 
 // Routes
-import Navbar from "./navbar";
+import Navbar from "./navbar/navbar";
 import ActivityShow from "./activity_show/activity_show";
 
 import RouteMapCreator from "./route/route_map";
-
+import RouteDisplay from "./route/route_display";
 function App() {
   return (
     <div>
@@ -42,6 +42,7 @@ function App() {
             path="/routes/new"
             component={RouteMapCreator}
           />
+          <ProtectedRoute exact path="/routes/:id" component={RouteDisplay} />
         </Switch>
       </HashRouter>
     </div>
