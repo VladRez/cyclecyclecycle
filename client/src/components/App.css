@@ -50,7 +50,7 @@ textarea:focus {
 }
 
 .page-container {
-  max-width: 1248px;
+  width: 1236px;
   margin: 50px auto;
 }
 
@@ -202,6 +202,10 @@ textarea:focus {
 
 .margin-top-xl {
   margin-top: 25px;
+}
+
+.margin-top-dashboard {
+  margin-top: 60px;
 }
 
 .margin-right-xs {

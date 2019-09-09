@@ -1,3 +1,20 @@
 .dashboard {
   margin-top: 30px;
 }
+
+.dashboard-page-container {
+  margin: 70px auto;
+  box-sizing: border-box;
+  position: relative;
+  width: 1236px;
+
+  color: #2d2d32;
+  fill: currentColor;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.feed-container {
+  width: 50%;
+  padding: 0px 10px;
+}

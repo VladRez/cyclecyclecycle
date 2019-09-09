@@ -14,7 +14,6 @@ export default class FeedIndex extends Component {
         {({ loading, error, data }) => {
           if (loading) return <div>Loading</div>;
           if (error) return <div>Error</div>;
-
           return data.activity_by_user.map(act => (
             <FeedIndexItem activity={act} key={act._id} />
           ));
