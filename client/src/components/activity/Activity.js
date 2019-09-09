@@ -34,10 +34,10 @@ class Activity extends React.Component {
       sport: "Swim",
       date: Date.now(),
       time: Date.now(),
-      title: "Swimming with ",
+      title: "Stroll in the Park ",
       runtype: "LongRun",
       tags: "Commute",
-      description: "dolphins",
+      description: "Around Japanese garden",
       privacycontrols: "All",
       user_id: "",
       success: false
@@ -295,9 +295,9 @@ class Activity extends React.Component {
                           defaultValue={"DEFAULT"}
                           onChange={this.handleChange("sport")}
                         >
-                          <option value="Cycle">Cycle</option>
-                          <option value="Run">Run</option>
                           <option value="Walk">Walk</option>
+                          <option value="Run">Run</option>
+                          <option value="Cycle">Cycle</option>
                           <option value="Swim">Swim</option>
                         </select>
                       </div>
