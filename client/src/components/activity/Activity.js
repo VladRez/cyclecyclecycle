@@ -1,7 +1,7 @@
 import React from "react";
 import { Mutation } from "react-apollo";
 import { Link, Redirect, Route } from "react-router-dom";
-import Dashboard from "../dashboard/dashboard"
+import Dashboard from "../dashboard/dashboard";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./activity.css";
@@ -92,9 +92,22 @@ class Activity extends React.Component {
       ["Run", "Hiking in Yosemite", "View from half dome"],
       ["Run", "Early Morning Jog", "At Half Moon Bay"],
       ["Swim", "Swimming with Dolphins", "On a beautiful sunny day"],
-      ["Cycle", "Biking in Sausalito", "Up down the winding roads"]
+      ["Cycle", "Biking in Sausalito", "Up down the winding roads"],
+      ["Walk", "Hiking up the Mission Peak", "View of the bay"],
+      ["Run", "Evening jog at Golden Gate Park", "Breaking into the new Nikes"],
+      [
+        "Cycle",
+        "Trek through Muir Woods",
+        "Cold and Foggy San Francisco Morning"
+      ],
+      [
+        "Walk",
+        "Lazy stroll on the boardwalk",
+        "Taking in the sights and sounds"
+      ],
+      ["Run", "Golden Gate Bridge", "5 miles"]
     ];
-    let i = Math.ceil(Math.random() * 100) % 3;
+    let i = Math.ceil(Math.random() * 100) % 10;
     e.preventDefault();
     this.setState({
       distance: Math.ceil(Math.random() * 10),
@@ -126,10 +139,9 @@ class Activity extends React.Component {
     }
   }
 
-  
   render() {
-    if (this.state.success){
-      return <Redirect to='/dashboard' />
+    if (this.state.success) {
+      return <Redirect to="/dashboard" />;
     }
     return (
       <Mutation
@@ -139,15 +151,13 @@ class Activity extends React.Component {
         }}
         update={(cache, data) => this.updateCache(cache, data)}
         onCompleted={data => {
-          
           const { title } = data.addActivity;
           this.setState({
             message: `New activity ${title} created successfully`,
             success: true
           });
-          
+
           // this.props.history.push("/dashboard");
-          
         }}
       >
         {(addActivity, { data }) => (
@@ -398,20 +408,20 @@ class Activity extends React.Component {
                     </div>
                   </div>
                 </div>
-
-                <div>
-                  <button className="button button-primary">Create</button>
+                <div className="button-bar">
+                  <button
+                    className="button button-primary"
+                    onClick={e => this.sampleActivity(e, addActivity)}
+                  >
+                    Sample
+                  </button>
+                  <div>
+                    <button className="button button-primary">Create</button>
+                  </div>
                 </div>
               </div>
             </form>
-            <div>
-              <button
-                className="button button-primary"
-                onClick={e => this.sampleActivity(e, addActivity)}
-              >
-                Generate Activity
-              </button>
-            </div>
+
             <div>{this.state.message}</div>
           </div>
         )}

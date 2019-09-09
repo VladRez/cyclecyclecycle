@@ -29,6 +29,7 @@
 //       destination: {}
 //     };
 //     this.addMarker = this.addMarker.bind(this);
+//     debugger
 //   }
 
 //   addMarker(t, map, coord) {
@@ -37,7 +38,7 @@
 //     const lng = latLng.lng();
 
 //     this.setState(previousState => {
-
+      
 //       return {
 //         markers: [
 //           ...previousState.markers,
@@ -49,7 +50,7 @@
 //         ],
 //       };
 //     });
-
+    
 //   }
 
 //   render() {
@@ -57,7 +58,7 @@
 //       if (this.state.markers.length === 1) {
 //         let obj = this.state.markers[0]
 //         initMarker= <Marker title={obj.title} name={obj.name} position={obj.position}/>
-//       }
+//       } 
 //     return (
 //       <div>
 //         <Map
