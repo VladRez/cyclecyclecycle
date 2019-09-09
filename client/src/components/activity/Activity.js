@@ -134,7 +134,7 @@ class Activity extends React.Component {
         }}
         update={(cache, data) => this.updateCache(cache, data)}
         onCompleted={data => {
-          debugger;
+          this.props.history.push("/dashboard");
           const { title } = data.addActivity;
           this.setState({
             message: `New activity ${title} created successfully`

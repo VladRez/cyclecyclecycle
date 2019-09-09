@@ -12,6 +12,7 @@ class Login extends React.Component {
     super(props);
 
     this.state = {
+      message: "",
       email: "",
       password: ""
     };
@@ -36,6 +37,10 @@ class Login extends React.Component {
           localStorage.setItem("auth-token", token);
           localStorage.setItem("currentUserId", _id);
           this.props.history.push("/dashboard");
+        }}
+        onError={err => {
+          debugger;
+          this.setState({ message: err.message.split(":")[1] });
         }}
         update={(client, data) => this.updateCache(client, data)}
       >
@@ -78,6 +83,7 @@ class Login extends React.Component {
                 </button>
                 <Demo />
               </form>
+              <div className="err-msg">{this.state.message}</div>
               {/* <span className="margin-right-s">Don't have an account?</span>
               <Link to="/signup">Sign Up</Link> */}
             </div>
