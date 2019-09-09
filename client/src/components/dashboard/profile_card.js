@@ -97,7 +97,6 @@ class ProfileCard extends Component {
                   );
                 }}
               </Query>
-              ;
             </div>
           );
         }}
