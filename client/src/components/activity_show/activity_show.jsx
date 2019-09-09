@@ -30,9 +30,7 @@ export default class ActivityShow extends Component {
                       <div>
                         <div className="activity-item-nav font-xl flex-row">
                           <div className="group-row-s padding-m">
-                            <span className="activity-item-name">
-                              *robert yeakel*
-                            </span>
+                            <span className="activity-item-name"></span>
                             <span className="activity-item-activity-type">
                               {data.activity.sport}
                             </span>

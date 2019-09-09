@@ -60,7 +60,7 @@ class ProfileCard extends Component {
                               Activities
                             </div>
                             <div className="profile-card__header__stat__value">
-                              {activities.activity_by_user.length - 1}
+                              {activities.activity_by_user.length}
                             </div>
                           </div>
                         </div>
@@ -72,6 +72,7 @@ class ProfileCard extends Component {
                         </div>
                         <Link
                           className="profile-card__body__latest-activity"
+                          {}
                           to={`/activities/${activities.activity_by_user[activities.activity_by_user.length - 1]._id}`}
                         >
                           <span className="profile-card__body__latest-activity__title">
