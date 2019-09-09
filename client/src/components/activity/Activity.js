@@ -96,7 +96,7 @@ class Activity extends React.Component {
       ["Walk", "Hiking up the Mission Peak", "View of the bay"],
       ["Run", "Evening jog at Golden Gate Park", "Breaking into the new Nikes"],
       [
-        "Cycle",
+        "Walk",
         "Trek through Muir Woods",
         "Cold and Foggy San Francisco Morning"
       ],
