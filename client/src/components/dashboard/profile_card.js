@@ -72,7 +72,6 @@ class ProfileCard extends Component {
                         </div>
                         <Link
                           className="profile-card__body__latest-activity"
-                          {}
                           to={`/activities/${activities.activity_by_user[activities.activity_by_user.length - 1]._id}`}
                         >
                           <span className="profile-card__body__latest-activity__title">
