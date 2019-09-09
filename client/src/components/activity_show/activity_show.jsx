@@ -6,7 +6,6 @@ import { ApolloConsumer } from "react-apollo";
 import * as utils from "../../util/activity_util";
 const { ACTIVITY_QUERY } = Queries;
 
-
 export default class ActivityShow extends Component {
   constructor(props) {
     super(props);
@@ -76,7 +75,7 @@ export default class ActivityShow extends Component {
                                 <div className="font-xxl">
                                   {`${
                                     data.activity.distance
-                                  }${this.abbreviateUnit(
+                                  }${utils.abbreviateUnit(
                                     data.activity.distance_unit
                                   )}`}
                                 </div>
@@ -86,7 +85,7 @@ export default class ActivityShow extends Component {
                               </div>
                               <div>
                                 <div className="font-xxl">
-                                  {this.formatDuration(
+                                  {utils.formatDuration(
                                     data.activity.duration_hr,
                                     data.activity.duration_min,
                                     data.activity.duration_sec
@@ -115,7 +114,7 @@ export default class ActivityShow extends Component {
                                 <div className="font-xxl">
                                   {`${
                                     data.activity.elevation
-                                  }${this.abbreviateUnit(
+                                  }${utils.abbreviateUnit(
                                     data.activity.elevation_unit
                                   )}`}
                                 </div>

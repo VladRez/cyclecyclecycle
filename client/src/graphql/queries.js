@@ -41,6 +41,7 @@ export default {
       }
     }
   `,
+
   ACTIVITY_QUERY: gql`
     query ActivityQuery($id: ID!) {
       activity(_id: $id) {
@@ -65,6 +66,7 @@ export default {
   QUERY_USER_ACTIVITY: gql`
     query GetUserActivity($user_id: ID!) {
       activity_by_user(user_id: $user_id) {
+        _id
         distance
         distance_unit
         duration_hr

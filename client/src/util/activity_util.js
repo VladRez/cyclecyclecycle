@@ -6,7 +6,15 @@ export const getPace = function(hr, min, sec, distance) {
   pace %= 3600;
   let minutes = Math.floor(pace / 60);
   let seconds = Math.floor(pace % 60);
-  return `${hours}:${minutes}:${seconds}`;
+
+  hours = hours.toString();
+  minutes = minutes.toString();
+  seconds = seconds.toString();
+
+  if (minutes.length < 2) minutes = "0" + minutes;
+  if (seconds.length < 2) seconds = "0" + seconds;
+
+  return [hours, minutes, seconds].join(":");
 };
 
 export const abbreviateUnit = function(unit) {
@@ -49,4 +57,15 @@ export const formatDate = function(date) {
   if (day.length < 2) day = "0" + day;
 
   return [month, day, year].join("-");
+};
+
+export const formatDuration = (hr, min, sec) => {
+  hr = hr.toString();
+  min = min.toString();
+  sec = sec.toString();
+
+  if (min.length < 2) min = "0" + min;
+  if (sec.length < 2) sec = "0" + sec;
+
+  return [hr, min, sec].join(":");
 };

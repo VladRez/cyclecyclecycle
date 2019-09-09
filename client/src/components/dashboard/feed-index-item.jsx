@@ -75,7 +75,7 @@ export default class FeedIndexItem extends Component {
               <div className="flex-column margin-right-xl">
                 <div className="feed-item-activity-stat-heading">Time</div>
                 <div className="feed-item-activity-stat">
-                  {this.props.activity.duration_hr}Hr
+                  {this.props.activity.duration_hr}Hr{" "}
                   {this.props.activity.duration_min}Min
                 </div>
               </div>

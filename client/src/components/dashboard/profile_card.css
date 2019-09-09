@@ -66,7 +66,18 @@
   padding: 16px;
 }
 
-.profile-card__body__latest-activity {
+.profile-card__body__latest-activity:hover {
+  color: #fc4c02;
+}
+
+.profile-card__body__latest-activity:hover
+  .profile-card__body__latest-activity__title {
+  color: #fc4c02;
+}
+
+.profile-card__body__latest-activity:hover
+  .profile-card__body__latest-activity__date {
+  color: #fc4c02;
 }
 
 .profile-card__body__latest-activity__title {
