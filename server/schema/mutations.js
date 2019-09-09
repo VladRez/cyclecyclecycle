@@ -94,7 +94,10 @@ const mutation = new GraphQLObjectType({
         input: { type: MapInputType }
       },
       resolve(_, { input }) {
-        return MapService.createMap(input);
+        // return MapService.createMap(input);
+        return MapService.createMap(
+          Object.assign({}, input, { user: input.userId })
+        );
       }
     }
   }

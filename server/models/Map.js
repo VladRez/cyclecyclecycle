@@ -3,6 +3,7 @@ const Schema = mongoose.Schema;
 
 const MapSchema = new Schema({
   userId: Schema.Types.ObjectId,
+  user:{type: Schema.Types.ObjectId, ref: 'users'},
   name: Schema.Types.String,
   description: Schema.Types.String,
   travelMode: Schema.Types.String,

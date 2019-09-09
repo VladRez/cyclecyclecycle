@@ -1,5 +1,7 @@
 import React from "react";
 import { Mutation } from "react-apollo";
+import { Link, Redirect, Route } from "react-router-dom";
+import Dashboard from "../dashboard/dashboard"
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./activity.css";
@@ -37,7 +39,8 @@ class Activity extends React.Component {
       tags: "Commute",
       description: "dolphins",
       privacycontrols: "All",
-      user_id: ""
+      user_id: "",
+      success: false
     };
 
     this.handleDateChange = this.handleDateChange.bind(this);
@@ -123,7 +126,11 @@ class Activity extends React.Component {
     }
   }
 
+  
   render() {
+    if (this.state.success){
+      return <Redirect to='/dashboard' />
+    }
     return (
       <Mutation
         mutation={ADD_ACTIVITY}
@@ -132,11 +139,15 @@ class Activity extends React.Component {
         }}
         update={(cache, data) => this.updateCache(cache, data)}
         onCompleted={data => {
-          this.props.history.push("/dashboard");
+          
           const { title } = data.addActivity;
           this.setState({
-            message: `New activity ${title} created successfully`
+            message: `New activity ${title} created successfully`,
+            success: true
           });
+          
+          // this.props.history.push("/dashboard");
+          
         }}
       >
         {(addActivity, { data }) => (

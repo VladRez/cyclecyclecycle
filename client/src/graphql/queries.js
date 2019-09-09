@@ -19,7 +19,7 @@ export default {
     query FetchMap($_id: ID!) {
       map(_id: $_id) {
         _id
-        userId
+        userId 
         name
         description
         travelMode
@@ -83,6 +83,23 @@ export default {
         description
         privacycontrols
         user_id
+      }
+    }
+  `,
+  FETCH_USER_MAPS: gql`
+    query FetchUserMaps($userId: ID!) {
+      user_maps(userId: $userId) {
+        _id
+        name
+        description
+        travelMode
+        routes {
+          stopover
+          location {
+            lat
+            lng
+          }
+        }
       }
     }
   `

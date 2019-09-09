@@ -2,7 +2,7 @@ import "./App.css";
 import "../index.css";
 import { AuthRoute, ProtectedRoute } from "../util/route_util";
 // eslint-disable-next-line
-import { HashRouter, Switch, Route } from "react-router-dom";
+import { HashRouter, Switch, Route, Router } from "react-router-dom";
 import React from "react";
 
 // Auth Components
@@ -20,12 +20,14 @@ import ActivityShow from "./activity_show/activity_show";
 
 import RouteMapCreator from "./route/route_map";
 import RouteDisplay from "./route/route_display";
+import RouteIndex from "./route/route_index"
 function App() {
   return (
     <div>
       <HashRouter>
-        <Navbar />
+      <Navbar />
         <Switch>
+        
           <AuthRoute exact path="/" component={Signup} />
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/signup" component={Signup} />
@@ -35,13 +37,14 @@ function App() {
             path="/activities/:activityId"
             component={ActivityShow}
           />
-          <Route exact path="/activity/new" component={Activity} />
+          <ProtectedRoute exact path="/activity/new" component={Activity} />
           <ProtectedRoute
             exact
             path="/routes/new"
             component={RouteMapCreator}
           />
           <ProtectedRoute exact path="/routes/:id" component={RouteDisplay} />
+          <ProtectedRoute exact path="/routes/" component={RouteIndex} />
         </Switch>
       </HashRouter>
     </div>

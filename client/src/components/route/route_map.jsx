@@ -27,6 +27,7 @@ class RouteMap extends React.Component {
 
   componentDidMount() {
     const map = this.refs.map;
+
     this.map = new window.google.maps.Map(map, mapOptions);
     const directionsDisplay = new window.google.maps.DirectionsRenderer();
     this.directionsDisplay = directionsDisplay;
@@ -45,6 +46,7 @@ class RouteMap extends React.Component {
 
     this.directionPolyLine = directionPolyLine;
     this.directionPolyLine.setMap(this.map);
+    this.markerArray = [];
   }
 
   handleClick() {
@@ -83,7 +85,29 @@ class RouteMap extends React.Component {
 
     this.directionsService.route(options, (res, status) => {
       if (status === "OK") {
+        this.markerArray.forEach(marker => marker.setMap(null));
         this.setState({ route_details: res.routes[0].legs[0] });
+
+        let start = new window.google.maps.Marker({
+          position: this.state.routes[0].location,
+          icon: {
+            path: window.google.maps.SymbolPath.CIRCLE,
+            scale: 4
+          },
+          map: this.map
+        });
+        this.markerArray.push(start);
+        if (this.state.routes.length > 1) {
+          let finish = new window.google.maps.Marker({
+            position: this.state.routes[this.state.routes.length - 1].location,
+            icon: {
+              path: window.google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+              scale: 4
+            },
+            map: this.map
+          });
+          this.markerArray.push(finish);
+        }
         if (this.state.routeType === "polyline") {
           this.renderPolyLine(res);
         } else {
@@ -102,6 +126,7 @@ class RouteMap extends React.Component {
   clearMap() {
     this.setState({ routes: [], route_details: {} });
     this.directionPolyLine.setPath([]);
+    this.markerArray.forEach(marker => marker.setMap(null));
   }
 
   openModal() {
@@ -168,6 +193,7 @@ class RouteMap extends React.Component {
                   onSubmit={e => {
                     e.preventDefault();
                     this.handleSubmit(e);
+                    if (this.state.routes.length)
                     CreateMap({
                       variables: {
                         name: this.state.route_name,
@@ -227,9 +253,20 @@ class RouteMap extends React.Component {
         {modal}
         <div className="panel topPanel">
           <div className="toolControls">
-            <button onClick={() => this.clearMap()}>X</button>
-            <button onClick={() => this.openModal()}>save</button>
             <button
+              className="modal-action-buttons-cancel"
+              onClick={() => this.clearMap()}
+            >
+              Clear
+            </button>
+            <button
+              className="modal-action-buttons-cancel"
+              onClick={() => this.openModal()}
+            >
+              save
+            </button>
+            <button
+              className="modal-action-buttons-cancel"
               onClick={() => {
                 this.changeTravelMode();
               }}

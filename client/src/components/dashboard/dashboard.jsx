@@ -4,7 +4,11 @@ import "./dashboard.css";
 import ProfileCard from "./profile_card";
 
 export default class Dashboard extends Component {
+  componentDidMount(){
+    this.setState({})
+  }
   render() {
+    console.log('dashboard')
     return (
       <div className="dashboard-page-container">
         <div className="flex-row justify-center">
