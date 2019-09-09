@@ -93,7 +93,6 @@ class Activity extends React.Component {
     ];
     let i = Math.ceil(Math.random() * 100) % 3;
     e.preventDefault();
-    //debugger;
     this.setState({
       distance: Math.ceil(Math.random() * 10),
       duration_hr: Math.ceil(Math.random() * 10),
@@ -129,7 +128,6 @@ class Activity extends React.Component {
       <Mutation
         mutation={ADD_ACTIVITY}
         onError={err => {
-          debugger;
           this.setState({ message: err.message });
         }}
         update={(cache, data) => this.updateCache(cache, data)}

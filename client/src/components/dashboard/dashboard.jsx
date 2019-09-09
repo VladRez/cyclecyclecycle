@@ -7,7 +7,7 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div className="dashboard-page-container">
-        <div className="flex-row">
+        <div className="flex-row justify-center">
           <ProfileCard />
           <div className="feed-container">
             <FeedIndex />

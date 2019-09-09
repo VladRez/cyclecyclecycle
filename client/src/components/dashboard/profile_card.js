@@ -15,7 +15,6 @@ class ProfileCard extends Component {
           if (loading) return <div>Loading</div>;
           if (error) return <div>Error</div>;
           const user = data;
-          debugger;
           return (
             <div className="profile-card-container">
               <Query
@@ -26,7 +25,6 @@ class ProfileCard extends Component {
                   if (loading) return <div>Loading</div>;
                   if (error) return <div>error</div>;
                   const activities = data;
-                  debugger;
                   return (
                     <div className="profile-card">
                       <div className="profile-card__user-avatar-container">

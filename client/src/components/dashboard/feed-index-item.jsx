@@ -18,7 +18,7 @@ export default class FeedIndexItem extends Component {
       <div className="container flex-column feed-item">
         <div className="flex-row margin-bottom-s">
           <div className="feed-item-avatar">
-            <i class="fas fa-user font-size-l"></i>
+            <i className="fas fa-user font-size-l"></i>
           </div>
           <ApolloConsumer>
             {client => {
@@ -52,7 +52,7 @@ export default class FeedIndexItem extends Component {
         </div>
         <div className="flex-row">
           <div className="feed-item-activity-type">
-            <i class="fas fa-biking"></i>
+            <i className="fas fa-biking"></i>
           </div>
           <div className="flex-column">
             <div className="feed-item-title margin-bottom-s">

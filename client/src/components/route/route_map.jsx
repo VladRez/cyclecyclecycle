@@ -90,7 +90,6 @@ class RouteMap extends React.Component {
           this.directionsDisplay.setDirections(res);
         }
       } else {
-        console.log("error " + status);
       }
     });
   }
@@ -191,19 +190,27 @@ class RouteMap extends React.Component {
                         value={this.state.route_name}
                       />
                     </div>
-                    </div>
-                    <label className="form-control-label">Description</label>
-                    <textarea className="form-control-textarea"
-                      cols="30"
-                      rows="10"
-                      onChange={this.handleChange("route_description")}
-                      value={this.state.route_description}
-                    />
-                  
+                  </div>
+                  <label className="form-control-label">Description</label>
+                  <textarea
+                    className="form-control-textarea"
+                    cols="30"
+                    rows="10"
+                    onChange={this.handleChange("route_description")}
+                    value={this.state.route_description}
+                  />
                   <div className="modal-action-buttons">
-               <button className="modal-action-buttons-cancel" onClick={() => this.closeModal()}>close</button>
-                  <input className="modal-action-buttons-save" type="submit" value="save" />
-                 
+                    <button
+                      className="modal-action-buttons-cancel"
+                      onClick={() => this.closeModal()}
+                    >
+                      close
+                    </button>
+                    <input
+                      className="modal-action-buttons-save"
+                      type="submit"
+                      value="save"
+                    />
                   </div>
                 </form>
               </div>

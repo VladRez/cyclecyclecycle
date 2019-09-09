@@ -57,7 +57,6 @@ class ProfilePhoto extends React.Component {
         filetype: file.type
       }
     });
-    console.log(res);
     const { signedRequest, url } = res.data.signS3;
     await this.uploadToS3(file, signedRequest);
   };

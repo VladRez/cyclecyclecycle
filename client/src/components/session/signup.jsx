@@ -35,7 +35,6 @@ class Signup extends React.Component {
       <Mutation
         mutation={REGISTER_USER}
         onError={err => {
-          debugger;
           this.setState({ message: err.message.split(":")[1] });
         }}
         onCompleted={data => {
@@ -108,7 +107,7 @@ class Signup extends React.Component {
               </form>
               {/* <span className="margin-right-s">Already have an account?</span>
               <Link to="/login">Login</Link> */}
-              <div className = "err-msg">{this.state.message}</div>
+              <div className="err-msg">{this.state.message}</div>
             </div>
           </div>
         )}

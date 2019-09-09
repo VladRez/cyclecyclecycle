@@ -1,15 +1,13 @@
 // import {React, Component} from "react";
 // import {update} from "react-addons-update";
 
-
 // import {default as ScriptjsLoader} from "react-google-maps/lib/async/ScriptjsLoader";
 // import {GoogleMap, Marker} from "react-google-maps";
-
 
 // export default class AsyncGettingStarted extends Component {
 //     constructor(props){
 //         super(props)
-        
+
 //         this.handleMapClick = this.handleMapClick.bind(this)
 //         const version = Math.ceil(Math.random() * 22);
 //         this.state = {
@@ -23,10 +21,7 @@
 //             }],
 //           }
 //     }
-   
-  
-    
-  
+
 //     /*
 //      * This is called when you click on the map.
 //      * Go and try click now.
@@ -43,7 +38,7 @@
 //         ],
 //       });
 //       this.setState({ markers });
-  
+
 //       if (3 === markers.length) {
 //         this.props.toast(
 //           "Right click on the marker to remove it",
@@ -51,7 +46,7 @@
 //         );
 //       }
 //     }
-  
+
 //     handleMarkerRightclick (index, event) {
 //       /*
 //        * All you modify is data, and the view is driven by data.
@@ -66,8 +61,7 @@
 //       });
 //       this.setState({ markers });
 //     }
-  
-  
+
 //     renderNewBehavior () {
 //       return (
 //         <ScriptjsLoader
@@ -76,7 +70,7 @@
 //           query={{v: `3.${ AsyncGettingStarted.version }`, libraries: "geometry,drawing,places"}}
 //           loadingElement={
 //             <div {...this.props} style={{ height: "100%" }}>
-             
+
 //             </div>
 //           }
 //           containerElement={
@@ -88,9 +82,6 @@
 //                 if (!googleMap) {
 //                   return;
 //                 }
-//                 console.log(googleMap)
-//                 console.log(`Zoom: ${ googleMap.getZoom() }`);
-//                 console.log(`Center: ${ googleMap.getCenter() }`);
 //               }}
 //               defaultZoom={3}
 //               defaultCenter={{lat: -25.363882, lng: 131.044922}}
@@ -108,7 +99,7 @@
 //         />
 //       );
 //     }
-  
+
 //     render () {
 //       // <script type="text/javascript" src="" />
 //       // return this.renderDeprecatedBehavior(); // Uncomment for legacy support
