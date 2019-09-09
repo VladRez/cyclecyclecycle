@@ -107,3 +107,8 @@
 .activity-privacycontrols-container {
   width: 229px;
 }
+
+.button-bar {
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,12 +1,13 @@
 .profile-card-container {
-  width: 25%;
+  width: 292px;
+  position: fixed;
+  left: 50%;
+  transform: translate(-210%, 0%);
 }
 
 .profile-card {
   background-color: white;
-  position: fixed;
   border-radius: 5px;
-  /* width: 20%; */
 }
 
 .profile-card__user-avatar-container {

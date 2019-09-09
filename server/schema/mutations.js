@@ -16,7 +16,7 @@ const AuthService = require("../services/auth");
 const Activity = require("../services/activity_actions");
 const MapType = require("./types/map_type");
 const MapInputType = require("./types/input_types");
-const MapService = require("../services/map")
+const MapService = require("../services/map");
 
 const mutation = new GraphQLObjectType({
   name: "Mutation",
@@ -94,7 +94,10 @@ const mutation = new GraphQLObjectType({
         input: { type: MapInputType }
       },
       resolve(_, { input }) {
-        return MapService.createMap(Object.assign({},input, {user: input.userId}))
+        // return MapService.createMap(input);
+        return MapService.createMap(
+          Object.assign({}, input, { user: input.userId })
+        );
       }
     }
   }

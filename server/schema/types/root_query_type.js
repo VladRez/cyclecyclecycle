@@ -35,7 +35,6 @@ const RootQueryType = new GraphQLObjectType({
       type: new GraphQLList(ActivityType),
       args: { user_id: { type: new GraphQLNonNull(GraphQLID) } },
       resolve(parentValue, args) {
-        //debugger;
         //console.log("USER_ID: ", args.user_id);
         return Activity.find({ user_id: args.user_id });
         //db.inventory.find({ status: "D" })

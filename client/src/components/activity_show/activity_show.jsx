@@ -11,25 +11,19 @@ export default class ActivityShow extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    // debugger;
-  }
-
   render() {
     return (
       <ApolloConsumer>
         {client => {
-          // debugger;
           return (
             <Query
               query={ACTIVITY_QUERY}
               variables={{ id: this.props.match.params.activityId }}
             >
               {({ loading, error, data }) => {
-                // debugger;
                 if (loading) return <div>Loading</div>;
                 if (error) return <div>Error</div>;
-                // debugger;
+
                 return (
                   <div className="page-container">
                     <div className="activity-item">

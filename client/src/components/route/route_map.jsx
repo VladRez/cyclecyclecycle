@@ -114,7 +114,6 @@ class RouteMap extends React.Component {
           this.directionsDisplay.setDirections(res);
         }
       } else {
-        console.log("error " + status);
       }
     });
   }

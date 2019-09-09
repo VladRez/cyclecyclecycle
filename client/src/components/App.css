@@ -43,6 +43,10 @@ textarea:focus {
   outline: none;
 }
 
+.justify-center {
+  justify-content: center;
+}
+
 .label {
   margin-bottom: 5px;
   display: inline-block;

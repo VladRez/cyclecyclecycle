@@ -79,14 +79,12 @@ class RouteDisplay extends React.Component {
           this.directionsDisplay.setDirections(res);
         }
       } else {
-        console.log("error " + status);
       }
     });
   }
 
   renderPolyLine(res) {
     // this.directionPolyLine.setMap(null);
-    console.log(res);
     this.directionPolyLine.setPath(res.routes[0].overview_path);
   }
 
