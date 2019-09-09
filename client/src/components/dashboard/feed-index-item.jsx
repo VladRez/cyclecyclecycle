@@ -30,7 +30,7 @@ export default class FeedIndexItem extends Component {
                   {({ loading, error, data }) => {
                     if (loading) return <div>Loading</div>;
                     if (error) return <div>Error</div>;
-
+                    console.log('feed-index-item')
                     return (
                       <div className="activity-item-name">
                         <div className="flex-column">

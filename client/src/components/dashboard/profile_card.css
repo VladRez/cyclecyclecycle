@@ -6,7 +6,7 @@
   background-color: white;
   position: fixed;
   border-radius: 5px;
-  width: 20%;
+  /* width: 20%; */
 }
 
 .profile-card__user-avatar-container {

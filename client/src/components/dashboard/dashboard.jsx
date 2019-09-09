@@ -8,6 +8,7 @@ export default class Dashboard extends Component {
     this.setState({})
   }
   render() {
+    console.log('dashboard')
     return (
       <div className="dashboard-page-container">
         <div className="flex-row">

@@ -35,7 +35,7 @@ class Signup extends React.Component {
       <Mutation
         mutation={REGISTER_USER}
         onError={err => {
-          debugger;
+          // debugger;
           this.setState({ message: err.message.split(":")[1] });
         }}
         onCompleted={data => {

@@ -39,7 +39,7 @@ class Login extends React.Component {
           this.props.history.push("/dashboard");
         }}
         onError={err => {
-          debugger;
+          // debugger;
           this.setState({ message: err.message.split(":")[1] });
         }}
         update={(client, data) => this.updateCache(client, data)}
