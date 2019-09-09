@@ -1,0 +1,77 @@
+.profile-card-container {
+  width: 25%;
+}
+
+.profile-card {
+  background-color: white;
+  position: fixed;
+  border-radius: 5px;
+  width: 20%;
+}
+
+.profile-card__user-avatar-container {
+  font-size: 45px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -49%);
+  background-color: #4af;
+  width: 75px;
+  height: 75px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profile-card__user-avatar {
+  color: white;
+  height: 66%;
+}
+
+.profile-card__header {
+  padding-top: 50px;
+}
+
+.profile-card__header__name {
+  text-align: center;
+  font-size: 22px;
+}
+
+.profile-card__header__stats {
+  display: flex;
+  justify-content: space-around;
+  padding: 16px;
+  border-bottom: 1px solid #ddd;
+}
+
+.profile-card__header__stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-card__header__stat__heading {
+  font-size: 12px;
+  font-weight: 400;
+  color: #606065;
+  line-height: 1.2;
+}
+
+.profile-card__header__stat__value {
+  font-size: 20px;
+  line-height: 1.2;
+}
+
+.profile-card__body {
+  padding: 16px;
+}
+
+.profile-card__body__latest-activity {
+}
+
+.profile-card__body__latest-activity__title {
+  font-weight: 700;
+}
+
+.profile-card__body__latest-activity__date {
+}
