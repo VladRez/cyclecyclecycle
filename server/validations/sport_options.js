@@ -2,7 +2,7 @@ const Validator = require("validator");
 
 module.exports = function validateSportOptions(data) {
   var Sports = [
-    "Ride",
+    "Cycle",
     "Run",
     "Swim",
     "Hike",
