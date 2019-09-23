@@ -8,6 +8,38 @@ import "./profile_card.css";
 const { USER_QUERY, QUERY_USER_ACTIVITY } = Queries;
 
 class ProfileCard extends Component {
+  renderLatestActivity(activities) {
+    if (activities.activity_by_user.length === 0) {
+      return null;
+    } else {
+      return (
+        <div className="profile-card__body">
+          <div className="profile-card__body__heading">Latest Activity</div>
+          <Link
+            className="profile-card__body__latest-activity"
+            to={`/activities/${activities.activity_by_user[activities.activity_by_user.length - 1]._id}`}
+          >
+            <span className="profile-card__body__latest-activity__title">
+              {
+                activities.activity_by_user[
+                  activities.activity_by_user.length - 1
+                ].title
+              }
+            </span>{" "}
+            •{" "}
+            <span className="profile-card__body__latest-activity__date">
+              {
+                activities.activity_by_user[
+                  activities.activity_by_user.length - 1
+                ].date
+              }
+            </span>
+          </Link>
+        </div>
+      );
+    }
+  }
+
   render() {
     return (
       <Query query={USER_QUERY} variables={{ id: localStorage.currentUserId }}>
@@ -25,6 +57,7 @@ class ProfileCard extends Component {
                   if (loading) return <div>Loading</div>;
                   if (error) return <div>error</div>;
                   const activities = data;
+                  debugger;
                   return (
                     <div className="profile-card">
                       <div className="profile-card__user-avatar-container">
@@ -65,32 +98,7 @@ class ProfileCard extends Component {
                           </div>
                         </div>
                       </div>
-
-                      <div className="profile-card__body">
-                        <div className="profile-card__body__heading">
-                          Latest Activity
-                        </div>
-                        <Link
-                          className="profile-card__body__latest-activity"
-                          to={`/activities/${activities.activity_by_user[activities.activity_by_user.length - 1]._id}`}
-                        >
-                          <span className="profile-card__body__latest-activity__title">
-                            {
-                              activities.activity_by_user[
-                                activities.activity_by_user.length - 1
-                              ].title
-                            }
-                          </span>{" "}
-                          •{" "}
-                          <span className="profile-card__body__latest-activity__date">
-                            {
-                              activities.activity_by_user[
-                                activities.activity_by_user.length - 1
-                              ].date
-                            }
-                          </span>
-                        </Link>
-                      </div>
+                      {this.renderLatestActivity(activities)}
                     </div>
                   );
                 }}
