@@ -15,8 +15,6 @@
 
 [Live Site][1]
 
-## Table of Contents
-
 ---
 
 - [Features](#features)
