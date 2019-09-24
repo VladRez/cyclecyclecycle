@@ -60,7 +60,7 @@ class ProfileCard extends Component {
                               Activities
                             </div>
                             <div className="profile-card__header__stat__value">
-                              {activities.activity_by_user.length - 1}
+                              {activities.activity_by_user.length}
                             </div>
                           </div>
                         </div>

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link, Redirect } from "react-router-dom";
 import { Query } from "react-apollo";
 import { ApolloConsumer } from "react-apollo";
 import "./feed-index-item.css";
@@ -30,19 +31,21 @@ export default class FeedIndexItem extends Component {
                   {({ loading, error, data }) => {
                     if (loading) return <div>Loading</div>;
                     if (error) return <div>Error</div>;
-                    console.log('feed-index-item')
+                    console.log("feed-index-item");
                     return (
-                      <div className="activity-item-name">
-                        <div className="flex-column">
-                          <div className="feed-item-username">
-                            {data.user.fname} {data.user.lname}
-                          </div>
-                          <div className="feed-item-date">
-                            {this.props.activity.date} at{" "}
-                            {this.props.activity.time}
+                      <Link to={`/activities/${this.props.activity._id}`}>
+                        <div className="activity-item-name">
+                          <div className="flex-column">
+                            <div className="feed-item-username">
+                              {data.user.fname} {data.user.lname}
+                            </div>
+                            <div className="feed-item-date">
+                              {this.props.activity.date} at{" "}
+                              {this.props.activity.time}
+                            </div>
                           </div>
                         </div>
-                      </div>
+                      </Link>
                     );
                   }}
                 </Query>
