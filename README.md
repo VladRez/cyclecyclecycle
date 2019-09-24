@@ -66,7 +66,7 @@ const Auth = ({ component: Component, path, exact, ...rest }) => (
 );
 ```
 
-![session][docs/signup.png]
+![session](docs/signup.png)
 
 When a user submits login information from the frontend, a React Apollo `Mutation` component will use a predefined `LoginUser` mutation: 
 
