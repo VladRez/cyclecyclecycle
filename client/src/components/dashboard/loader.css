@@ -1,0 +1,14 @@
+.SuperLoader {
+  margin: 110px auto;
+}
+
+.loader .center {
+  color: #fc4c02;
+  display: flex;
+  margin: 110px auto;
+  justify-content: center;
+}
+
+.fa-cog {
+  color: #fc4c02;
+}
