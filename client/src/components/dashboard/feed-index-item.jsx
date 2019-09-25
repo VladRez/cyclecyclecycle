@@ -68,7 +68,16 @@ export default class FeedIndexItem extends Component {
               <div className="flex-column margin-right-xl">
                 <div className="feed-item-activity-stat-heading">Distance</div>
                 <div className="flex-item-activity-stat">
-                  {this.props.activity.distance}
+                  {this.props.activity.distance > 1
+                    ? this.props.activity.distance +
+                      " " +
+                      this.props.activity.distance_unit
+                    : this.props.activity.distance +
+                      " " +
+                      this.props.activity.distance_unit.slice(
+                        0,
+                        this.props.activity.distance_unit.length - 1
+                      )}
                 </div>
               </div>
               <div className="flex-column margin-right-xl">
