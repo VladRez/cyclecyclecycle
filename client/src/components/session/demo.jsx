@@ -19,16 +19,17 @@ class Demo extends React.Component {
       <Mutation
         mutation={LOGIN_USER}
         onCompleted={data => {
+          debugger;
           const { token, _id } = data.login;
           localStorage.setItem("auth-token", token);
           localStorage.setItem("currentUserId", _id);
+          this.props.history.push("/dashboard");
         }}
+        
         update={(client, { data }) => {
           client.writeData({
             data: { isLoggedIn: data.login.loggedIn }
           });
-
-          this.props.history.push("/dashboard");
         }}
       >
         {LoginUser => (

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Query } from "react-apollo";
-import { ApolloConsumer } from "react-apollo";
 import Queries from "../../graphql/queries";
 import "./profile_card.css";
 

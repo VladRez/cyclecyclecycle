@@ -122,18 +122,18 @@ textarea:focus {
 .button-primary {
   background-color: #fc4c02;
   color: #fff;
-  width: 75px;
   padding: 10px;
   font-weight: 700;
   font-size: 13px;
+  display: inline-block;
 }
 
 .button-secondary {
   background-color: #eaeaea;
-  width: 75px;
   padding: 10px;
   font-weight: 700;
   font-size: 13px;
+  display: inline-block;
 }
 
 .input {
