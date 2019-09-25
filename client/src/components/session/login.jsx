@@ -1,7 +1,6 @@
 import React from "react";
 import { Mutation } from "react-apollo";
 import Mutations from "../../graphql/mutations";
-import { Link } from "react-router-dom";
 import Demo from "./demo";
 import "./session.css";
 

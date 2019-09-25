@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Query } from "react-apollo";
-import { ApolloConsumer } from "react-apollo";
 import Queries from "../../graphql/queries";
 import "./profile_card.css";
 
@@ -73,7 +72,7 @@ class ProfileCard extends Component {
                         <Link
                           className="profile-card__body__latest-activity"
                           to={`/activities/${
-                            (activities.activity_by_user.length > 0)
+                            activities.activity_by_user.length > 0
                               ? activities.activity_by_user[
                                   activities.activity_by_user.length - 1
                                 ]._id

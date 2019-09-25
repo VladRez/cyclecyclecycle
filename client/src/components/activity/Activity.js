@@ -1,19 +1,12 @@
 import React from "react";
 import { Mutation } from "react-apollo";
-import { Link, Redirect, Route } from "react-router-dom";
-import Dashboard from "../dashboard/dashboard";
+import { Redirect } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./activity.css";
 import queries from "../../graphql/queries";
 import mutations from "../../graphql/mutations";
 import * as utils from "../../util/activity_util";
-import gql from "graphql-tag";
-import { randomBytes } from "crypto";
-import {
-  serializeFetchParameter,
-  selectHttpOptionsAndBody
-} from "apollo-link-http-common";
 
 const { FETCH_ACTIVITIES } = queries;
 const { ADD_ACTIVITY } = mutations;
@@ -31,7 +24,7 @@ class Activity extends React.Component {
       duration_sec: 4,
       elevation: 500,
       elevation_unit: "Feet",
-      sport: "Swim",
+      sport: "Run",
       date: Date.now(),
       time: Date.now(),
       title: "Stroll in the Park ",
@@ -349,7 +342,7 @@ class Activity extends React.Component {
                           onChange={this.handleChange("runtype")}
                         >
                           <option value="Race">Race</option>
-                          <option value="Longrun">Long Run</option>
+                          <option value="LongRun">Long Run</option>
                           <option value="Workout">Workout</option>
                         </select>
                       </div>

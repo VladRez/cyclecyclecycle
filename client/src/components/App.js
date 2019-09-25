@@ -10,7 +10,6 @@ import Login from "./session/login";
 import Signup from "./session/signup";
 
 // Protected Components
-import Session from "./session/session";
 import Dashboard from "./dashboard/dashboard";
 import Activity from "./activity/Activity";
 
@@ -20,14 +19,13 @@ import ActivityShow from "./activity_show/activity_show";
 
 import RouteMapCreator from "./route/route_map";
 import RouteDisplay from "./route/route_display";
-import RouteIndex from "./route/route_index"
+import RouteIndex from "./route/route_index";
 function App() {
   return (
     <div>
       <HashRouter>
-      <Navbar />
+        <Navbar />
         <Switch>
-        
           <AuthRoute exact path="/" component={Signup} />
           <AuthRoute exact path="/login" component={Login} />
           <AuthRoute exact path="/signup" component={Signup} />

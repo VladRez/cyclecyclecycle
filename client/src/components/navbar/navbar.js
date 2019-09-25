@@ -1,7 +1,6 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Logout from "../session/logout";
-import { ApolloConsumer } from "react-apollo";
 import { Query } from "react-apollo";
 import Queries from "../../graphql/queries";
 import "./navbar.css";
@@ -64,7 +63,6 @@ export default class Navbar extends Component {
                             My Routes
                           </Link>
                           <Logout />
-                          
                         </div>
                       ) : null}
                     </div>
@@ -83,7 +81,7 @@ export default class Navbar extends Component {
                           }}
                         >
                           <Link to="/routes/new">Create a route</Link>
-                          <Link to="/activity/new"  onClick={this.closeMenu}>
+                          <Link to="/activity/new" onClick={this.closeMenu}>
                             Add manual entry
                           </Link>
                         </div>

@@ -23,9 +23,9 @@ class RouteDisplay extends React.Component {
   }
   componentDidMount() {
     const map = this.refs.map;
-    
+
     this.map = new window.google.maps.Map(map, mapOptions);
-    
+
     const directionsDisplay = new window.google.maps.DirectionsRenderer();
     this.directionsDisplay = directionsDisplay;
     this.directionsDisplay.setMap(this.map);
@@ -66,12 +66,11 @@ class RouteDisplay extends React.Component {
       lat: (origin.lat + destination.lat) / 2,
       lng: (origin.lng + destination.lng) / 2
     };
-    if (this.map === undefined) window.location.reload(); 
+    if (this.map === undefined) window.location.reload();
     this.map.setCenter(center);
     // this.map.fitBounds(origin, destination)
     this.directionsService.route(options, (res, status) => {
       if (status === "OK") {
-        
         this.setState({ route_details: res.routes[0].legs[0] });
         if (this.state.routeType === "polyline") {
           this.renderPolyLine(res);
@@ -89,8 +88,6 @@ class RouteDisplay extends React.Component {
   }
 
   render() {
-    
-    
     return (
       <div className="page-container">
         <div className="details-container">
@@ -107,7 +104,7 @@ class RouteDisplay extends React.Component {
                   if (error) return <p>Error</p>;
 
                   this.calculateAndDisplayRoute(data.map);
-                  
+
                   let tablebody = !Object.keys(this.state.route_details)
                     .length ? (
                     <tr>
@@ -119,17 +116,15 @@ class RouteDisplay extends React.Component {
                     this.state.route_details.steps.map((step, idx) => {
                       let segment = step.instructions.match(
                         /(?<=\<b\>)(.*?)(?=\<\/b\>)/g
-                      ); //
+                      );
 
                       segment = segment ? segment.join(" ") : step.instructions;
                       return (
                         <tr>
                           <td>
                             {
-                              segmentNames[
-                                // Math.floor(Math.random() * segmentNames.length)
-                                idx
-                              ]
+                              // Math.floor(Math.random() * segmentNames.length)
+                              segmentNames[idx]
                             }
                           </td>
                           <td>{segment}</td>

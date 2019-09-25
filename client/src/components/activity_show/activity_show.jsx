@@ -7,10 +7,6 @@ import * as utils from "../../util/activity_util";
 const { ACTIVITY_QUERY } = Queries;
 
 export default class ActivityShow extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <ApolloConsumer>

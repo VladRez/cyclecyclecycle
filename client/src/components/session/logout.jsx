@@ -19,6 +19,7 @@ const Logout = props => (
                   client.writeData({ data: { isLoggedIn: false } });
                   // props.history.push("/login");
                 }}
+                href="/"
               >
                 Logout
               </a>

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, Redirect } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { Query } from "react-apollo";
 import { ApolloConsumer } from "react-apollo";
 import "./feed-index-item.css";
@@ -54,7 +54,7 @@ export default class FeedIndexItem extends Component {
           </ApolloConsumer>
         </div>
         <div className="flex-row">
-          <div className="feed-item-activity-type"> 
+          <div className="feed-item-activity-type">
             {this.props.activity.sport == "Cycle" ? (
               <i className="fas fa-biking"></i>
             ) : this.props.activity.sport == "Swim" ? (
