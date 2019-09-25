@@ -54,13 +54,13 @@ export default class FeedIndexItem extends Component {
           </ApolloConsumer>
         </div>
         <div className="flex-row">
-          <div className="feed-item-activity-type">
-            {this.props.activity.sport == "Bike" ? (
+          <div className="feed-item-activity-type"> 
+            {this.props.activity.sport == "Cycle" ? (
               <i className="fas fa-biking"></i>
             ) : this.props.activity.sport == "Swim" ? (
-              <i class="fas fa-swimmer"></i>
+              <i className="fas fa-swimmer"></i>
             ) : (
-              <i class="fas fa-walking"></i>
+              <i className="fas fa-walking"></i>
             )}
           </div>
           <div className="flex-column">

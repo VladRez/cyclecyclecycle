@@ -8,8 +8,8 @@ export const getPace = function(hr, min, sec, distance) {
   let seconds = Math.floor(pace % 60);
 
   hours = hours.toString();
-  minutes = minutes.toString();
-  seconds = seconds.toString();
+  minutes = minutes != null ? minutes.toString() : "";
+  seconds = seconds != null ? seconds.toString() : "";
 
   if (minutes.length < 2) minutes = "0" + minutes;
   if (seconds.length < 2) seconds = "0" + seconds;
@@ -55,14 +55,14 @@ export const formatDate = function(date) {
 
   if (month.length < 2) month = "0" + month;
   if (day.length < 2) day = "0" + day;
-
+  
   return [month, day, year].join("-");
 };
 
 export const formatDuration = (hr, min, sec) => {
-  hr = hr.toString();
-  min = min.toString();
-  sec = sec.toString();
+  hr = hr != null ? hr.toString() : "";
+  min = min != null ? min.toString() : "";
+  sec = sec != null ? sec.toString() : "";
 
   if (min.length < 2) min = "0" + min;
   if (sec.length < 2) sec = "0" + sec;

@@ -72,22 +72,28 @@ class ProfileCard extends Component {
                         </div>
                         <Link
                           className="profile-card__body__latest-activity"
-                          to={`/activities/${activities.activity_by_user[activities.activity_by_user.length - 1]._id}`}
+                          to={`/activities/${
+                            (activities.activity_by_user.length > 0)
+                              ? activities.activity_by_user[
+                                  activities.activity_by_user.length - 1
+                                ]._id
+                              : " "
+                          }`}
                         >
                           <span className="profile-card__body__latest-activity__title">
-                            {
-                              activities.activity_by_user[
-                                activities.activity_by_user.length - 1
-                              ].title
-                            }
+                            {activities.activity_by_user.length > 0
+                              ? activities.activity_by_user[
+                                  activities.activity_by_user.length - 1
+                                ].title
+                              : "No Activity Found"}
                           </span>{" "}
                           •{" "}
                           <span className="profile-card__body__latest-activity__date">
-                            {
-                              activities.activity_by_user[
-                                activities.activity_by_user.length - 1
-                              ].date
-                            }
+                            {activities.activity_by_user.length > 0
+                              ? activities.activity_by_user[
+                                  activities.activity_by_user.length - 1
+                                ].date
+                              : " "}
                           </span>
                         </Link>
                       </div>
