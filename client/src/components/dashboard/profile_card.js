@@ -39,7 +39,7 @@ class ProfileCard extends Component {
                         </div>
 
                         <div className="profile-card__header__stats">
-                          <div className="profile-card__header__stat">
+                          {/* <div className="profile-card__header__stat">
                             <div className="profile-card__header__stat__heading">
                               Following
                             </div>
@@ -54,10 +54,10 @@ class ProfileCard extends Component {
                             <div className="profile-card__header__stat__value">
                               0
                             </div>
-                          </div>
+                          </div> */}
                           <div className="profile-card__header__stat">
                             <div className="profile-card__header__stat__heading">
-                              Activities
+                              Total Activities
                             </div>
                             <div className="profile-card__header__stat__value">
                               {activities.activity_by_user.length}
