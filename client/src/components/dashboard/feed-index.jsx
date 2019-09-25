@@ -15,15 +15,15 @@ export default class FeedIndex extends Component {
             <Query
               query={QUERY_USER_ACTIVITY}
               variables={{ user_id: localStorage.getItem("currentUserId") }}
-              fetchPolicy= 'no-cache'
+              fetchPolicy="no-cache"
             >
               {({ loading, error, data }) => {
-                if (loading) return <Loader/>;
+                if (loading) return <Loader />;
                 if (error) return <div>Error</div>;
                 console.log("feed-index");
-                return data.activity_by_user.map(act => (
-                  <FeedIndexItem activity={act} key={act._id} />
-                ));
+                return data.activity_by_user
+                  .reverse()
+                  .map(act => <FeedIndexItem activity={act} key={act._id} />);
               }}
             </Query>
           );
