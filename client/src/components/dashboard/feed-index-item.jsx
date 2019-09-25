@@ -65,7 +65,9 @@ export default class FeedIndexItem extends Component {
           </div>
           <div className="flex-column">
             <div className="feed-item-title margin-bottom-s">
-              {this.props.activity.title}
+              <Link to={`/activities/${this.props.activity._id}`}>
+                {this.props.activity.title}
+              </Link>
             </div>
             <div className="feed-item-description margin-bottom-s">
               {this.props.activity.description}
