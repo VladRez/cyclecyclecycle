@@ -33,7 +33,7 @@ export default class ActivityShow extends Component {
                           </div>
                           <div className=" flex-row">
                             <a className="padding-m icon-button">
-                              <i class="fas fa-pen activity-show-navbar-icon"></i>
+                              <i className="fas fa-pen activity-show-navbar-icon"></i>
                             </a>
                             <a className="padding-m icon-button">
                               <i class="fas fa-trash activity-show-navbar-icon"></i>
