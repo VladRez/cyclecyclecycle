@@ -55,9 +55,9 @@ export default class FeedIndexItem extends Component {
         </div>
         <div className="flex-row">
           <div className="feed-item-activity-type">
-            {this.props.activity.sport == "Cycle" ? (
+            {this.props.activity.sport === "Cycle" ? (
               <i className="fas fa-biking"></i>
-            ) : this.props.activity.sport == "Swim" ? (
+            ) : this.props.activity.sport === "Swim" ? (
               <i className="fas fa-swimmer"></i>
             ) : (
               <i className="fas fa-walking"></i>
