@@ -5,6 +5,7 @@ import { Query } from "react-apollo";
 import Queries from "../../graphql/queries";
 import { Link } from "react-router-dom";
 import "./feed-index.css";
+import CTACardImg from "../../assets/images/cta-card__img.jpg";
 const { QUERY_USER_ACTIVITY } = Queries;
 
 export default class FeedIndex extends Component {
@@ -15,11 +16,13 @@ export default class FeedIndex extends Component {
       return (
         <div className="cta-card">
           <div className="cta-card__header">
-            <img className="cta-card__header__img"></img>
+            <img className="cta-card__img" src={CTACardImg}></img>
           </div>
           <div className="cta-card__body">
-            <h1 className="cta-card__header__heading">Get Started</h1>
-            <p>Plan and record your workouts by creating an activity!</p>
+            <h1 className="cta-card__heading">Get Started</h1>
+            <p className="cta-card__description">
+              Plan and record your workouts by creating an activity!
+            </p>
             <div className="cta-card__footer">
               <Link to="activity/new" className="button button-primary">
                 Create an Activity
