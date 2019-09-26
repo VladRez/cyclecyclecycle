@@ -8,7 +8,6 @@ const { QUERY_USER_ACTIVITY, USER_QUERY } = Queries;
 
 export default class Dashboard extends Component {
   render() {
-    debugger;
     return (
       <Query
         query={USER_QUERY}
@@ -28,7 +27,6 @@ export default class Dashboard extends Component {
               {({ loading, error, data }) => {
                 if (loading) return <div></div>;
                 if (error) return <div>Error</div>;
-                debugger;
                 const activities = data;
                 return (
                   <div className="dashboard-page-container">

@@ -10,7 +10,6 @@ const { QUERY_USER_ACTIVITY } = Queries;
 
 export default class FeedIndex extends Component {
   renderFeedIndex() {
-    debugger;
     if (this.props.activities.activity_by_user.length === 0) {
       // return <div>Get started today! Add an activity</div>;
       return (
