@@ -6,7 +6,7 @@
   margin: 70px auto;
   box-sizing: border-box;
   position: relative;
-  width: 1236px;
+  max-width: 1236px;
 
   color: #2d2d32;
   fill: currentColor;
@@ -15,6 +15,6 @@
 }
 
 .feed-container {
-  width: 50%;
+  width: 600px;
   padding: 0px 10px;
 }
