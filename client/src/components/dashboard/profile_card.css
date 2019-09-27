@@ -41,7 +41,7 @@
 .profile-card__header__stats {
   display: flex;
   justify-content: space-around;
-  padding: 16px;
+  padding-bottom: 16px;
 }
 
 .profile-card__header__stat {
