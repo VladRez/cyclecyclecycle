@@ -285,13 +285,33 @@ class Activity extends React.Component {
                         <select
                           className="input activity-select activity-sport activity-input-group"
                           name="sport"
-                          defaultValue={"DEFAULT"}
+                          defaultValue={this.state.sport}
                           onChange={this.handleChange("sport")}
                         >
-                          <option value="Walk">Walk</option>
-                          <option value="Run">Run</option>
-                          <option value="Cycle">Cycle</option>
-                          <option value="Swim">Swim</option>
+                          <option
+                            value="Walk"
+                            selected={this.state.sport === "Walk"}
+                          >
+                            Walk
+                          </option>
+                          <option
+                            value="Run"
+                            selected={this.state.sport === "Run"}
+                          >
+                            Run
+                          </option>
+                          <option
+                            value="Cycle"
+                            selected={this.state.sport === "Cycle"}
+                          >
+                            Cycle
+                          </option>
+                          <option
+                            value="Swim"
+                            selected={this.state.sport === "Swim"}
+                          >
+                            Swim
+                          </option>
                         </select>
                       </div>
                     </div>
