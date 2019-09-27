@@ -10,7 +10,7 @@
 }
 
 .modal-form-container {
-  width: 600px;
+  max-width: 600px;
 
   position: absolute;
   top: 10%;
