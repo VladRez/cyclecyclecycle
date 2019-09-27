@@ -16,6 +16,7 @@ const Logout = props => (
                 onClick={e => {
                   e.preventDefault();
                   localStorage.removeItem("auth-token");
+                  localStorage.removeItem("currentUserId");
                   client.writeData({ data: { isLoggedIn: false } });
                   // props.history.push("/login");
                 }}

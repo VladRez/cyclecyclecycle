@@ -1,7 +1,28 @@
 .fa-user {
   color: #fc4c02;
 }
-.orangeBar {
-  border: 0.5px #fc4c02 solid;
-  
+
+.cta-card {
+  background: #fff;
+  border-radius: 3px;
+  overflow: hidden;
+}
+.cta-card__header {
+}
+.cta-card__img {
+  height: 200px;
+  width: 100%;
+  object-fit: none;
+  object-position: 50% 64%;
+}
+.cta-card__heading {
+}
+
+.cta-card__description {
+  font-size: 1rem;
+}
+.cta-card__body {
+  padding: 15px;
+}
+.cta-card__footer {
 }

@@ -22,13 +22,12 @@ class Demo extends React.Component {
           const { token, _id } = data.login;
           localStorage.setItem("auth-token", token);
           localStorage.setItem("currentUserId", _id);
+          this.props.history.push("/dashboard");
         }}
         update={(client, { data }) => {
           client.writeData({
             data: { isLoggedIn: data.login.loggedIn }
           });
-
-          this.props.history.push("/dashboard");
         }}
       >
         {LoginUser => (

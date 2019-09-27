@@ -21,37 +21,18 @@ export default class FeedIndexItem extends Component {
           <div className="feed-item-avatar">
             <i className="fas fa-user font-size-l"></i>
           </div>
-          <ApolloConsumer>
-            {client => {
-              return (
-                <Query
-                  query={USER_QUERY}
-                  variables={{ id: this.props.activity.user_id }}
-                >
-                  {({ loading, error, data }) => {
-                    if (loading) return <div>Loading</div>;
-                    if (error) return <div>Error</div>;
-                    console.log("feed-index-item");
-                    return (
-                      <Link to={`/activities/${this.props.activity._id}`}>
-                        <div className="activity-item-name">
-                          <div className="flex-column">
-                            <div className="feed-item-username">
-                              {data.user.fname} {data.user.lname}
-                            </div>
-                            <div className="feed-item-date">
-                              {this.props.activity.date} at{" "}
-                              {this.props.activity.time}
-                            </div>
-                          </div>
-                        </div>
-                      </Link>
-                    );
-                  }}
-                </Query>
-              );
-            }}
-          </ApolloConsumer>
+          <Link to={`/activities/${this.props.activity._id}`}>
+            <div className="activity-item-name">
+              <div className="flex-column">
+                <div className="feed-item-username">
+                  {this.props.user.user.fname} {this.props.user.user.lname}
+                </div>
+                <div className="feed-item-date">
+                  {this.props.activity.date} at {this.props.activity.time}
+                </div>
+              </div>
+            </div>
+          </Link>
         </div>
         <div className="flex-row">
           <div className="feed-item-activity-type">
