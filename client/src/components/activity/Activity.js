@@ -81,24 +81,56 @@ class Activity extends React.Component {
 
   sampleActivity(e, addActivity) {
     const TitleDesc = [
-      ["Run", "Walk in the park", "With my dog"],
-      ["Run", "Hiking in Yosemite", "View from half dome"],
-      ["Run", "Early Morning Jog", "At Half Moon Bay"],
-      ["Swim", "Swimming with Dolphins", "On a beautiful sunny day"],
-      ["Cycle", "Biking in Sausalito", "Up down the winding roads"],
-      ["Walk", "Hiking up the Mission Peak", "View of the bay"],
-      ["Run", "Evening jog at Golden Gate Park", "Breaking into the new Nikes"],
+      [
+        "Run",
+        "Walk in the park",
+        "Has eu ornatus iudicabit, mea ne iuvaret percipitur. Iuvaret voluptatibus id sit, vocibus appetere ea sea. Cu pro nisl mutat posidonium, ne usu laudem quaestio scripserit, in per dolorum tractatos. In vim latine facilisis. Quaestio mediocrem vim cu. An unum feugait officiis nec, sed aeque accumsan te, pri ullum postea ea. Recusabo facilisis urbanitas eu vim."
+      ],
+      [
+        "Run",
+        "Hiking in Yosemite",
+        "Ut enim minim aeterno quo, esse option electram sit at. Duo te meis omnis. Ad sadipscing conclusionemque mel, dicta menandri cum an, eum ex populo animal. Ei pri sint viris exerci, quo eripuit noluisse ad. Ut omnis intellegam vis, mel aliquid abhorreant ne, nam blandit qualisque sententiae cu."
+      ],
+      [
+        "Run",
+        "Early Morning Jog",
+        "Malis intellegam repudiandae ut mei, est graeci adipisci et. Adhuc epicurei et sed, mea id dolore sensibus. Mel dolorum luptatum platonem ei. Duo alterum volumus ad, cu nec reque delectus inimicus, vidisse patrioque cu cum."
+      ],
+      [
+        "Swim",
+        "Swimming with Dolphins",
+        "Pro habeo ridens officiis cu, at altera repudiare delicatissimi nam. Vim an tacimates principes ullamcorper, in accusam mnesarchum qui, vel nulla fuisset te. Modo impetus no duo, elaboraret efficiendi mediocritatem mea cu. Ad nam assum euripidis percipitur. Mea no enim aperiam, idque velit est id. Vim in iusto laoreet, ad altera discere nec, usu ea autem aliquid."
+      ],
+      [
+        "Cycle",
+        "Biking in Sausalito",
+        "Id has decore tempor adolescens, pro at omittam deleniti, at sed reque persecuti. Cu vix iusto nostrum imperdiet, mea luptatum legendos antiopam in. Pri id idque commodo, eam in modo moderatius, ludus putent gubergren cum id. Eum et stet commune, vim inani epicurei delicata et, has no vitae maiorum. Causae principes signiferumque ea vis, vim deleniti delicatissimi et."
+      ],
+      [
+        "Walk",
+        "Hiking up the Mission Peak",
+        "At nihil dictas per, tota sonet accusata te vis. Illud etiam nihil qui id, cu congue insolens vix, vim ea numquam propriae. Cu nam meis causae legendos, an graeci delenit lucilius his, fugit eirmod admodum ei pri. Mei ei causae salutandi, ad graeci vocibus mandamus vim, modo viderer meliore his ex. Ut putant accusata vituperatoribus his, eos ne choro labore scripserit."
+      ],
+      [
+        "Run",
+        "Evening jog at Golden Gate Park",
+        "Duo at primis putant, pro cu graeci civibus copiosae, nonumy mollis interpretaris et est. Senserit mnesarchum reformidans ex sea, natum habeo offendit duo te. At usu viderer vivendum praesent, nulla causae molestiae sit eu, in vix propriae noluisse. Ius platonem corrumpit efficiendi ne."
+      ],
       [
         "Walk",
         "Trek through Muir Woods",
-        "Cold and Foggy San Francisco Morning"
+        "At epicurei adipisci eam, suas dolorem qui et. Tamquam officiis vituperatoribus vel in, an vix neglegentur vituperatoribus. Hinc facer liberavisse at pro, et cum timeam integre, mea te phaedrum antiopam. Usu etiam nonumy et. Ea nam inimicus adversarium, populo equidem cu mei. Ne facilisi pericula mel."
       ],
       [
         "Walk",
         "Lazy stroll on the boardwalk",
-        "Taking in the sights and sounds"
+        "Pri in fierent adipisci signiferumque, eos ut soleat luptatum, ius delectus dissentias ne. Vim assum dolorum torquatos at, nonumy molestiae dissentiet an cum. Elit iuvaret dissentiet cu sed, ex mel errem blandit. Quo ut accusam deleniti, mutat oratio nostrud pri ea. Sit eu recteque deseruisse. Vim in nisl exerci."
       ],
-      ["Run", "Golden Gate Bridge", "5 miles"]
+      [
+        "Run",
+        "Golden Gate Bridge",
+        "Lorem ipsum dolor sit amet, unum eligendi intellegat quo ei. Veniam dignissim an qui, est fastidii rationibus ut, legere vocent liberavisse ei vix. Sit agam assum definitionem ad. Ad sit modo graecis reformidans. Mundi delenit omnesque vel te, id sit prompta interesset. Eum brute prodesset id, vide erat invidunt vix ad, vis no dicam concludaturque."
+      ]
     ];
     let i = Math.ceil(Math.random() * 100) % 10;
     e.preventDefault();
