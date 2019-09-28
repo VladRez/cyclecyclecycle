@@ -22,4 +22,16 @@ const addActivity = async data => {
   }
 };
 
-module.exports = { addActivity };
+const deleteActivity = async data => {
+  // activity.delete(data._id);
+  try {
+    debugger;
+    const activity = await Activity.findByIdAndDelete(data._id);
+    debugger;
+    return activity;
+  } catch (err) {
+    throw err;
+  }
+};
+
+module.exports = { addActivity, deleteActivity };
