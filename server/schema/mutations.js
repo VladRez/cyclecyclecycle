@@ -88,6 +88,17 @@ const mutation = new GraphQLObjectType({
       }
     },
 
+    deleteActivity: {
+      type: ActivityType,
+      args: {
+        _id: { type: GraphQLID }
+      },
+      resolve(_, args) {
+        console.log("Args: ", args);
+        return Activity.deleteActivity(args);
+      }
+    },
+
     addMap: {
       type: MapType,
       args: {
