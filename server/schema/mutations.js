@@ -95,6 +95,7 @@ const mutation = new GraphQLObjectType({
       },
       resolve(_, args) {
         console.log("Args: ", args);
+        debugger;
         return Activity.deleteActivity(args);
       }
     },

@@ -87,6 +87,13 @@ export default {
       }
     }
   `,
+  DELETE_ACTIVITY: gql`
+    mutation DeleteActivity($id: ID!) {
+      deleteActivity(_id: $id) {
+        _id
+      }
+    }
+  `,
 
   VERIFY_USER: gql`
     mutation VerifyUser($token: String!) {
