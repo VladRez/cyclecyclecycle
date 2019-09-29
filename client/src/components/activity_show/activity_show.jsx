@@ -4,6 +4,7 @@ import "./activity_show.css";
 import Queries from "../../graphql/queries";
 import { ApolloConsumer } from "react-apollo";
 import * as utils from "../../util/activity_util";
+import DeleteActivity from "../activity_delete/activity_delete";
 const { ACTIVITY_QUERY } = Queries;
 
 export default class ActivityShow extends Component {
@@ -19,7 +20,7 @@ export default class ActivityShow extends Component {
               {({ loading, error, data }) => {
                 if (loading) return <div>Loading</div>;
                 if (error) return <div>Error</div>;
-
+                debugger;
                 return (
                   <div className="page-container">
                     <div className="activity-item">
@@ -36,7 +37,10 @@ export default class ActivityShow extends Component {
                               <i className="fas fa-pen activity-show-navbar-icon"></i>
                             </a>
                             <a className="padding-m icon-button">
-                              <i class="fas fa-trash activity-show-navbar-icon"></i>
+                              {/* <i class="fas fa-trash activity-show-navbar-icon"></i> */}
+                              <DeleteActivity
+                                id={this.props.match.params.activityId}
+                              />
                             </a>
                           </div>
                         </div>
