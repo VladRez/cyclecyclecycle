@@ -263,7 +263,7 @@ class RouteMap extends React.Component {
               className="modal-action-buttons-cancel"
               onClick={() => this.openModal()}
             >
-              save
+              Save
             </button>
             <button
               className="modal-action-buttons-cancel"
