@@ -4,8 +4,9 @@ import { Query } from "react-apollo";
 import { ApolloConsumer } from "react-apollo";
 import "./feed-index-item.css";
 import * as utils from "../../util/activity_util";
-import Queries from "../../graphql/queries";
-const { USER_QUERY } = Queries;
+import Mutations from "../../graphql/queries";
+import DeleteActivity from "../activity_delete/activity_delete";
+const { ACTIVITY_DELETE } = Mutations;
 
 export default class FeedIndexItem extends Component {
   render() {
@@ -26,7 +27,9 @@ export default class FeedIndexItem extends Component {
               <div className="flex-column">
                 <div className="feed-item-username">
                   {this.props.user.user.fname} {this.props.user.user.lname}
+                  <DeleteActivity id={this.props.activity._id} />
                 </div>
+
                 <div className="feed-item-date">
                   {this.props.activity.date} at {this.props.activity.time}
                 </div>

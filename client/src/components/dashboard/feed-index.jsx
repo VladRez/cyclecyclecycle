@@ -7,6 +7,7 @@ import Loader from "./loader";
 import "./feed-index.css";
 import { Link } from "react-router-dom";
 import CTACardImg from "../../assets/images/cta-card__img.jpg";
+
 const { QUERY_USER_ACTIVITY } = Queries;
 
 export default class FeedIndex extends Component {
@@ -76,15 +77,16 @@ export default class FeedIndex extends Component {
                     </div>
                   );
                 else {
-                  return data.activity_by_user
-                    .reverse()
-                    .map(act => (
+                  return data.activity_by_user.reverse().map(act => (
+                    <div>
                       <FeedIndexItem
                         user={this.props.user}
                         activity={act}
                         key={act._id}
                       />
-                    ));
+                     
+                    </div>
+                  ));
                 }
               }}
             </Query>

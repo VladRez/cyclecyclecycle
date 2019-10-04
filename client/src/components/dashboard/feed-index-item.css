@@ -64,3 +64,9 @@
 .fa-walking {
   color: #fc4c02;
 }
+
+.user-and-deletebutton {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

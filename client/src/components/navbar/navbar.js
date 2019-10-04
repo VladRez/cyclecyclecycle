@@ -44,6 +44,11 @@ export default class Navbar extends Component {
                   <Link to="/" className="navbar__logo">
                     CycleCycleCycle
                   </Link>
+                  <div>
+                    <a href="https://github.com/VladRez/cyclecyclecycle">
+                      <i className="fab fa-github"></i>
+                    </a>
+                  </div>
                   <div className="nav-group">
                     <div className="dropdown">
                       <div
