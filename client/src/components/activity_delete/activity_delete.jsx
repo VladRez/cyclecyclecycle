@@ -1,6 +1,6 @@
 import React from "react";
 import { Mutation } from "react-apollo";
-
+import { withRouter } from "react-router-dom";
 import Mutations from "../../graphql/mutations";
 import Queries from "../../graphql/queries";
 import "./activity_delete.css";
@@ -24,6 +24,9 @@ const DeleteActivity = props => {
           }
         ];
       }}
+      onCompleted={data => {  
+        props.history.push("/");
+      }}
     >
       {(DeleteActivity, { data }) => (
         <a
@@ -40,4 +43,4 @@ const DeleteActivity = props => {
   );
 };
 
-export default DeleteActivity;
+export default withRouter(DeleteActivity);
