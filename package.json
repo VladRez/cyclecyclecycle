@@ -38,6 +38,6 @@
     "nodemon": "^1.19.1",
     "react-datepicker": "^2.9.6",
     "react-router-dom": "^5.0.1",
-    "validator": "^11.1.0"
+    "validator": "^13.7.0"
   }
 }
